@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GROWモデル | セルフコーチング学習ログ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #E8722A;
+      --orange-light: #FDF0E8;
+      --orange-mid: #F5C4A0;
+      --brown: #6B3A2A;
+      --brown-light: #F9F3EF;
+      --text: #2D2D2D;
+      --text-muted: #7A7A7A;
+      --border: #EAE0D8;
+      --white: #FFFFFF;
+      --teal: #3A8C8A;
+      --teal-light: #EAF5F5;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: #FAF7F4;
+      color: var(--text);
+      line-height: 1.85;
+      font-size: 16px;
+    }
+
+    /* ヘッダー */
+    .site-header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+    }
+    .site-header a {
+      text-decoration: none;
+      color: var(--brown);
+      font-size: 14px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.75;
+      transition: opacity 0.2s;
+    }
+    .site-header a:hover { opacity: 1; }
+    .site-header a::before { content: '←'; }
+
+    /* メインコンテンツ */
+    .article-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* メタ情報 */
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .tag {
+      background: var(--orange-light);
+      color: var(--orange);
+      border: 1px solid var(--orange-mid);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.05em;
+    }
+    .tag.teal {
+      background: var(--teal-light);
+      color: var(--teal);
+      border-color: #B0D8D7;
+    }
+    .article-date {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* タイトル */
+    .article-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 700;
+      color: var(--brown);
+      line-height: 1.45;
+      margin-bottom: 10px;
+    }
+    .article-subtitle {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+
+    /* 区切り線 */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 36px 0;
+    }
+
+    /* リード文 */
+    .lead-box {
+      background: var(--brown-light);
+      border-left: 4px solid var(--orange);
+      padding: 20px 24px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 36px;
+      font-size: 15px;
+    }
+    .lead-box strong { color: var(--orange); }
+
+    /* セクションラベル */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--white);
+      background: var(--brown);
+      padding: 4px 14px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+    .section-label.trainer { background: var(--teal); }
+
+    /* 本文 */
+    .article-body h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--brown);
+      margin: 36px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--orange-light);
+    }
+    .article-body p {
+      margin-bottom: 18px;
+      font-size: 15.5px;
+    }
+    .article-body strong { color: var(--brown); }
+    .article-body em { font-style: normal; color: var(--orange); font-weight: 700; }
+
+    /* ドライブ例え */
+    .drive-box {
+      background: linear-gradient(135deg, #FDF0E8 0%, #FFF8F2 100%);
+      border: 1px solid var(--orange-mid);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+    .drive-box p { font-size: 15px; margin-bottom: 10px; }
+    .drive-box p:last-child { margin-bottom: 0; }
+    .drive-box strong { color: var(--orange); }
+
+    /* GROWステップカード */
+    .grow-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 24px 0 32px;
+    }
+    @media (max-width: 560px) {
+      .grow-grid { grid-template-columns: 1fr; }
+    }
+    .grow-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .grow-card:hover {
+      box-shadow: 0 4px 16px rgba(232, 114, 42, 0.1);
+      border-color: var(--orange-mid);
+    }
+    .grow-letter {
+      width: 44px;
+      height: 44px;
+      background: var(--orange);
+      color: var(--white);
+      font-family: 'Noto Serif JP', serif;
+      font-size: 22px;
+      font-weight: 700;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+    .grow-card-name {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+    .grow-card-title {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--brown);
+      margin-bottom: 8px;
+    }
+    .grow-card-q {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      background: rgba(0,0,0,0.03);
+      padding: 8px 12px;
+      border-radius: 6px;
+      border-left: 3px solid var(--orange-mid);
+      line-height: 1.65;
+    }
+
+    /* トレーナーセクション */
+    .trainer-section {
+      background: var(--teal-light);
+      border: 1px solid #B0D8D7;
+      border-radius: 12px;
+      padding: 28px;
+      margin-top: 40px;
+    }
+    .trainer-section h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--teal);
+      margin: 24px 0 12px;
+    }
+    .trainer-section h3:first-of-type { margin-top: 8px; }
+
+    .action-item {
+      background: var(--white);
+      border: 1px solid #B0D8D7;
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin-bottom: 12px;
+      font-size: 14.5px;
+    }
+    .action-item .action-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+    .action-syntax {
+      background: #F0F7F7;
+      border-radius: 5px;
+      padding: 8px 12px;
+      font-size: 13px;
+      color: var(--teal);
+      margin-top: 8px;
+      font-weight: 500;
+    }
+    .action-syntax::before { content: 'ポイント: '; font-weight: 700; }
+
+    /* まとめ */
+    .closing-box {
+      background: var(--brown);
+      color: var(--white);
+      border-radius: 12px;
+      padding: 28px;
+      margin-top: 40px;
+      text-align: center;
+    }
+    .closing-box p { font-size: 15px; opacity: 0.9; margin-bottom: 0; }
+    .closing-quote {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      line-height: 1.6;
+    }
+
+    /* インフォグラフィック */
+    .infographic-section { margin-top: 40px; }
+    .infographic-img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      display: block;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+    }
+    .infographic-caption {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    /* マイメモ */
+    .memo-section {
+      margin-top: 40px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .memo-prompts { display: flex; flex-direction: column; gap: 16px; margin-bottom: 20px; }
+    .memo-prompt-item label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--brown);
+      margin-bottom: 6px;
+    }
+    .memo-prompt-item textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text);
+      background: #FDFBF9;
+      resize: vertical;
+      min-height: 80px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .memo-prompt-item textarea:focus {
+      border-color: var(--orange-mid);
+      box-shadow: 0 0 0 3px rgba(232,114,42,0.1);
+    }
+    .memo-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .btn-save {
+      background: var(--orange);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      padding: 10px 22px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-save:hover { background: #D4631E; }
+    .btn-save:active { transform: scale(0.97); }
+    .btn-clear {
+      background: none;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 13px;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .btn-clear:hover { color: var(--text); border-color: #C0B0A8; }
+    .memo-saved-msg {
+      font-size: 13px;
+      color: var(--teal);
+      font-weight: 500;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .memo-saved-msg.show { opacity: 1; }
+    .memo-last-saved { font-size: 12px; color: var(--text-muted); margin-top: 10px; }
+
+    /* ナビゲーション */
+    .article-nav {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 56px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+    .nav-link {
+      text-decoration: none;
+      color: var(--orange);
+      font-size: 14px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.2s;
+    }
+    .nav-link:hover { gap: 10px; }
+
+    /* フッター */
+    .site-footer {
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 13px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      background: var(--white);
+    }
+
+    @media (max-width: 600px) {
+      .article-wrap { padding: 32px 18px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="../index.html">学習ログ一覧に戻る</a>
+</header>
+
+<main class="article-wrap">
+
+  <div class="article-meta">
+    <span class="tag">思考整理</span>
+    <span class="tag">目標設定</span>
+    <span class="tag teal">コーチング基礎</span>
+    <span class="article-date">2026年4月12日</span>
+  </div>
+
+  <h1 class="article-title">GROWモデル</h1>
+  <p class="article-subtitle">Goal・Reality・Options・Willの4ステップで思考を整理し、<br>「どうしよう…」の沼から抜け出して具体的な行動へ導くセルフコーチングの黄金律。</p>
+
+  <hr class="divider">
+
+  <div class="lead-box">
+    悩み事に直面したとき、私たちは「現状の沼」にはまり同じ場所をぐるぐる回りがちです。GROWモデルは思考に<strong>「強制的な順番」</strong>をつけることで、沼から抜け出しゴールへの道を舗装するツールです。
+  </div>
+
+  <!-- 教授セクション -->
+  <div class="section-label">📚 教授の解説</div>
+
+  <div class="article-body">
+
+    <h3>1. 理論の本質：思考に「順番」をつける</h3>
+    <p>目的地が決まっていないのにアクセルを全開にしても、どこにも辿り着けません。GROWモデルはまず<strong>行き先（Goal）を決めてから動き出す</strong>ための思考の地図です。</p>
+
+    <h3>2. 直感的な例え：ドライブの計画</h3>
+
+    <div class="drive-box">
+      <p>🚗 あなたは今から車でどこかへ向かおうとしています。</p>
+      <p><strong>G（目的地）:</strong> 「海に行きたい」という目的地を決める。</p>
+      <p><strong>R（現在地）:</strong> ガソリンはどれくらいか？渋滞は？今の状況を確認する。</p>
+      <p><strong>O（ルート）:</strong> 高速で行くか、下道か、電車に変えるか？選択肢を探る。</p>
+      <p><strong>W（出発）:</strong> 「よし、10分後に出発しよう」とハンドルを握る。</p>
+    </div>
+
+    <h3>3. 4つのステップ：自分への問いかけ</h3>
+
+    <div class="grow-grid">
+      <div class="grow-card">
+        <div class="grow-letter">G</div>
+        <div class="grow-card-name">Goal（目標）</div>
+        <div class="grow-card-title">目的地を決める</div>
+        <div class="grow-card-q">あなたが本当に達成したい「今日の結果」は何ですか？</div>
+      </div>
+      <div class="grow-card">
+        <div class="grow-letter">R</div>
+        <div class="grow-card-name">Reality（現状）</div>
+        <div class="grow-card-title">現在地を確認する</div>
+        <div class="grow-card-q">今、その目標に対して何合目まで来ていますか？何が起きていますか？</div>
+      </div>
+      <div class="grow-card">
+        <div class="grow-letter">O</div>
+        <div class="grow-card-name">Options（選択肢）</div>
+        <div class="grow-card-title">ルートを探る</div>
+        <div class="grow-card-q">他にどんなやり方がありますか？誰かに頼ることはできますか？</div>
+      </div>
+      <div class="grow-card">
+        <div class="grow-letter">W</div>
+        <div class="grow-card-name">Will（意思）</div>
+        <div class="grow-card-title">ハンドルを握る</div>
+        <div class="grow-card-q">最初のステップとして、何から始めますか？いつやりますか？</div>
+      </div>
+    </div>
+
+  </div><!-- /article-body -->
+
+  <!-- トレーナーセクション -->
+  <div class="trainer-section">
+    <div class="section-label trainer">🏋️ トレーナーの今日の課題</div>
+
+    <h3>① ベビーステップ（2分以内）</h3>
+    <div class="action-item">
+      <div class="action-label">Goalの設定</div>
+      <p>今この瞬間、メモ帳や付箋に「今日の終わり、自分がどうなっていたら最高か？」を一行だけ書いてください。</p>
+      <div class="action-syntax">まず「ゴール」を言語化することが出発点。内容より「書く」ことが大事。</div>
+    </div>
+
+    <h3>② ルーチン・トリガー</h3>
+    <div class="action-item">
+      <div class="action-label">Realityの確認</div>
+      <p>「昼食を食べ終わったら」、今の仕事の進捗を「10点満点で言うと何点か？」を自分に問いかけてください。</p>
+      <div class="action-syntax">数字で現状を把握するクセをつける。「なんとなく進んでる」をなくす。</div>
+    </div>
+
+    <h3>③ 今日のミッション</h3>
+    <div class="action-item">
+      <div class="action-label">Optionsの拡大</div>
+      <p>何か問題が起きたとき、「どうすればいい？」ではなく、必ず「他に2つ、別のやり方はあるか？」と考えてから行動してください。</p>
+      <div class="action-syntax">最初に思いついた方法に飛びつかず、選択肢を広げてから決める習慣づくり。</div>
+    </div>
+  </div>
+
+  <!-- まとめ -->
+  <div class="closing-box">
+    <div class="closing-quote">「どうしよう…」と感じたら、<br>まずGの問いを立てる。</div>
+    <p>目的地が決まってはじめて、現在地と道筋が見えてきます。</p>
+  </div>
+
+  <!-- インフォグラフィック -->
+  <div class="infographic-section">
+    <div class="section-label" style="margin-top: 40px;">🖼️ 図解まとめ</div>
+    <img
+      class="infographic-img"
+      src="GROWモデル.png"
+      alt="GROWモデル インフォグラフィック：自分を導く思考の地図"
+    >
+    <p class="infographic-caption">NotebookLM で作成したインフォグラフィック</p>
+  </div>
+
+  <!-- マイメモ -->
+  <div class="memo-section">
+    <div class="section-label" style="background: var(--orange);">📝 マイメモ</div>
+    <div class="memo-prompts">
+      <div class="memo-prompt-item">
+        <label>💡 今日の学びで一番印象に残ったこと</label>
+        <textarea id="memo-1" placeholder="例：目的地を決めてから動く、という順番が大事だと気づいた。いつもRから考えて沼ってた…"></textarea>
+      </div>
+      <div class="memo-prompt-item">
+        <label>🔍 自分に当てはめると？（具体的な場面）</label>
+        <textarea id="memo-2" placeholder="例：仕事のタスクをこなすとき、Gを決めずにいきなりRを眺めてパニックになっていた。"></textarea>
+      </div>
+      <div class="memo-prompt-item">
+        <label>🎯 明日からやってみること</label>
+        <textarea id="memo-3" placeholder="例：朝イチに「今日のG」を付箋に書いてPCに貼る。"></textarea>
+      </div>
+    </div>
+    <div class="memo-actions">
+      <button class="btn-save" onclick="saveMemo()">💾 保存する</button>
+      <button class="btn-clear" onclick="clearMemo()">クリア</button>
+      <span class="memo-saved-msg" id="saved-msg">✓ 保存しました</span>
+    </div>
+    <div class="memo-last-saved" id="last-saved"></div>
+  </div>
+
+  <!-- ナビ：次の記事（ABCDEモデル）へ -->
+  <nav class="article-nav">
+    <a class="nav-link" href="20250503-abcde-model.html">次の記事：ABCDEモデル →</a>
+  </nav>
+
+</main>
+
+<footer class="site-footer">
+  <p>🐾 セルフコーチング学習ログ</p>
+</footer>
+
+<script>
+  const MEMO_KEY = 'memo-grow-model';
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem(MEMO_KEY);
+    if (saved) {
+      const data = JSON.parse(saved);
+      document.getElementById('memo-1').value = data.memo1 || '';
+      document.getElementById('memo-2').value = data.memo2 || '';
+      document.getElementById('memo-3').value = data.memo3 || '';
+      if (data.savedAt) {
+        document.getElementById('last-saved').textContent = '最終保存: ' + data.savedAt;
+      }
+    }
+  });
+
+  function saveMemo() {
+    const now = new Date();
+    const savedAt = now.toLocaleDateString('ja-JP') + ' ' + now.toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' });
+    const data = {
+      memo1: document.getElementById('memo-1').value,
+      memo2: document.getElementById('memo-2').value,
+      memo3: document.getElementById('memo-3').value,
+      savedAt: savedAt
+    };
+    localStorage.setItem(MEMO_KEY, JSON.stringify(data));
+    const msg = document.getElementById('saved-msg');
+    msg.classList.add('show');
+    document.getElementById('last-saved').textContent = '最終保存: ' + savedAt;
+    setTimeout(() => msg.classList.remove('show'), 2500);
+  }
+
+  function clearMemo() {
+    if (!confirm('メモをクリアしますか？この操作は元に戻せません。')) return;
+    ['memo-1', 'memo-2', 'memo-3'].forEach(id => {
+      document.getElementById(id).value = '';
+    });
+    localStorage.removeItem(MEMO_KEY);
+    document.getElementById('last-saved').textContent = '';
+  }
+</script>
+
+</body>
+</html>
