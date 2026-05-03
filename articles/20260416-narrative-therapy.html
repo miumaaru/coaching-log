@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ナラティブ・セラピー（マイケル・ホワイト） | セルフコーチング学習ログ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #E8722A;
+      --orange-light: #FDF0E8;
+      --orange-mid: #F5C4A0;
+      --brown: #6B3A2A;
+      --brown-light: #F9F3EF;
+      --text: #2D2D2D;
+      --text-muted: #7A7A7A;
+      --border: #EAE0D8;
+      --white: #FFFFFF;
+      --teal: #3A8C8A;
+      --teal-light: #EAF5F5;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: #FAF7F4;
+      color: var(--text);
+      line-height: 1.85;
+      font-size: 16px;
+    }
+
+    /* ヘッダー */
+    .site-header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+    }
+    .site-header a {
+      text-decoration: none;
+      color: var(--brown);
+      font-size: 14px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.75;
+      transition: opacity 0.2s;
+    }
+    .site-header a:hover { opacity: 1; }
+    .site-header a::before { content: '←'; }
+
+    /* メインコンテンツ */
+    .article-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* メタ情報 */
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .tag {
+      background: var(--orange-light);
+      color: var(--orange);
+      border: 1px solid var(--orange-mid);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.05em;
+    }
+    .tag.teal {
+      background: var(--teal-light);
+      color: var(--teal);
+      border-color: #B0D8D7;
+    }
+    .article-date {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* タイトル */
+    .article-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 700;
+      color: var(--brown);
+      line-height: 1.45;
+      margin-bottom: 10px;
+    }
+    .article-subtitle {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+
+    /* 区切り線 */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 36px 0;
+    }
+
+    /* リード文 */
+    .lead-box {
+      background: var(--brown-light);
+      border-left: 4px solid var(--orange);
+      padding: 20px 24px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 36px;
+      font-size: 15px;
+    }
+    .lead-box strong { color: var(--orange); }
+
+    /* 引用ブロック */
+    .quote-box {
+      border-left: 4px solid var(--orange-mid);
+      padding: 16px 20px;
+      margin: 24px 0;
+      background: var(--orange-light);
+      border-radius: 0 8px 8px 0;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+    .quote-box strong { color: var(--brown); font-family: 'Noto Serif JP', serif; font-size: 16px; }
+    .quote-box em { color: var(--text-muted); font-style: italic; font-size: 13px; }
+
+    /* セクションラベル */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--white);
+      background: var(--brown);
+      padding: 4px 14px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+    .section-label.trainer { background: var(--teal); }
+
+    /* 本文 */
+    .article-body h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--brown);
+      margin: 36px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--orange-light);
+    }
+    .article-body p {
+      margin-bottom: 18px;
+      font-size: 15.5px;
+    }
+    .article-body strong { color: var(--brown); }
+    .article-body em { font-style: normal; color: var(--orange); font-weight: 700; }
+
+    /* 例え話ボックス */
+    .drive-box {
+      background: linear-gradient(135deg, #FDF0E8 0%, #FFF8F2 100%);
+      border: 1px solid var(--orange-mid);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+    .drive-box p { font-size: 15px; margin-bottom: 10px; }
+    .drive-box p:last-child { margin-bottom: 0; }
+    .drive-box strong { color: var(--orange); }
+
+    /* ナラティブ・カードグリッド */
+    .narrative-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 24px 0 32px;
+    }
+    @media (max-width: 560px) {
+      .narrative-grid { grid-template-columns: 1fr; }
+    }
+    .narrative-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .narrative-card:hover {
+      box-shadow: 0 4px 16px rgba(232, 114, 42, 0.1);
+      border-color: var(--orange-mid);
+    }
+    .narrative-step {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+    }
+    .narrative-card-name {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--brown);
+      margin-bottom: 4px;
+      font-family: 'Noto Serif JP', serif;
+    }
+    .narrative-card-en {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      font-style: italic;
+    }
+    .narrative-card-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      background: rgba(0,0,0,0.03);
+      padding: 8px 12px;
+      border-radius: 6px;
+      border-left: 3px solid var(--orange-mid);
+      line-height: 1.65;
+      margin-bottom: 8px;
+    }
+    .narrative-card-effect {
+      font-size: 13px;
+      color: var(--orange);
+      font-weight: 500;
+    }
+    .narrative-card-effect::before { content: '✨ '; }
+
+    /* 注意書きボックス */
+    .tip-box {
+      background: #FFFBF5;
+      border: 1px dashed var(--orange-mid);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-top: 8px;
+      font-size: 13.5px;
+      color: var(--text-muted);
+    }
+    .tip-box strong { color: var(--brown); }
+
+    /* トレーナーセクション */
+    .trainer-section {
+      background: var(--teal-light);
+      border: 1px solid #B0D8D7;
+      border-radius: 12px;
+      padding: 28px;
+      margin-top: 40px;
+    }
+    .trainer-section h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--teal);
+      margin: 24px 0 12px;
+    }
+    .trainer-section h3:first-of-type { margin-top: 8px; }
+
+    .action-item {
+      background: var(--white);
+      border: 1px solid #B0D8D7;
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin-bottom: 12px;
+      font-size: 14.5px;
+    }
+    .action-item .action-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+    .action-item p { margin-bottom: 0; }
+    .action-syntax {
+      background: #F0F7F7;
+      border-radius: 5px;
+      padding: 8px 12px;
+      font-size: 13px;
+      color: var(--teal);
+      margin-top: 8px;
+      font-weight: 500;
+    }
+    .action-syntax::before { content: 'ポイント: '; font-weight: 700; }
+
+    /* まとめ */
+    .closing-box {
+      background: var(--brown);
+      color: var(--white);
+      border-radius: 12px;
+      padding: 28px;
+      margin-top: 40px;
+      text-align: center;
+    }
+    .closing-box p { font-size: 15px; opacity: 0.9; margin-bottom: 0; }
+    .closing-quote {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      line-height: 1.6;
+    }
+
+    /* インフォグラフィック */
+    .infographic-section { margin-top: 40px; }
+    .infographic-placeholder {
+      width: 100%;
+      border-radius: 12px;
+      border: 2px dashed var(--border);
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 180px;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+    .infographic-placeholder span { font-size: 32px; }
+    .infographic-caption {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    /* マイメモ */
+    .memo-section {
+      margin-top: 40px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .memo-prompts { display: flex; flex-direction: column; gap: 16px; margin-bottom: 20px; }
+    .memo-prompt-item label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--brown);
+      margin-bottom: 6px;
+    }
+    .memo-prompt-item textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text);
+      background: #FDFBF9;
+      resize: vertical;
+      min-height: 80px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .memo-prompt-item textarea:focus {
+      border-color: var(--orange-mid);
+      box-shadow: 0 0 0 3px rgba(232,114,42,0.1);
+    }
+    .memo-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .btn-save {
+      background: var(--orange);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      padding: 10px 22px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-save:hover { background: #D4631E; }
+    .btn-save:active { transform: scale(0.97); }
+    .btn-clear {
+      background: none;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 13px;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .btn-clear:hover { color: var(--text); border-color: #C0B0A8; }
+    .memo-saved-msg {
+      font-size: 13px;
+      color: var(--teal);
+      font-weight: 500;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .memo-saved-msg.show { opacity: 1; }
+    .memo-last-saved { font-size: 12px; color: var(--text-muted); margin-top: 10px; }
+
+    /* ナビゲーション */
+    .article-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 56px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+    .nav-link {
+      text-decoration: none;
+      color: var(--orange);
+      font-size: 14px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.2s;
+    }
+    .nav-link:hover { gap: 10px; }
+    .nav-link.prev::before { content: '← '; }
+    .nav-link.next::after { content: ' →'; }
+
+    /* フッター */
+    .site-footer {
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 13px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      background: var(--white);
+    }
+
+    @media (max-width: 600px) {
+      .article-wrap { padding: 32px 18px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="../index.html">学習ログ一覧に戻る</a>
+</header>
+
+<main class="article-wrap">
+
+  <div class="article-meta">
+    <span class="tag">自己理解</span>
+    <span class="tag">行動変容</span>
+    <span class="tag teal">ナラティブ心理学</span>
+    <span class="article-date">2026年4月16日</span>
+  </div>
+
+  <h1 class="article-title">ナラティブ・セラピー<br><span style="font-size: 0.65em; color: var(--text-muted);">マイケル・ホワイト</span></h1>
+  <p class="article-subtitle">「私はこういう人間だ」という物語を書き直す。<br>問題を自分から切り離し、より好ましい自己の物語を再構築するアプローチ。</p>
+
+  <hr class="divider">
+
+  <div class="lead-box">
+    私たちは経験を<strong>「物語（ナラティブ）」</strong>として意味づけしています。その物語が自分を縛っているとしたら？ナラティブ・セラピーは、<strong>「人が問題なのではない。問題が問題なのだ」</strong>という視点から、自己イメージそのものを書き直していくアプローチです。
+  </div>
+
+  <!-- 教授セクション -->
+  <div class="section-label">📚 教授の解説</div>
+
+  <div class="article-body">
+
+    <h3>1. 理論の本質：なぜ「物語」が問題を維持させるのか？</h3>
+
+    <p>あなたは自分のことをどんな言葉で語りますか？「私はどうせミスをしやすい」「自分には何かを変えるほどの力はない」——こういった言葉、心の中でつぶやいたことはありませんか？</p>
+
+    <p><strong>ナラティブ・セラピー（Narrative Therapy）</strong>は、1980年代にオーストラリアのソーシャルワーカー、<strong>マイケル・ホワイト</strong>とニュージーランドの教育学者<strong>デイヴィッド・エプストン</strong>が共同で提唱しました。この理論の中心にある言葉はこれです。</p>
+
+    <div class="quote-box">
+      <strong>「人が問題なのではない。問題が問題なのだ。」</strong><br>
+      <em>The person is not the problem; the problem is the problem.</em>
+    </div>
+
+    <p>日々の経験が積み重なると、<strong>ドミナント・ストーリー（支配的な物語）</strong>と呼ばれる固定した自己像ができあがります。問題は、このドミナント・ストーリーが<strong>本当の自分の全体像ではない</strong>という点です。同じ人生の中には、その「問題の物語」に当てはまらない無数の出来事——誰かに感謝された瞬間、困難を乗り越えた日——が必ず存在しています。</p>
+
+    <p>ナラティブ・セラピーはこれらを<strong>「ユニーク・アウトカム（例外的な出来事）」</strong>と呼び、そこを出発点に、より望む<strong>オルタナティブ・ストーリー（代替の物語）</strong>を書き直していく技法です。</p>
+
+    <h3>2. 直感的な例え話：人生という映画の「脚本家」</h3>
+
+    <div class="drive-box">
+      <p>🎬 あなたの人生はずっと上映されている映画だと想像してください。苦労した経験が積み重なって、いつのまにか「主人公はいつも損をするヒューマンドラマ」という脚本ができあがっています。</p>
+      <p>しんどいのは、あなたが<strong>主人公であると同時に、その脚本を書いているライターでもある</strong>から。「自分はどうせ…」という物語は、過去の出来事を「悪役が主人公を苦しめる脚本」として解釈してきた結果です。</p>
+      <p>でも、同じ出来事を材料に、別の脚本を書くことができます。「あの時こう乗り越えた」「こんな強みが発揮できた」というシーンを集めれば、全く違うジャンルの映画になるのです。</p>
+      <p><strong>ナラティブ・セラピーは「あなたは脚本のライターだ」と気づかせてくれる理論です。</strong></p>
+    </div>
+
+    <h3>3. 4つのプロセス：物語を書き直す具体的な手順</h3>
+
+    <div class="narrative-grid">
+      <div class="narrative-card">
+        <div class="narrative-step">① 外在化</div>
+        <div class="narrative-card-name">問題を「自分の外」に置く</div>
+        <div class="narrative-card-en">Externalisation</div>
+        <div class="narrative-card-desc">「私は心配性だ」→「心配という問題が今の私に影響を与えている」と語り直す。問題をアイデンティティから切り離す。</div>
+        <div class="narrative-card-effect">「問題解決モード」の主体性が自然に生まれる</div>
+      </div>
+      <div class="narrative-card">
+        <div class="narrative-step">② 解体</div>
+        <div class="narrative-card-name">ドミナント・ストーリーを疑う</div>
+        <div class="narrative-card-en">Deconstruction</div>
+        <div class="narrative-card-desc">「自分はこういう人間だ」という固定観念を丁寧に疑っていく。「本当に全ての場面で当てはまる？」と一問投げる。</div>
+        <div class="narrative-card-effect">固定観念にひびが入りはじめる</div>
+      </div>
+      <div class="narrative-card">
+        <div class="narrative-step">③ 発見</div>
+        <div class="narrative-card-name">ユニーク・アウトカムを探す</div>
+        <div class="narrative-card-en">Finding Unique Outcomes</div>
+        <div class="narrative-card-desc">ドミナント・ストーリーの「例外」——問題に飲み込まれなかった瞬間——を意識的に探す。どんな小さな出来事でもOK。</div>
+        <div class="narrative-card-effect">新しい物語の土台がつくられていく</div>
+      </div>
+      <div class="narrative-card">
+        <div class="narrative-step">④ 再構築</div>
+        <div class="narrative-card-name">オルタナティブ・ストーリーを紡ぐ</div>
+        <div class="narrative-card-en">Re-authoring</div>
+        <div class="narrative-card-desc">ユニーク・アウトカムをつなげて「より好ましい自己の物語」として再構成する。自己イメージが書き換わると、行動も変わる。</div>
+        <div class="narrative-card-effect">新しい物語に沿った行動が自然と引き出される</div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <strong>💡 セルフコーチングへの活用：「外在化」の一言が入口</strong><br>
+      心の中でイライラや不安を感じたとき、「私がダメ」と責める前に、こう言い換えてみてください。<br>
+      <strong>「今、〇〇という問題が私を困らせている。」</strong><br>
+      たったこれだけで、脳は「自己攻撃モード」から「問題解決モード」に切り替わりはじめます。あなたの物語は、いつでも書き直せます。
+    </div>
+
+  </div><!-- /article-body -->
+
+  <!-- トレーナーセクション -->
+  <div class="trainer-section">
+    <div class="section-label trainer">🏋️ トレーナーの今日の課題</div>
+
+    <h3>① ベビーステップ（2分以内）</h3>
+    <div class="action-item">
+      <div class="action-label">外在化の練習</div>
+      <p>最近自分につぶやいた「私はどうせ…」「私はいつも…」という言葉を1つ思い浮かべ、「〇〇という問題が今の私に影響を与えている」と言い換えてみる。言い換えた前後で、気持ちに何か変化があるか観察する。</p>
+      <div class="action-syntax">言葉を変えるだけで、脳は主体性を取り戻しはじめる。</div>
+    </div>
+    <div class="action-item">
+      <div class="action-label">ユニーク・アウトカムの発見</div>
+      <p>紙またはメモアプリに、最近「自分がちゃんとできた瞬間・感謝された瞬間」を1つだけ書く。どんなに小さな出来事でも構わない。</p>
+      <div class="action-syntax">これが新しい物語の素材になる。</div>
+    </div>
+
+    <h3>② ルーチン・トリガー</h3>
+    <div class="action-item">
+      <div class="action-label">昼休みのルーティンに組み込む</div>
+      <p>お茶・コーヒーを入れたら、午前中に「問題」として感じたことを「私が悪い」ではなく「〇〇という問題が午前中の私に影響した」と言い換え、気持ちの変化を観察する。</p>
+      <div class="action-syntax">既存の習慣（お茶を入れる）に外在化をセットで紐付けるIf-Thenプランニング。</div>
+    </div>
+    <div class="action-item">
+      <div class="action-label">帰宅後のルーティンに組み込む</div>
+      <p>荷物を置いたら、今日「問題に飲み込まれなかった瞬間」を1つだけ思い出す。どんな小さな例外でも、それがあなたの新しい物語の素材になる。</p>
+      <div class="action-syntax">毎日の積み重ねがオルタナティブ・ストーリーを強化していく。</div>
+    </div>
+  </div>
+
+  <!-- まとめ -->
+  <div class="closing-box">
+    <div class="closing-quote">あなたは脚本のライターだ。<br>物語は、いつでも書き直せる。</div>
+    <p>「今、〇〇という問題が私を困らせている」——この一言から、書き直しはもう始まっています。</p>
+  </div>
+
+  <!-- インフォグラフィック -->
+  <div class="infographic-section">
+    <div class="section-label" style="margin-top: 40px;">🖼️ 図解まとめ</div>
+    <img
+      class="infographic-img"
+      src="ナラティブ・セラピー.png"
+      alt="ナラティブ・セラピー インフォグラフィック：「人生の脚本」を書き換える入門"
+    >
+    <p class="infographic-caption">NotebookLM で作成したインフォグラフィック</p>
+  </div>
+
+  <!-- マイメモ -->
+  <div class="memo-section">
+    <div class="section-label" style="background: var(--orange);">📝 マイメモ</div>
+    <div class="memo-prompts">
+      <div class="memo-prompt-item">
+        <label>💡 今日の学びで一番印象に残ったこと</label>
+        <textarea id="memo-1" placeholder="例：「人が問題なのではない、問題が問題なのだ」という言葉がすごく刺さった。自分を責めていたことに気づいた。"></textarea>
+      </div>
+      <div class="memo-prompt-item">
+        <label>🔍 今、「問題」として感じていることを外在化してみると？（「私が〇〇だ」→「〇〇という問題が私に影響している」）</label>
+        <textarea id="memo-2" placeholder="例：「私はミスが多い」→「ミスを引き起こす何かの問題が今の私に影響している」。言い換えたら少し楽になった。"></textarea>
+      </div>
+      <div class="memo-prompt-item">
+        <label>⭐ 今日のユニーク・アウトカム（問題に飲み込まれなかった瞬間）を1つ書いてみる</label>
+        <textarea id="memo-3" placeholder="例：いつもなら焦るところを、今日は深呼吸して落ち着いて対応できた。小さいけど、これが私の新しい物語の素材。"></textarea>
+      </div>
+    </div>
+    <div class="memo-actions">
+      <button class="btn-save" onclick="saveMemo()">💾 保存する</button>
+      <button class="btn-clear" onclick="clearMemo()">クリア</button>
+      <span class="memo-saved-msg" id="saved-msg">✓ 保存しました</span>
+    </div>
+    <div class="memo-last-saved" id="last-saved"></div>
+  </div>
+
+  <!-- ナビ -->
+  <nav class="article-nav">
+    <a class="nav-link prev" href="20260415-descartes-matrix.html">前の記事：デカルトの座標</a>
+  </nav>
+
+  <p style="text-align:center; margin-top:20px;">
+    <a href="../index.html" style="text-decoration:none; color:var(--text-muted); font-size:14px; font-weight:500;">← 一覧へ戻る</a>
+  </p>
+
+</main>
+
+<footer class="site-footer">
+  <p>🐾 セルフコーチング学習ログ</p>
+</footer>
+
+<script>
+  const MEMO_KEY = 'memo-narrative-therapy';
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem(MEMO_KEY);
+    if (saved) {
+      const data = JSON.parse(saved);
+      document.getElementById('memo-1').value = data.memo1 || '';
+      document.getElementById('memo-2').value = data.memo2 || '';
+      document.getElementById('memo-3').value = data.memo3 || '';
+      if (data.savedAt) {
+        document.getElementById('last-saved').textContent = '最終保存: ' + data.savedAt;
+      }
+    }
+  });
+
+  function saveMemo() {
+    const now = new Date();
+    const savedAt = now.toLocaleDateString('ja-JP') + ' ' + now.toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' });
+    const data = {
+      memo1: document.getElementById('memo-1').value,
+      memo2: document.getElementById('memo-2').value,
+      memo3: document.getElementById('memo-3').value,
+      savedAt: savedAt
+    };
+    localStorage.setItem(MEMO_KEY, JSON.stringify(data));
+    const msg = document.getElementById('saved-msg');
+    msg.classList.add('show');
+    document.getElementById('last-saved').textContent = '最終保存: ' + savedAt;
+    setTimeout(() => msg.classList.remove('show'), 2500);
+  }
+
+  function clearMemo() {
+    if (!confirm('メモをクリアしますか？この操作は元に戻せません。')) return;
+    ['memo-1', 'memo-2', 'memo-3'].forEach(id => {
+      document.getElementById(id).value = '';
+    });
+    localStorage.removeItem(MEMO_KEY);
+    document.getElementById('last-saved').textContent = '';
+  }
+</script>
+
+</body>
+</html>
