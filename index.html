@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>セルフコーチング学習ログ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #E8722A;
+      --orange-light: #FDF0E8;
+      --orange-mid: #F5C4A0;
+      --brown: #6B3A2A;
+      --brown-light: #F9F3EF;
+      --text: #2D2D2D;
+      --text-muted: #7A7A7A;
+      --border: #EAE0D8;
+      --white: #FFFFFF;
+      --teal: #3A8C8A;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: #FAF7F4;
+      color: var(--text);
+      line-height: 1.85;
+    }
+
+    /* ヒーローヘッダー */
+    .site-hero {
+      background: var(--brown);
+      color: var(--white);
+      padding: 52px 24px 44px;
+      text-align: center;
+    }
+    .hero-icon { font-size: 36px; margin-bottom: 12px; }
+    .site-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(22px, 4vw, 32px);
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: 0.03em;
+    }
+    .site-desc {
+      font-size: 14px;
+      opacity: 0.75;
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* 統計バー */
+    .stats-bar {
+      background: var(--orange);
+      color: var(--white);
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 14px 24px;
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-num {
+      font-size: 22px;
+      font-weight: 700;
+      font-family: 'Noto Serif JP', serif;
+      display: block;
+    }
+    .stat-label {
+      font-size: 11px;
+      opacity: 0.85;
+      letter-spacing: 0.08em;
+    }
+
+    /* メインコンテンツ */
+    .main-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    /* セクション見出し */
+    .section-heading {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.12em;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-heading::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* 記事カード */
+    .article-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .article-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 24px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+    }
+    .article-card:hover {
+      box-shadow: 0 6px 24px rgba(107, 58, 42, 0.1);
+      transform: translateY(-2px);
+      border-color: var(--orange-mid);
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .card-date {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .tag {
+      background: var(--orange-light);
+      color: var(--orange);
+      border: 1px solid var(--orange-mid);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 9px;
+      border-radius: 20px;
+      letter-spacing: 0.04em;
+    }
+    .tag.teal {
+      background: #EAF5F5;
+      color: var(--teal);
+      border-color: #B0D8D7;
+    }
+
+    .card-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--brown);
+      margin-bottom: 7px;
+      line-height: 1.5;
+    }
+    .card-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .card-arrow {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--orange);
+      font-weight: 500;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .article-card:hover .card-arrow { opacity: 1; }
+
+    /* 空状態 */
+    .empty-state {
+      text-align: center;
+      padding: 48px 24px;
+      color: var(--text-muted);
+      background: var(--white);
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    /* フッター */
+    .site-footer {
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 13px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      background: var(--white);
+    }
+
+    @media (max-width: 600px) {
+      .stats-bar { gap: 24px; }
+      .main-wrap { padding: 28px 16px 60px; }
+      .article-card { padding: 18px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-hero">
+  <div class="hero-icon">🐾</div>
+  <h1 class="site-title">セルフコーチング学習ログ</h1>
+  <p class="site-desc">毎日届く学習メルマガをまとめたアーカイブ。<br>認知科学・心理学に基づくセルフコーチング理論を、実践課題とともに記録しています。</p>
+</header>
+
+<div class="stats-bar">
+  <div class="stat-item">
+    <span class="stat-num">1</span>
+    <span class="stat-label">記事数</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">2025.05</span>
+    <span class="stat-label">開始</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">3</span>
+    <span class="stat-label">理論カテゴリ</span>
+  </div>
+</div>
+
+<main class="main-wrap">
+
+  <div class="section-heading">最新の学習記録</div>
+
+  <div class="article-list">
+
+    <!-- 記事カード：ABCDEモデル -->
+    <a class="article-card" href="articles/20250503-abcde-model.html">
+      <div class="card-meta">
+        <span class="card-date">2025年5月3日</span>
+        <span class="tag">認知科学</span>
+        <span class="tag">感情コントロール</span>
+        <span class="tag teal">論理療法</span>
+      </div>
+      <div class="card-title">ABCDEモデル（論理療法）</div>
+      <div class="card-desc">心理学者アルバート・エリスが提唱。出来事への「解釈」が感情を招くという枠組みを用い、非合理な思い込みを論理的に反論することで建設的な心の状態へ導くセルフコーチング手法。</div>
+      <div class="card-arrow">続きを読む →</div>
+    </a>
+
+    <!-- 今後の記事はここに追加 -->
+
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <p>🐾 セルフコーチング学習ログ — Gmailルーティンから生まれた学びのアーカイブ</p>
+</footer>
+
+</body>
+</html>

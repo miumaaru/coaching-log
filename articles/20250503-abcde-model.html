@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABCDEモデル（論理療法）| セルフコーチング学習ログ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #E8722A;
+      --orange-light: #FDF0E8;
+      --orange-mid: #F5C4A0;
+      --brown: #6B3A2A;
+      --brown-light: #F9F3EF;
+      --text: #2D2D2D;
+      --text-muted: #7A7A7A;
+      --border: #EAE0D8;
+      --white: #FFFFFF;
+      --teal: #3A8C8A;
+      --teal-light: #EAF5F5;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: #FAF7F4;
+      color: var(--text);
+      line-height: 1.85;
+      font-size: 16px;
+    }
+
+    /* ヘッダー */
+    .site-header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+    }
+    .site-header a {
+      text-decoration: none;
+      color: var(--brown);
+      font-size: 14px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.75;
+      transition: opacity 0.2s;
+    }
+    .site-header a:hover { opacity: 1; }
+    .site-header a::before { content: '←'; }
+
+    /* メインコンテンツ */
+    .article-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* メタ情報 */
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .tag {
+      background: var(--orange-light);
+      color: var(--orange);
+      border: 1px solid var(--orange-mid);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.05em;
+    }
+    .tag.teal {
+      background: var(--teal-light);
+      color: var(--teal);
+      border-color: #B0D8D7;
+    }
+    .article-date {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* タイトル */
+    .article-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 700;
+      color: var(--brown);
+      line-height: 1.45;
+      margin-bottom: 10px;
+    }
+    .article-subtitle {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+
+    /* 区切り線 */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 36px 0;
+    }
+
+    /* リード文 */
+    .lead-box {
+      background: var(--brown-light);
+      border-left: 4px solid var(--orange);
+      padding: 20px 24px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 36px;
+      font-size: 15px;
+    }
+    .lead-box strong { color: var(--orange); }
+
+    /* セクションラベル */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--white);
+      background: var(--brown);
+      padding: 4px 14px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+    .section-label.trainer {
+      background: var(--teal);
+    }
+
+    /* 本文 */
+    .article-body h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--brown);
+      margin: 36px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--orange-light);
+    }
+    .article-body p {
+      margin-bottom: 18px;
+      font-size: 15.5px;
+    }
+    .article-body ul {
+      padding-left: 0;
+      margin-bottom: 18px;
+      list-style: none;
+    }
+    .article-body ul li {
+      padding: 4px 0 4px 20px;
+      position: relative;
+      font-size: 15px;
+    }
+    .article-body ul li::before {
+      content: '・';
+      position: absolute;
+      left: 0;
+      color: var(--orange);
+    }
+    .article-body strong { color: var(--brown); }
+    .article-body em { font-style: normal; color: var(--orange); font-weight: 700; }
+
+    /* ABCDEステップカード */
+    .steps-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 24px 0 32px;
+    }
+    .step-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 16px;
+      align-items: start;
+      transition: box-shadow 0.2s;
+    }
+    .step-card:hover {
+      box-shadow: 0 4px 16px rgba(232, 114, 42, 0.1);
+    }
+    .step-card.highlight {
+      border-color: var(--orange-mid);
+      background: var(--orange-light);
+    }
+    .step-letter {
+      width: 48px;
+      height: 48px;
+      background: var(--orange);
+      color: var(--white);
+      font-family: 'Noto Serif JP', serif;
+      font-size: 22px;
+      font-weight: 700;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-card.highlight .step-letter {
+      background: var(--brown);
+    }
+    .step-name {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+    .step-title {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--brown);
+      margin-bottom: 6px;
+    }
+    .step-example {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      background: rgba(0,0,0,0.03);
+      padding: 6px 10px;
+      border-radius: 5px;
+      margin-top: 6px;
+    }
+    .step-example::before { content: '例: '; font-weight: 600; color: var(--orange); }
+
+    /* メガネの例え */
+    .metaphor-box {
+      background: linear-gradient(135deg, #FDF0E8 0%, #FFF8F2 100%);
+      border: 1px solid var(--orange-mid);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+      text-align: center;
+    }
+    .metaphor-icon { font-size: 40px; margin-bottom: 12px; }
+    .metaphor-box p { font-size: 15px; margin-bottom: 0; }
+
+    /* トレーナーセクション */
+    .trainer-section {
+      background: var(--teal-light);
+      border: 1px solid #B0D8D7;
+      border-radius: 12px;
+      padding: 28px;
+      margin-top: 40px;
+    }
+    .trainer-section h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--teal);
+      margin: 24px 0 12px;
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .trainer-section h3:first-of-type { margin-top: 8px; }
+
+    /* アクションアイテム */
+    .action-item {
+      background: var(--white);
+      border: 1px solid #B0D8D7;
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin-bottom: 12px;
+      font-size: 14.5px;
+    }
+    .action-item .action-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+    .action-syntax {
+      background: #F0F7F7;
+      border-radius: 5px;
+      padding: 8px 12px;
+      font-size: 13px;
+      color: var(--teal);
+      margin-top: 8px;
+      font-weight: 500;
+    }
+    .action-syntax::before { content: '構文: '; font-weight: 700; }
+
+    /* まとめ */
+    .closing-box {
+      background: var(--brown);
+      color: var(--white);
+      border-radius: 12px;
+      padding: 28px;
+      margin-top: 40px;
+      text-align: center;
+    }
+    .closing-box p { font-size: 15px; opacity: 0.9; margin-bottom: 0; }
+    .closing-quote {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      line-height: 1.6;
+    }
+
+    /* インフォグラフィック */
+    .infographic-section {
+      margin-top: 40px;
+    }
+    .infographic-section .section-label {
+      margin-bottom: 16px;
+    }
+    .infographic-img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      display: block;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+    }
+    .infographic-caption {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    /* マイメモ */
+    .memo-section {
+      margin-top: 40px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .memo-section .section-label {
+      margin-bottom: 16px;
+    }
+    .memo-prompts {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .memo-prompt-item label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--brown);
+      margin-bottom: 6px;
+    }
+    .memo-prompt-item textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text);
+      background: #FDFBF9;
+      resize: vertical;
+      min-height: 80px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .memo-prompt-item textarea:focus {
+      border-color: var(--orange-mid);
+      box-shadow: 0 0 0 3px rgba(232,114,42,0.1);
+    }
+    .memo-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn-save {
+      background: var(--orange);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      padding: 10px 22px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-save:hover { background: #D4631E; }
+    .btn-save:active { transform: scale(0.97); }
+    .btn-clear {
+      background: none;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 13px;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .btn-clear:hover { color: var(--text); border-color: #C0B0A8; }
+    .memo-saved-msg {
+      font-size: 13px;
+      color: var(--teal);
+      font-weight: 500;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .memo-saved-msg.show { opacity: 1; }
+    .memo-last-saved {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 10px;
+    }
+
+    /* ナビゲーション */
+    .article-nav {
+      display: flex;
+      justify-content: flex-start;
+      margin-top: 56px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+    .nav-link {
+      text-decoration: none;
+      color: var(--orange);
+      font-size: 14px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.2s;
+    }
+    .nav-link:hover { gap: 10px; }
+
+    /* フッター */
+    .site-footer {
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 13px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      background: var(--white);
+    }
+
+    @media (max-width: 600px) {
+      .article-wrap { padding: 32px 18px 60px; }
+      .step-card { grid-template-columns: 44px 1fr; }
+      .step-letter { width: 40px; height: 40px; font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="../index.html">学習ログ一覧に戻る</a>
+</header>
+
+<main class="article-wrap">
+
+  <div class="article-meta">
+    <span class="tag">認知科学</span>
+    <span class="tag">感情コントロール</span>
+    <span class="tag teal">論理療法</span>
+    <span class="article-date">2025年5月3日</span>
+  </div>
+
+  <h1 class="article-title">ABCDEモデル（論理療法）</h1>
+  <p class="article-subtitle">心理学者アルバート・エリスが提唱したセルフコーチング手法。<br>出来事への「解釈」を変えることで、感情と行動をセルフコントロールする。</p>
+
+  <hr class="divider">
+
+  <div class="lead-box">
+    私たちを苦しめているのは、起きた出来事そのものではなく、<strong>その出来事に対する「解釈」</strong>です。このモデルはその「解釈のメガネ」を掛け替えるための実践的なフレームワークです。
+  </div>
+
+  <!-- 教授セクション -->
+  <div class="section-label">📚 教授の解説</div>
+
+  <div class="article-body">
+
+    <h3>1. 理論の本質：「メガネ」を掛け替える</h3>
+    <p>私たちは雨が降ることや、他人の機嫌を直接変えることはできません。しかし、<strong>それをどう受け止めるかは100％自分で決めることができます。</strong></p>
+    <p>「自分はダメだ」「もう終わりだ」といった<em>非合理な思い込み（イラショナル・ビリーフ）</em>による過度な落ち込みや怒りを、論理の力で解消するのがこのモデルです。</p>
+
+    <h3>2. 直感的な例え：魔法のカラーメガネ</h3>
+
+    <div class="metaphor-box">
+      <div class="metaphor-icon">🕶️</div>
+      <p>真っ青なメガネをかけると、白い壁も美味しそうなリンゴも「青っぽく冷たく」見える。<br>本当の原因は壁ではなく、<strong>かけているメガネ</strong>にある。</p>
+    </div>
+
+    <p>ABCDEモデルとは、<strong>自分でも気づかずかけている「色のついたメガネ」を外し、透明なメガネに掛け替える作業</strong>のことです。</p>
+
+    <h3>3. 心の5ステップ</h3>
+    <p>「友達にLINEを送ったのに、1日返信がこない」という例で見てみましょう。</p>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-letter">A</div>
+        <div>
+          <div class="step-name">Activating Event</div>
+          <div class="step-title">出来事（起きた事実そのもの）</div>
+          <div class="step-example">友達にLINEを送ったが、24時間既読にならない。</div>
+        </div>
+      </div>
+      <div class="step-card highlight">
+        <div class="step-letter">B</div>
+        <div>
+          <div class="step-name">Belief 👈 ここが重要！</div>
+          <div class="step-title">信念・解釈（頭の中のメガネ）</div>
+          <div class="step-example">「私は嫌われているに違いない」「返信しないなんて失礼だ」</div>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-letter">C</div>
+        <div>
+          <div class="step-name">Consequence</div>
+          <div class="step-title">結果としての感情・行動</div>
+          <div class="step-example">悲しくて何も手につかない、または怒りでイライラする。</div>
+        </div>
+      </div>
+      <div class="step-card highlight">
+        <div class="step-letter">D</div>
+        <div>
+          <div class="step-name">Dispute 👈 セルフコーチングの核！</div>
+          <div class="step-title">反論（「それって本当？」とツッコむ）</div>
+          <div class="step-example">「単に忙しいだけかも」「今まで仲良くしてた証拠はたくさんある」「返信の速さと友情は関係あるのかな？」</div>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-letter">E</div>
+        <div>
+          <div class="step-name">Effect</div>
+          <div class="step-title">効果・新しい捉え方</div>
+          <div class="step-example">「まあ、手が空いたら返信くるでしょ」とリラックスして好きな仕事に集中できる。</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /article-body -->
+
+  <!-- トレーナーセクション -->
+  <div class="trainer-section">
+    <div class="section-label trainer">🏋️ トレーナーの今日の課題</div>
+
+    <h3>① ベビーステップ（2分以内）</h3>
+    <div class="action-item">
+      <div class="action-label">メガネの色を確認するだけの儀式</div>
+      <p>「今、心が動いた（イラッ、モヤッ）」と思ったら、心の中で「あ、いま〇〇色のメガネをかけたな」と一言つぶやく。分析は不要です。</p>
+      <div class="action-syntax">レジが遅くてイラッとしたら「あ、『早くすべきだメガネ』をかけたな」と実況するだけ</div>
+    </div>
+
+    <h3>② ルーチン・トリガー</h3>
+    <div class="action-item">
+      <div class="action-label">既存の習慣にセットする</div>
+      <p>PCを閉じる直後に、「今日一番のモヤモヤ（A）」に対して「どんな思い込み（B）があったか」を1つだけメモに書く。</p>
+      <div class="action-syntax">「PCを閉じたら、付箋に『A：上司の無愛想な返事／B：嫌われているに違いない』とだけ書く」</div>
+    </div>
+
+    <h3>③ 今日のミッション</h3>
+    <div class="action-item">
+      <div class="action-label">「探偵ごっこ」の実験</div>
+      <p>誰かの行動に対して「えっ、なんで？」とネガティブに感じたら、その理由の「代案」を3つ無理やりひねり出す。解釈（B）は複数持てるという感覚を脳に覚え込ませることが目的。</p>
+    </div>
+  </div>
+
+  <!-- まとめ -->
+  <div class="closing-box">
+    <div class="closing-quote">「今、私はどんな色のメガネ（B）を<br>かけているかな？」</div>
+    <p>まずは「あ、また真っ青なメガネをかけてる！」と面白がって気づくこと。それが最大の成功です。</p>
+  </div>
+
+  <!-- インフォグラフィック -->
+  <div class="infographic-section">
+    <div class="section-label">🖼️ 図解まとめ</div>
+    <img
+      class="infographic-img"
+      src="ABCDEモデル.png"
+      alt="ABCDEモデル インフォグラフィック：感情をコントロールする魔法のメガネ"
+    >
+    <p class="infographic-caption">NotebookLM で作成したインフォグラフィック</p>
+  </div>
+
+  <!-- マイメモ -->
+  <div class="memo-section">
+    <div class="section-label" style="background: var(--orange);">📝 マイメモ</div>
+    <div class="memo-prompts">
+      <div class="memo-prompt-item">
+        <label>💡 今日の学びで一番印象に残ったこと</label>
+        <textarea id="memo-1" placeholder="例：B（解釈）が感情を決めているという気づき。出来事そのものより自分の受け取り方の問題だったんだ…"></textarea>
+      </div>
+      <div class="memo-prompt-item">
+        <label>🔍 自分に当てはめると？（具体的な場面）</label>
+        <textarea id="memo-2" placeholder="例：上司に返事がそっけないとき、すぐ「嫌われた」と思ってた。これがイラショナル・ビリーフだったのか。"></textarea>
+      </div>
+      <div class="memo-prompt-item">
+        <label>🎯 明日からやってみること</label>
+        <textarea id="memo-3" placeholder="例：モヤッとしたとき「あ、〇〇メガネかけたな」と一言つぶやく実況中継を試してみる。"></textarea>
+      </div>
+    </div>
+    <div class="memo-actions">
+      <button class="btn-save" onclick="saveMemo()">💾 保存する</button>
+      <button class="btn-clear" onclick="clearMemo()">クリア</button>
+      <span class="memo-saved-msg" id="saved-msg">✓ 保存しました</span>
+    </div>
+    <div class="memo-last-saved" id="last-saved"></div>
+  </div>
+
+  <!-- ナビ -->
+  <nav class="article-nav">
+    <a class="nav-link" href="../index.html">← 一覧に戻る</a>
+  </nav>
+
+</main>
+
+<footer class="site-footer">
+  <p>🐾 セルフコーチング学習ログ</p>
+</footer>
+
+<script>
+  const MEMO_KEY = 'memo-abcde-model';
+
+  // ページ読み込み時にlocalStorageから復元
+  window.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem(MEMO_KEY);
+    if (saved) {
+      const data = JSON.parse(saved);
+      document.getElementById('memo-1').value = data.memo1 || '';
+      document.getElementById('memo-2').value = data.memo2 || '';
+      document.getElementById('memo-3').value = data.memo3 || '';
+      if (data.savedAt) {
+        document.getElementById('last-saved').textContent = '最終保存: ' + data.savedAt;
+      }
+    }
+  });
+
+  function saveMemo() {
+    const now = new Date();
+    const savedAt = now.toLocaleDateString('ja-JP') + ' ' + now.toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' });
+    const data = {
+      memo1: document.getElementById('memo-1').value,
+      memo2: document.getElementById('memo-2').value,
+      memo3: document.getElementById('memo-3').value,
+      savedAt: savedAt
+    };
+    localStorage.setItem(MEMO_KEY, JSON.stringify(data));
+    // 保存メッセージを表示
+    const msg = document.getElementById('saved-msg');
+    msg.classList.add('show');
+    document.getElementById('last-saved').textContent = '最終保存: ' + savedAt;
+    setTimeout(() => msg.classList.remove('show'), 2500);
+  }
+
+  function clearMemo() {
+    if (!confirm('メモをクリアしますか？この操作は元に戻せません。')) return;
+    ['memo-1', 'memo-2', 'memo-3'].forEach(id => {
+      document.getElementById(id).value = '';
+    });
+    localStorage.removeItem(MEMO_KEY);
+    document.getElementById('last-saved').textContent = '';
+  }
+</script>
+
+</body>
+</html>
