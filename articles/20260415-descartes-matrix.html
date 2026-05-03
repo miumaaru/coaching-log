@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>デカルトの座標 | セルフコーチング学習ログ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #E8722A;
+      --orange-light: #FDF0E8;
+      --orange-mid: #F5C4A0;
+      --brown: #6B3A2A;
+      --brown-light: #F9F3EF;
+      --text: #2D2D2D;
+      --text-muted: #7A7A7A;
+      --border: #EAE0D8;
+      --white: #FFFFFF;
+      --teal: #3A8C8A;
+      --teal-light: #EAF5F5;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: #FAF7F4;
+      color: var(--text);
+      line-height: 1.85;
+      font-size: 16px;
+    }
+
+    /* ヘッダー */
+    .site-header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+    }
+    .site-header a {
+      text-decoration: none;
+      color: var(--brown);
+      font-size: 14px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.75;
+      transition: opacity 0.2s;
+    }
+    .site-header a:hover { opacity: 1; }
+    .site-header a::before { content: '←'; }
+
+    /* メインコンテンツ */
+    .article-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* メタ情報 */
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .tag {
+      background: var(--orange-light);
+      color: var(--orange);
+      border: 1px solid var(--orange-mid);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.05em;
+    }
+    .tag.teal {
+      background: var(--teal-light);
+      color: var(--teal);
+      border-color: #B0D8D7;
+    }
+    .article-date {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* タイトル */
+    .article-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 700;
+      color: var(--brown);
+      line-height: 1.45;
+      margin-bottom: 10px;
+    }
+    .article-subtitle {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+
+    /* 区切り線 */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 36px 0;
+    }
+
+    /* リード文 */
+    .lead-box {
+      background: var(--brown-light);
+      border-left: 4px solid var(--orange);
+      padding: 20px 24px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 36px;
+      font-size: 15px;
+    }
+    .lead-box strong { color: var(--orange); }
+
+    /* セクションラベル */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--white);
+      background: var(--brown);
+      padding: 4px 14px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+    .section-label.trainer { background: var(--teal); }
+
+    /* 本文 */
+    .article-body h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--brown);
+      margin: 36px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--orange-light);
+    }
+    .article-body p {
+      margin-bottom: 18px;
+      font-size: 15.5px;
+    }
+    .article-body strong { color: var(--brown); }
+    .article-body em { font-style: normal; color: var(--orange); font-weight: 700; }
+
+    /* 例え話ボックス */
+    .drive-box {
+      background: linear-gradient(135deg, #FDF0E8 0%, #FFF8F2 100%);
+      border: 1px solid var(--orange-mid);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+    .drive-box p { font-size: 15px; margin-bottom: 10px; }
+    .drive-box p:last-child { margin-bottom: 0; }
+    .drive-box strong { color: var(--orange); }
+
+    /* デカルトの座標カードグリッド */
+    .descartes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 24px 0 32px;
+    }
+    @media (max-width: 560px) {
+      .descartes-grid { grid-template-columns: 1fr; }
+    }
+    .descartes-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .descartes-card:hover {
+      box-shadow: 0 4px 16px rgba(232, 114, 42, 0.1);
+      border-color: var(--orange-mid);
+    }
+    .descartes-badge {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+    .descartes-card-title {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--brown);
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    .descartes-card-q {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      background: rgba(0,0,0,0.03);
+      padding: 8px 12px;
+      border-radius: 6px;
+      border-left: 3px solid var(--orange-mid);
+      line-height: 1.65;
+      margin-bottom: 8px;
+    }
+    .descartes-card-example {
+      font-size: 13px;
+      color: var(--orange);
+      font-style: italic;
+    }
+
+    /* 注意書きボックス */
+    .note-box {
+      background: #FFFBF5;
+      border: 1px dashed var(--orange-mid);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-top: 8px;
+      font-size: 13.5px;
+      color: var(--text-muted);
+    }
+    .note-box strong { color: var(--brown); }
+
+    /* トレーナーセクション */
+    .trainer-section {
+      background: var(--teal-light);
+      border: 1px solid #B0D8D7;
+      border-radius: 12px;
+      padding: 28px;
+      margin-top: 40px;
+    }
+    .trainer-section h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--teal);
+      margin: 24px 0 12px;
+    }
+    .trainer-section h3:first-of-type { margin-top: 8px; }
+
+    .action-item {
+      background: var(--white);
+      border: 1px solid #B0D8D7;
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin-bottom: 12px;
+      font-size: 14.5px;
+    }
+    .action-item .action-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+    .action-item p { margin-bottom: 0; }
+    .action-syntax {
+      background: #F0F7F7;
+      border-radius: 5px;
+      padding: 8px 12px;
+      font-size: 13px;
+      color: var(--teal);
+      margin-top: 8px;
+      font-weight: 500;
+    }
+    .action-syntax::before { content: 'ポイント: '; font-weight: 700; }
+
+    /* まとめ */
+    .closing-box {
+      background: var(--brown);
+      color: var(--white);
+      border-radius: 12px;
+      padding: 28px;
+      margin-top: 40px;
+      text-align: center;
+    }
+    .closing-box p { font-size: 15px; opacity: 0.9; margin-bottom: 0; }
+    .closing-quote {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      line-height: 1.6;
+    }
+
+    /* インフォグラフィック */
+    .infographic-section { margin-top: 40px; }
+    .infographic-img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      display: block;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+    }
+    .infographic-caption {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    /* マイメモ */
+    .memo-section {
+      margin-top: 40px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .memo-prompts { display: flex; flex-direction: column; gap: 16px; margin-bottom: 20px; }
+    .memo-prompt-item label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--brown);
+      margin-bottom: 6px;
+    }
+    .memo-prompt-item textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text);
+      background: #FDFBF9;
+      resize: vertical;
+      min-height: 80px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .memo-prompt-item textarea:focus {
+      border-color: var(--orange-mid);
+      box-shadow: 0 0 0 3px rgba(232,114,42,0.1);
+    }
+    .memo-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .btn-save {
+      background: var(--orange);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      padding: 10px 22px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-save:hover { background: #D4631E; }
+    .btn-save:active { transform: scale(0.97); }
+    .btn-clear {
+      background: none;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 13px;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .btn-clear:hover { color: var(--text); border-color: #C0B0A8; }
+    .memo-saved-msg {
+      font-size: 13px;
+      color: var(--teal);
+      font-weight: 500;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .memo-saved-msg.show { opacity: 1; }
+    .memo-last-saved { font-size: 12px; color: var(--text-muted); margin-top: 10px; }
+
+    /* ナビゲーション */
+    .article-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 56px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+    .nav-link {
+      text-decoration: none;
+      color: var(--orange);
+      font-size: 14px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.2s;
+    }
+    .nav-link:hover { gap: 10px; }
+    .nav-link.prev::before { content: '← '; }
+    .nav-link.next::after { content: ' →'; }
+
+    /* フッター */
+    .site-footer {
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 13px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      background: var(--white);
+    }
+
+    @media (max-width: 600px) {
+      .article-wrap { padding: 32px 18px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="../index.html">学習ログ一覧に戻る</a>
+</header>
+
+<main class="article-wrap">
+
+  <div class="article-meta">
+    <span class="tag">意思決定</span>
+    <span class="tag">思考整理</span>
+    <span class="tag teal">NLP</span>
+    <span class="article-date">2026年4月15日</span>
+  </div>
+
+  <h1 class="article-title">デカルトの座標<br><span style="font-size: 0.65em; color: var(--text-muted);">意思決定の4つの質問</span></h1>
+  <p class="article-subtitle">「する／しない」×「起きる／起きない」の4つの問いで思考の死角をゼロにする。<br>迷いを「納得の選択」に変えるNLP由来の意思決定フレームワーク。</p>
+
+  <hr class="divider">
+
+  <div class="lead-box">
+    私たちの脳には<strong>「現状維持バイアス」</strong>という強力なブレーキが潜んでいます。デカルトの座標は4つの問いで思考の死角を照らし出し、「やりたいのに動けない」や「決めた後に後悔する」を防ぐ意思決定の地図です。
+  </div>
+
+  <!-- 教授セクション -->
+  <div class="section-label">📚 教授の解説</div>
+
+  <div class="article-body">
+
+    <h3>1. 理論の本質：なぜ「4つの窓」が必要なのか？</h3>
+    <p>何かを決める時、私たちはついつい<strong>「やったら、どんな良いことがあるか？」</strong>ということばかり考えてしまいます。でも、実はそれだけでは不十分です。</p>
+    <p>脳に潜む<strong>「現状維持バイアス」</strong>のせいで、「変わることの怖さ」や「今のままでいることのメリット」は無意識に隠れてしまいます。その結果、「やりたいのに動けない」「決めたのに後悔する」という状態が生まれます。</p>
+    <p>デカルトの座標は、この<strong>「思考の死角（見えていない場所）」をゼロにするための地図</strong>です。4つの問いを全部埋めた時、あなたは迷いから納得の選択へと変わっているはずです。</p>
+
+    <h3>2. 直感的な例え話：4つの窓がある不思議な家</h3>
+
+    <div class="drive-box">
+      <p>🏠 あなたは今、「新しい冒険に出るかどうか」を迷っています。目の前には「決断の家」という不思議な建物があります。この家には、<strong>4つの窓</strong>がついています。</p>
+      <p><strong>①「光の窓」:</strong> 外に飛び出したら、どんな素敵な景色が見えるかな？（ワクワク）</p>
+      <p><strong>②「影の窓」:</strong> 外に飛び出したら、今のお気に入りのソファは諦めなきゃいけないかな？（失うもの）</p>
+      <p><strong>③「ぬくもりの窓」:</strong> もし今のまま家に残ったら、どんなに今の生活が快適かな？（今の良さ）</p>
+      <p><strong>④「嵐の窓」:</strong> もし今のまま残ったら、外にある宝物は一生手に入らないままだよね？（逃すチャンス）</p>
+      <p>普通の人は「光の窓」しか見ません。でも賢い冒険家は<strong>4つの窓すべてを覗き込む</strong>ことで、初めて「本当に冒険に行く価値があるか」を正しく判断できるのです。</p>
+    </div>
+
+    <h3>3. 4つの質問：思考の死角を照らす</h3>
+
+    <div class="descartes-grid">
+      <div class="descartes-card">
+        <div class="descartes-badge">① 肯定の問い</div>
+        <div class="descartes-card-title">それを「する」と、何が「起きる」？</div>
+        <div class="descartes-card-q">実行した時のメリット・プラスの変化。モチベーションの源泉。</div>
+        <div class="descartes-card-example">例：「新しい勉強を始めたら、憧れの仕事に就ける！」</div>
+      </div>
+      <div class="descartes-card">
+        <div class="descartes-badge">② 否定の問い</div>
+        <div class="descartes-card-title">それを「する」と、何が「起きない（失う）」？</div>
+        <div class="descartes-card-q">実行した時に支払うコストや諦めるもの。リスクを冷静に見極める。</div>
+        <div class="descartes-card-example">例：「夜にのんびりゲームをする時間はなくなるな」</div>
+      </div>
+      <div class="descartes-card">
+        <div class="descartes-badge">③ 逆の問い</div>
+        <div class="descartes-card-title">それを「しない」と、何が「起きる」？</div>
+        <div class="descartes-card-q">現状維持のメリット。自分を止めている「隠れたご褒美」を暴き出す。ここが最重要。</div>
+        <div class="descartes-card-example">例：「今のまま楽に、お金も使わずに過ごせる」</div>
+      </div>
+      <div class="descartes-card">
+        <div class="descartes-badge">④ 二重否定の問い</div>
+        <div class="descartes-card-title">それを「しない」と、何が「起きない」？</div>
+        <div class="descartes-card-q">実行しなかった場合に一生手に入らないもの。究極の動機を確認する。</div>
+        <div class="descartes-card-example">例：「一生、今の退屈な仕事から抜け出すチャンスは訪れない」</div>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <strong>💡 ④の問いについて：</strong>「しないと、起きないこと」はわざと少し考えにくい形になっています。これは脳に「ちょっと待って、よく考えて！」と刺激を与えるための仕掛けです。迷った時は紙に十字を書いて4つの窓を全部埋めてみてください。
+    </div>
+
+  </div><!-- /article-body -->
+
+  <!-- トレーナーセクション -->
+  <div class="trainer-section">
+    <div class="section-label trainer">🏋️ トレーナーの今日の課題</div>
+
+    <h3>① ベビーステップ（2分以内）</h3>
+    <div class="action-item">
+      <div class="action-label">思考の器を準備する</div>
+      <p>デスクに座ったら、目の前のメモ帳か付箋に「大きな十字（＋）」を1つ書く。それだけでOK。</p>
+      <div class="action-syntax">書くだけで脳は「ここに何かを埋めるんだな」と準備を始める。</div>
+    </div>
+
+    <h3>② ルーチン・トリガー</h3>
+    <div class="action-item">
+      <div class="action-label">④の窓を日常に組み込む</div>
+      <p>スマホを充電器に差し込んだら、「今、後回しにしていることを『しない』ことで、一生手に入らないものは何？」と1つだけ自分に問いかける。</p>
+      <div class="action-syntax">「充電する」という既存の習慣に④の問いをセットで紐付けるIf-Thenプランニング。</div>
+    </div>
+
+    <h3>③ 今日のミッション（実験）</h3>
+    <div class="action-item">
+      <div class="action-label">③の窓を体験する</div>
+      <p>今日、何かを「買おうかな？」「やろうかな？」と迷った瞬間、その場でメモ帳を開き、「逆の問い（それをしないメリット）」を2つだけ書き出す。</p>
+      <div class="action-syntax">自分が「現状維持」を選ぼうとする時の「隠れたご褒美」をあぶり出す練習。正体がわかれば、もう怖くない。</div>
+    </div>
+  </div>
+
+  <!-- まとめ -->
+  <div class="closing-box">
+    <div class="closing-quote">「迷っている自分」を卒業し、<br>「納得して選ぶ自分」へ。</div>
+    <p>まずはペンを持って、十字を書いてみましょう。そこからすべてが始まります。</p>
+  </div>
+
+  <!-- インフォグラフィック -->
+  <div class="infographic-section">
+    <div class="section-label" style="margin-top: 40px;">🖼️ 図解まとめ</div>
+    <img
+      class="infographic-img"
+      src="デカルトの座標.png"
+      alt="デカルトの座標 インフォグラフィック：思考の死角をゼロにする4つの問い"
+    >
+    <p class="infographic-caption">NotebookLM で作成したインフォグラフィック</p>
+  </div>
+
+  <!-- マイメモ -->
+  <div class="memo-section">
+    <div class="section-label" style="background: var(--orange);">📝 マイメモ</div>
+    <div class="memo-prompts">
+      <div class="memo-prompt-item">
+        <label>💡 今日の学びで一番印象に残ったこと</label>
+        <textarea id="memo-1" placeholder="例：「現状維持バイアス」が無意識にブレーキになっていると知って、なんとなく動けない理由がわかった気がした。"></textarea>
+      </div>
+      <div class="memo-prompt-item">
+        <label>🔍 今の自分に当てはめると？（③の窓＝現状維持のメリット）</label>
+        <textarea id="memo-2" placeholder="例：副業を始めない「隠れたご褒美」は、夜の自由な時間と失敗しないという安心感だと気づいた。"></textarea>
+      </div>
+      <div class="memo-prompt-item">
+        <label>🎯 今迷っていることに4つの問いを使ってみた結果</label>
+        <textarea id="memo-3" placeholder="例：転職するかどうか → ①スキルアップ ②安定を手放す ③今の楽な環境 ④成長の機会を失う。④を見たら「やっぱり動こう」と思えた。"></textarea>
+      </div>
+    </div>
+    <div class="memo-actions">
+      <button class="btn-save" onclick="saveMemo()">💾 保存する</button>
+      <button class="btn-clear" onclick="clearMemo()">クリア</button>
+      <span class="memo-saved-msg" id="saved-msg">✓ 保存しました</span>
+    </div>
+    <div class="memo-last-saved" id="last-saved"></div>
+  </div>
+
+  <!-- ナビ -->
+  <nav class="article-nav">
+    <a class="nav-link prev" href="20260414-abcde-model.html">前の記事：ABCDEモデル</a>
+  </nav>
+
+</main>
+
+<footer class="site-footer">
+  <p>🐾 セルフコーチング学習ログ</p>
+</footer>
+
+<script>
+  const MEMO_KEY = 'memo-descartes-matrix';
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem(MEMO_KEY);
+    if (saved) {
+      const data = JSON.parse(saved);
+      document.getElementById('memo-1').value = data.memo1 || '';
+      document.getElementById('memo-2').value = data.memo2 || '';
+      document.getElementById('memo-3').value = data.memo3 || '';
+      if (data.savedAt) {
+        document.getElementById('last-saved').textContent = '最終保存: ' + data.savedAt;
+      }
+    }
+  });
+
+  function saveMemo() {
+    const now = new Date();
+    const savedAt = now.toLocaleDateString('ja-JP') + ' ' + now.toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' });
+    const data = {
+      memo1: document.getElementById('memo-1').value,
+      memo2: document.getElementById('memo-2').value,
+      memo3: document.getElementById('memo-3').value,
+      savedAt: savedAt
+    };
+    localStorage.setItem(MEMO_KEY, JSON.stringify(data));
+    const msg = document.getElementById('saved-msg');
+    msg.classList.add('show');
+    document.getElementById('last-saved').textContent = '最終保存: ' + savedAt;
+    setTimeout(() => msg.classList.remove('show'), 2500);
+  }
+
+  function clearMemo() {
+    if (!confirm('メモをクリアしますか？この操作は元に戻せません。')) return;
+    ['memo-1', 'memo-2', 'memo-3'].forEach(id => {
+      document.getElementById(id).value = '';
+    });
+    localStorage.removeItem(MEMO_KEY);
+    document.getElementById('last-saved').textContent = '';
+  }
+</script>
+
+</body>
+</html>
