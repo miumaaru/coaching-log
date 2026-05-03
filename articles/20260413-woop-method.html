@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WOOP法 | セルフコーチング学習ログ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #E8722A;
+      --orange-light: #FDF0E8;
+      --orange-mid: #F5C4A0;
+      --brown: #6B3A2A;
+      --brown-light: #F9F3EF;
+      --text: #2D2D2D;
+      --text-muted: #7A7A7A;
+      --border: #EAE0D8;
+      --white: #FFFFFF;
+      --teal: #3A8C8A;
+      --teal-light: #EAF5F5;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: #FAF7F4;
+      color: var(--text);
+      line-height: 1.85;
+      font-size: 16px;
+    }
+
+    /* ヘッダー */
+    .site-header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+    }
+    .site-header a {
+      text-decoration: none;
+      color: var(--brown);
+      font-size: 14px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.75;
+      transition: opacity 0.2s;
+    }
+    .site-header a:hover { opacity: 1; }
+    .site-header a::before { content: '←'; }
+
+    /* メインコンテンツ */
+    .article-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* メタ情報 */
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .tag {
+      background: var(--orange-light);
+      color: var(--orange);
+      border: 1px solid var(--orange-mid);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.05em;
+    }
+    .tag.teal {
+      background: var(--teal-light);
+      color: var(--teal);
+      border-color: #B0D8D7;
+    }
+    .article-date {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* タイトル */
+    .article-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 700;
+      color: var(--brown);
+      line-height: 1.45;
+      margin-bottom: 10px;
+    }
+    .article-subtitle {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+
+    /* 区切り線 */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 36px 0;
+    }
+
+    /* リード文 */
+    .lead-box {
+      background: var(--brown-light);
+      border-left: 4px solid var(--orange);
+      padding: 20px 24px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 36px;
+      font-size: 15px;
+    }
+    .lead-box strong { color: var(--orange); }
+
+    /* セクションラベル */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--white);
+      background: var(--brown);
+      padding: 4px 14px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+    .section-label.trainer { background: var(--teal); }
+
+    /* 本文 */
+    .article-body h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--brown);
+      margin: 36px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--orange-light);
+    }
+    .article-body p {
+      margin-bottom: 18px;
+      font-size: 15.5px;
+    }
+    .article-body strong { color: var(--brown); }
+    .article-body em { font-style: normal; color: var(--orange); font-weight: 700; }
+
+    /* 例え話ボックス */
+    .drive-box {
+      background: linear-gradient(135deg, #FDF0E8 0%, #FFF8F2 100%);
+      border: 1px solid var(--orange-mid);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+    .drive-box p { font-size: 15px; margin-bottom: 10px; }
+    .drive-box p:last-child { margin-bottom: 0; }
+    .drive-box strong { color: var(--orange); }
+
+    /* WOOPステップカード */
+    .woop-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 24px 0 32px;
+    }
+    @media (max-width: 560px) {
+      .woop-grid { grid-template-columns: 1fr; }
+    }
+    .woop-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .woop-card:hover {
+      box-shadow: 0 4px 16px rgba(232, 114, 42, 0.1);
+      border-color: var(--orange-mid);
+    }
+    .woop-letter {
+      width: 44px;
+      height: 44px;
+      background: var(--orange);
+      color: var(--white);
+      font-family: 'Noto Serif JP', serif;
+      font-size: 22px;
+      font-weight: 700;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+    .woop-card-name {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+    .woop-card-title {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--brown);
+      margin-bottom: 8px;
+    }
+    .woop-card-q {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      background: rgba(0,0,0,0.03);
+      padding: 8px 12px;
+      border-radius: 6px;
+      border-left: 3px solid var(--orange-mid);
+      line-height: 1.65;
+    }
+    .woop-card-example {
+      font-size: 13px;
+      color: var(--orange);
+      margin-top: 8px;
+      font-style: italic;
+    }
+
+    /* 注意書きボックス */
+    .note-box {
+      background: #FFFBF5;
+      border: 1px dashed var(--orange-mid);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-top: 8px;
+      font-size: 13.5px;
+      color: var(--text-muted);
+    }
+    .note-box strong { color: var(--brown); }
+
+    /* トレーナーセクション */
+    .trainer-section {
+      background: var(--teal-light);
+      border: 1px solid #B0D8D7;
+      border-radius: 12px;
+      padding: 28px;
+      margin-top: 40px;
+    }
+    .trainer-section h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--teal);
+      margin: 24px 0 12px;
+    }
+    .trainer-section h3:first-of-type { margin-top: 8px; }
+
+    .action-item {
+      background: var(--white);
+      border: 1px solid #B0D8D7;
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin-bottom: 12px;
+      font-size: 14.5px;
+    }
+    .action-item .action-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+    .action-item p { margin-bottom: 0; }
+    .action-syntax {
+      background: #F0F7F7;
+      border-radius: 5px;
+      padding: 8px 12px;
+      font-size: 13px;
+      color: var(--teal);
+      margin-top: 8px;
+      font-weight: 500;
+    }
+    .action-syntax::before { content: 'ポイント: '; font-weight: 700; }
+
+    /* まとめ */
+    .closing-box {
+      background: var(--brown);
+      color: var(--white);
+      border-radius: 12px;
+      padding: 28px;
+      margin-top: 40px;
+      text-align: center;
+    }
+    .closing-box p { font-size: 15px; opacity: 0.9; margin-bottom: 0; }
+    .closing-quote {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      line-height: 1.6;
+    }
+
+    /* インフォグラフィック */
+    .infographic-section { margin-top: 40px; }
+    .infographic-img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      display: block;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+    }
+    .infographic-caption {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    /* マイメモ */
+    .memo-section {
+      margin-top: 40px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .memo-prompts { display: flex; flex-direction: column; gap: 16px; margin-bottom: 20px; }
+    .memo-prompt-item label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--brown);
+      margin-bottom: 6px;
+    }
+    .memo-prompt-item textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text);
+      background: #FDFBF9;
+      resize: vertical;
+      min-height: 80px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .memo-prompt-item textarea:focus {
+      border-color: var(--orange-mid);
+      box-shadow: 0 0 0 3px rgba(232,114,42,0.1);
+    }
+    .memo-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .btn-save {
+      background: var(--orange);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      padding: 10px 22px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-save:hover { background: #D4631E; }
+    .btn-save:active { transform: scale(0.97); }
+    .btn-clear {
+      background: none;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 13px;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .btn-clear:hover { color: var(--text); border-color: #C0B0A8; }
+    .memo-saved-msg {
+      font-size: 13px;
+      color: var(--teal);
+      font-weight: 500;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .memo-saved-msg.show { opacity: 1; }
+    .memo-last-saved { font-size: 12px; color: var(--text-muted); margin-top: 10px; }
+
+    /* ナビゲーション */
+    .article-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 56px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+    .nav-link {
+      text-decoration: none;
+      color: var(--orange);
+      font-size: 14px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.2s;
+    }
+    .nav-link:hover { gap: 10px; }
+    .nav-link.prev::before { content: '← '; }
+    .nav-link.next::after { content: ' →'; }
+
+    /* フッター */
+    .site-footer {
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 13px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      background: var(--white);
+    }
+
+    @media (max-width: 600px) {
+      .article-wrap { padding: 32px 18px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="../index.html">学習ログ一覧に戻る</a>
+</header>
+
+<main class="article-wrap">
+
+  <div class="article-meta">
+    <span class="tag">目標達成</span>
+    <span class="tag">行動変容</span>
+    <span class="tag teal">科学的手法</span>
+    <span class="article-date">2026年4月13日</span>
+  </div>
+
+  <h1 class="article-title">WOOP（ウープ）法</h1>
+  <p class="article-subtitle">Wish・Outcome・Obstacle・Planの4ステップで脳を行動準備状態へ。<br>「ポジティブな未来」と「直面する障害」を対比させる、科学が証明した目標達成技法。</p>
+
+  <hr class="divider">
+
+  <div class="lead-box">
+    「夢はポジティブに考えれば叶う」——実はそれだけでは不十分です。WOOP法は<strong>あえて「障害」を直視する</strong>ことで、脳に行動スイッチを入れる心理学者ガブリエル・エッティンゲンが提唱した科学的な目標達成技法です。
+  </div>
+
+  <!-- 教授セクション -->
+  <div class="section-label">📚 教授の解説</div>
+
+  <div class="article-body">
+
+    <h3>1. 理論の本質：なぜ「ポジティブな想像」だけではダメなのか？</h3>
+    <p>私たちの脳は、成功した自分を想像しすぎると「もう達成した！」と勘違いして満足し、動くためのエネルギーをオフにしてしまいます。これを<strong>「空想の罠」</strong>と呼びます。</p>
+    <p>WOOPは、あえて<strong>「壁（障害）」を直視させる</strong>ことで、脳に「おっと、まだ達成していないぞ。準備が必要だ！」と火をつけ、無意識のうちに行動を促すスイッチを入れてくれるのです。</p>
+
+    <h3>2. 直感的な例え話：宝探しの地図と「底なし沼」</h3>
+
+    <div class="drive-box">
+      <p>🗺️ あなたは遠い島にある「黄金の宝箱」を探しに行こうとしています。</p>
+      <p><strong>W（願望）:</strong> 「宝箱を見つけたい！」という願い。</p>
+      <p><strong>O（最高の結果）:</strong> 宝箱を開けて、キラキラした財宝に囲まれて最高に幸せな気分。</p>
+      <p><strong>O（障害）:</strong> でも、途中の道には「底なし沼」があるかもしれない…</p>
+      <p><strong>P（計画）:</strong> 「もし底なし沼が現れたら、あらかじめ用意した長い棒を使って渡ろう」と決める。</p>
+      <p>ただ「宝箱があるぞ！」と手ぶらで飛び出す人は最初の沼で諦めます。<strong>「最高の宝物」を思い描きながらも「沼」を予測し「棒」を持っていく人</strong>だけが、最後までたどり着けるのです。</p>
+    </div>
+
+    <h3>3. 4つのステップ：脳に行動スイッチを入れる</h3>
+
+    <div class="woop-grid">
+      <div class="woop-card">
+        <div class="woop-letter">W</div>
+        <div class="woop-card-name">Wish（願望）</div>
+        <div class="woop-card-title">心からの願いは？</div>
+        <div class="woop-card-q">少し頑張れば達成できそうな目標を1つ決める</div>
+        <div class="woop-card-example">例：毎日30分、英語の勉強を続けたい</div>
+      </div>
+      <div class="woop-card">
+        <div class="woop-letter">O</div>
+        <div class="woop-card-name">Outcome（最高の結果）</div>
+        <div class="woop-card-title">叶ったら、どんな気分？</div>
+        <div class="woop-card-q">願いが叶った「最高の瞬間」を鮮やかにイメージする</div>
+        <div class="woop-card-example">例：海外で現地の人と笑い合い、自信に満ちあふれる！</div>
+      </div>
+      <div class="woop-card">
+        <div class="woop-letter">O</div>
+        <div class="woop-card-name">Obstacle（内面的な障害）</div>
+        <div class="woop-card-title">自分を止める「心」は何？</div>
+        <div class="woop-card-q">外のせいでなく、自分の中の邪魔な感情や習慣を見つける</div>
+        <div class="woop-card-example">例：帰宅後「疲れたから明日でいいや」と思う怠け心</div>
+      </div>
+      <div class="woop-card">
+        <div class="woop-letter">P</div>
+        <div class="woop-card-name">Plan（計画）</div>
+        <div class="woop-card-title">障害が起きたらどうする？</div>
+        <div class="woop-card-q">「もし〇〇が起きたら、××する」の形で具体的に決める</div>
+        <div class="woop-card-example">例：もし「疲れ」を感じたら、ジャズを流して机に座る</div>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <strong>💡 Obstacleのポイント：</strong>「時間がない」などの外的理由ではなく、「ついスマホを見てしまう」など<strong>自分の行動・感情</strong>に注目することが一番大切です。
+    </div>
+
+  </div><!-- /article-body -->
+
+  <!-- トレーナーセクション -->
+  <div class="trainer-section">
+    <div class="section-label trainer">🏋️ トレーナーの今日の課題</div>
+
+    <h3>① ベビーステップ（2分以内）</h3>
+    <div class="action-item">
+      <div class="action-label">W＆Oの回路を脳に刻む</div>
+      <p>スマホのロックを解除したら、「今の小さな願い（W）」と「それが叶った時のニヤける気分（O）」を1つだけ思い浮かべる。</p>
+      <div class="action-syntax">「おいしいコーヒーが飲みたい」「定時退社でビールを飲む瞬間」——極小の願いでOK。</div>
+    </div>
+
+    <h3>② ルーチン・トリガー</h3>
+    <div class="action-item">
+      <div class="action-label">O＆Pを生活リズムに組み込む</div>
+      <p>夕食後、食器をシンクに置いたら「もしスマホをダラダラ見たくなったら（障害）、その場で1回だけ深呼吸をする（計画）」と心の中で唱える。</p>
+      <div class="action-syntax">If-Thenプランニングの構文を、自動的なトリガー（食器を置く）に紐付ける。</div>
+    </div>
+
+    <h3>③ 今日のミッション（実験）</h3>
+    <div class="action-item">
+      <div class="action-label">WOOPを1サイクル体験する</div>
+      <p>「一番面倒だな」と感じるタスクに着手する直前に、邪魔しそうな自分の感情を特定し、「もしその感情が湧いたら、まずパソコンを開くだけにする」と決めてから行動を開始する。</p>
+      <div class="action-syntax">「障害」を敵と見なさず、事前に「棒（計画）」を用意しておく感覚を味わう。</div>
+    </div>
+  </div>
+
+  <!-- まとめ -->
+  <div class="closing-box">
+    <div class="closing-quote">「障害」を見つけることは、<br>目標までの最短ルートを舗装する作業。</div>
+    <p>空想の罠を抜け出し、脳が勝手に動き出す仕組みを今日から使ってみてください。</p>
+  </div>
+
+  <!-- インフォグラフィック -->
+  <div class="infographic-section">
+    <div class="section-label" style="margin-top: 40px;">🖼️ 図解まとめ</div>
+    <img
+      class="infographic-img"
+      src="WOOP法.png"
+      alt="WOOP法 インフォグラフィック：脳の行動スイッチを入れる4ステップ"
+    >
+    <p class="infographic-caption">NotebookLM で作成したインフォグラフィック</p>
+  </div>
+
+  <!-- マイメモ -->
+  <div class="memo-section">
+    <div class="section-label" style="background: var(--orange);">📝 マイメモ</div>
+    <div class="memo-prompts">
+      <div class="memo-prompt-item">
+        <label>💡 今日の学びで一番印象に残ったこと</label>
+        <textarea id="memo-1" placeholder="例：ポジティブに考えるだけでは脳が「もう達成した」と思ってしまうという「空想の罠」が衝撃だった。"></textarea>
+      </div>
+      <div class="memo-prompt-item">
+        <label>🔍 自分のObstacleは何？（具体的な場面）</label>
+        <textarea id="memo-2" placeholder="例：夜に勉強しようとすると「疲れたからYouTubeだけ…」という気持ちに負けてしまう。"></textarea>
+      </div>
+      <div class="memo-prompt-item">
+        <label>🎯 自分のIf-Thenプランを作ってみる</label>
+        <textarea id="memo-3" placeholder="例：もし「疲れ」を感じたら、まずテキストを机の上に開くだけにする。"></textarea>
+      </div>
+    </div>
+    <div class="memo-actions">
+      <button class="btn-save" onclick="saveMemo()">💾 保存する</button>
+      <button class="btn-clear" onclick="clearMemo()">クリア</button>
+      <span class="memo-saved-msg" id="saved-msg">✓ 保存しました</span>
+    </div>
+    <div class="memo-last-saved" id="last-saved"></div>
+  </div>
+
+  <!-- ナビ -->
+  <nav class="article-nav">
+    <a class="nav-link prev" href="20260412-grow-model.html">前の記事：GROWモデル</a>
+    <a class="nav-link next" href="20260414-abcde-model.html">次の記事：ABCDEモデル</a>
+  </nav>
+
+</main>
+
+<footer class="site-footer">
+  <p>🐾 セルフコーチング学習ログ</p>
+</footer>
+
+<script>
+  const MEMO_KEY = 'memo-woop-method';
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem(MEMO_KEY);
+    if (saved) {
+      const data = JSON.parse(saved);
+      document.getElementById('memo-1').value = data.memo1 || '';
+      document.getElementById('memo-2').value = data.memo2 || '';
+      document.getElementById('memo-3').value = data.memo3 || '';
+      if (data.savedAt) {
+        document.getElementById('last-saved').textContent = '最終保存: ' + data.savedAt;
+      }
+    }
+  });
+
+  function saveMemo() {
+    const now = new Date();
+    const savedAt = now.toLocaleDateString('ja-JP') + ' ' + now.toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' });
+    const data = {
+      memo1: document.getElementById('memo-1').value,
+      memo2: document.getElementById('memo-2').value,
+      memo3: document.getElementById('memo-3').value,
+      savedAt: savedAt
+    };
+    localStorage.setItem(MEMO_KEY, JSON.stringify(data));
+    const msg = document.getElementById('saved-msg');
+    msg.classList.add('show');
+    document.getElementById('last-saved').textContent = '最終保存: ' + savedAt;
+    setTimeout(() => msg.classList.remove('show'), 2500);
+  }
+
+  function clearMemo() {
+    if (!confirm('メモをクリアしますか？この操作は元に戻せません。')) return;
+    ['memo-1', 'memo-2', 'memo-3'].forEach(id => {
+      document.getElementById(id).value = '';
+    });
+    localStorage.removeItem(MEMO_KEY);
+    document.getElementById('last-saved').textContent = '';
+  }
+</script>
+
+</body>
+</html>
