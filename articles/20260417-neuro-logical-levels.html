@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ニューロ・ロジカル・レベル | セルフコーチング学習ログ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #E8722A;
+      --orange-light: #FDF0E8;
+      --orange-mid: #F5C4A0;
+      --brown: #6B3A2A;
+      --brown-light: #F9F3EF;
+      --text: #2D2D2D;
+      --text-muted: #7A7A7A;
+      --border: #EAE0D8;
+      --white: #FFFFFF;
+      --teal: #3A8C8A;
+      --teal-light: #EAF5F5;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: #FAF7F4;
+      color: var(--text);
+      line-height: 1.85;
+      font-size: 16px;
+    }
+
+    /* ヘッダー */
+    .site-header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+    }
+    .site-header a {
+      text-decoration: none;
+      color: var(--brown);
+      font-size: 14px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.75;
+      transition: opacity 0.2s;
+    }
+    .site-header a:hover { opacity: 1; }
+    .site-header a::before { content: '←'; }
+
+    /* メインコンテンツ */
+    .article-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* メタ情報 */
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .tag {
+      background: var(--orange-light);
+      color: var(--orange);
+      border: 1px solid var(--orange-mid);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.05em;
+    }
+    .tag.teal {
+      background: var(--teal-light);
+      color: var(--teal);
+      border-color: #B0D8D7;
+    }
+    .article-date {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* タイトル */
+    .article-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 700;
+      color: var(--brown);
+      line-height: 1.45;
+      margin-bottom: 10px;
+    }
+    .article-subtitle {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+
+    /* 区切り線 */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 36px 0;
+    }
+
+    /* リード文 */
+    .lead-box {
+      background: var(--brown-light);
+      border-left: 4px solid var(--orange);
+      padding: 20px 24px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 36px;
+      font-size: 15px;
+    }
+    .lead-box strong { color: var(--orange); }
+
+    /* セクションラベル */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--white);
+      background: var(--brown);
+      padding: 4px 14px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+    .section-label.trainer { background: var(--teal); }
+
+    /* 本文 */
+    .article-body h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--brown);
+      margin: 36px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--orange-light);
+    }
+    .article-body p {
+      margin-bottom: 18px;
+      font-size: 15.5px;
+    }
+    .article-body strong { color: var(--brown); }
+    .article-body em { font-style: normal; color: var(--orange); font-weight: 700; }
+
+    /* 例え話ボックス */
+    .drive-box {
+      background: linear-gradient(135deg, #FDF0E8 0%, #FFF8F2 100%);
+      border: 1px solid var(--orange-mid);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+    .drive-box p { font-size: 15px; margin-bottom: 10px; }
+    .drive-box p:last-child { margin-bottom: 0; }
+    .drive-box strong { color: var(--orange); }
+
+    /* ニューロロジカルレベル カードグリッド */
+    .nll-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 24px 0 32px;
+    }
+    @media (max-width: 560px) {
+      .nll-grid { grid-template-columns: 1fr; }
+    }
+    .nll-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .nll-card:hover {
+      box-shadow: 0 4px 16px rgba(232, 114, 42, 0.1);
+      border-color: var(--orange-mid);
+    }
+    .nll-step {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+    }
+    .nll-card-name {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--brown);
+      margin-bottom: 4px;
+      font-family: 'Noto Serif JP', serif;
+    }
+    .nll-card-en {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      font-style: italic;
+    }
+    .nll-card-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      background: rgba(0,0,0,0.03);
+      padding: 8px 12px;
+      border-radius: 6px;
+      border-left: 3px solid var(--orange-mid);
+      line-height: 1.65;
+      margin-bottom: 8px;
+    }
+    .nll-card-effect {
+      font-size: 13px;
+      color: var(--orange);
+      font-weight: 500;
+    }
+    .nll-card-effect::before { content: '✨ '; }
+
+    /* ヒントボックス */
+    .tip-box {
+      background: #FFFBF5;
+      border: 1px dashed var(--orange-mid);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-top: 8px;
+      font-size: 13.5px;
+      color: var(--text-muted);
+    }
+    .tip-box strong { color: var(--brown); }
+
+    /* トレーナーセクション */
+    .trainer-section {
+      background: var(--teal-light);
+      border: 1px solid #B0D8D7;
+      border-radius: 12px;
+      padding: 28px;
+      margin-top: 40px;
+    }
+    .trainer-section h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--teal);
+      margin: 24px 0 12px;
+    }
+    .trainer-section h3:first-of-type { margin-top: 8px; }
+
+    .action-item {
+      background: var(--white);
+      border: 1px solid #B0D8D7;
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin-bottom: 12px;
+      font-size: 14.5px;
+    }
+    .action-item .action-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+    .action-item p { margin-bottom: 0; }
+    .action-syntax {
+      background: #F0F7F7;
+      border-radius: 5px;
+      padding: 8px 12px;
+      font-size: 13px;
+      color: var(--teal);
+      margin-top: 8px;
+      font-weight: 500;
+    }
+    .action-syntax::before { content: 'ポイント: '; font-weight: 700; }
+
+    /* まとめ */
+    .closing-box {
+      background: var(--brown);
+      color: var(--white);
+      border-radius: 12px;
+      padding: 28px;
+      margin-top: 40px;
+      text-align: center;
+    }
+    .closing-box p { font-size: 15px; opacity: 0.9; margin-bottom: 0; }
+    .closing-quote {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      line-height: 1.6;
+    }
+
+    /* インフォグラフィック */
+    .infographic-section { margin-top: 40px; }
+    .infographic-img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      display: block;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+    }
+    .infographic-caption {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    /* マイメモ */
+    .memo-section {
+      margin-top: 40px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .memo-prompts { display: flex; flex-direction: column; gap: 16px; margin-bottom: 20px; }
+    .memo-prompt-item label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--brown);
+      margin-bottom: 6px;
+    }
+    .memo-prompt-item textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text);
+      background: #FDFBF9;
+      resize: vertical;
+      min-height: 80px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .memo-prompt-item textarea:focus {
+      border-color: var(--orange-mid);
+      box-shadow: 0 0 0 3px rgba(232,114,42,0.1);
+    }
+    .memo-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .btn-save {
+      background: var(--orange);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      padding: 10px 22px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-save:hover { background: #D4631E; }
+    .btn-save:active { transform: scale(0.97); }
+    .btn-clear {
+      background: none;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 13px;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .btn-clear:hover { color: var(--text); border-color: #C0B0A8; }
+    .memo-saved-msg {
+      font-size: 13px;
+      color: var(--teal);
+      font-weight: 500;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .memo-saved-msg.show { opacity: 1; }
+    .memo-last-saved { font-size: 12px; color: var(--text-muted); margin-top: 10px; }
+
+    /* ナビゲーション */
+    .article-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 56px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+    .nav-link {
+      text-decoration: none;
+      color: var(--orange);
+      font-size: 14px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.2s;
+    }
+    .nav-link:hover { gap: 10px; }
+    .nav-link.prev::before { content: '← '; }
+    .nav-link.next::after { content: ' →'; }
+
+    /* フッター */
+    .site-footer {
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 13px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      background: var(--white);
+    }
+
+    @media (max-width: 600px) {
+      .article-wrap { padding: 32px 18px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="../index.html">学習ログ一覧に戻る</a>
+</header>
+
+<main class="article-wrap">
+
+  <div class="article-meta">
+    <span class="tag">自己理解</span>
+    <span class="tag">行動変容</span>
+    <span class="tag teal">NLP</span>
+    <span class="article-date">2026年4月17日</span>
+  </div>
+
+  <h1 class="article-title">ニューロ・ロジカル・レベル</h1>
+  <p class="article-subtitle">意識の6階層で「心のOS」を書き換える。<br>行動を力づくで変えるのではなく、自己認識というOSを更新することで、努力しなくても行動が自然と変わる。</p>
+
+  <hr class="divider">
+
+  <div class="lead-box">
+    「頭ではわかっているのに動けない」——その壁の正体は、<strong>より上位の階層（自己認識・使命）が変わっていないこと</strong>かもしれません。ニューロ・ロジカル・レベルは、<strong>「下の階層の問題は、上の階層からアプローチしないと根本的に解決しない」</strong>という原則のもと、変化の本当の入口を示してくれる理論です。
+  </div>
+
+  <!-- 教授セクション -->
+  <div class="section-label">📚 教授の解説</div>
+
+  <div class="article-body">
+
+    <h3>1. 理論の本質：なぜ「根性」だけでは変われないのか？</h3>
+
+    <p>何かを変えようとする時、私たちはつい「もっと頑張ろう（行動）」や「部屋を片付けよう（環境）」といった、目に見える部分ばかりをいじろうとしてしまいます。</p>
+
+    <p>しかし、<strong>ニューロ・ロジカル・レベル（Neuro-Logical Levels）</strong>が教えてくれる最も重要な真実はこれです。</p>
+
+    <p><strong>「下の階層の問題は、上の階層からアプローチしないと根本的には解決しない」</strong></p>
+
+    <p>例えば、「勉強に集中できない（行動）」という悩みがあるとき、机を綺麗にする（環境）だけでは不十分です。<strong>「自分は学ぶことが大好きな探検家だ（自己認識）」</strong>と自分を定義し直すと、努力せずとも自然に机に向かえるようになります。この理論は、<em>努力の空回りを防ぎ、変化を「自然で、逆戻りしないもの」にするための羅針盤</em>なのです。</p>
+
+    <h3>2. 直感的な例え話：あなたは「船」のどこを直しますか？</h3>
+
+    <div class="drive-box">
+      <p>⛵ 一隻の帆船に乗って、宝島を目指しているとします。船が思うように進まない時、どこを直しますか？</p>
+      <p><strong>行動（漕ぐこと）</strong>を増やすだけでは、疲れたら止まってしまいます。<strong>能力（操縦技術）</strong>を磨けば少し改善しますが、本当の変化は別のところにあります。</p>
+      <p>自分を「ただの雇われ水夫」だと思っているか、<strong>「歴史に名を残す偉大な冒険家」</strong>だと思っているか——これが<strong>自己認識（舵）</strong>の違いです。「冒険家だ」と思っていれば、技術を学ぶのも荒波を越えるのも、当たり前のことになります。</p>
+      <p><strong>自己認識（舵）が進む方向を決め、行動（漕ぐこと）はただそれに従うのです。</strong></p>
+    </div>
+
+    <h3>3. 心の6つの階層：上が下を支配する</h3>
+
+    <p>このモデルは私たちの意識を<strong>下から順に6階層</strong>で整理しています。<strong>「上の階層が下の階層を支配している」</strong>というルールが核心です。</p>
+
+    <div class="nll-grid">
+      <div class="nll-card">
+        <div class="nll-step">① 最下層</div>
+        <div class="nll-card-name">環境</div>
+        <div class="nll-card-en">Environment ／ どこで・いつ</div>
+        <div class="nll-card-desc">周りにあるもの・場所・人間関係。「騒がしいカフェ」「使いにくいパソコン」など外部条件。</div>
+        <div class="nll-card-effect">最も変えやすく、最も効果が小さい</div>
+      </div>
+      <div class="nll-card">
+        <div class="nll-step">② 行動</div>
+        <div class="nll-card-name">行動</div>
+        <div class="nll-card-en">Behavior ／ 何をする</div>
+        <div class="nll-card-desc">具体的な動作・習慣。「本を読む」「スマホをいじる」など目に見える行為のすべて。</div>
+        <div class="nll-card-effect">意志力で変えられるが、すぐ戻りやすい</div>
+      </div>
+      <div class="nll-card">
+        <div class="nll-step">③ 能力</div>
+        <div class="nll-card-name">能力</div>
+        <div class="nll-card-en">Capabilities ／ どうやって</div>
+        <div class="nll-card-desc">持っているスキル・戦略・リソース。「速読の技術」「計画を立てる力」など。</div>
+        <div class="nll-card-effect">学習で獲得でき、行動の幅を広げる</div>
+      </div>
+      <div class="nll-card">
+        <div class="nll-step">④ 信念・価値観</div>
+        <div class="nll-card-name">信念・価値観</div>
+        <div class="nll-card-en">Beliefs & Values ／ なぜ</div>
+        <div class="nll-card-desc">「正しい」と信じること・大切にしていること。「成長は楽しい」「時間は無駄にできない」など。</div>
+        <div class="nll-card-effect">変えると行動の動機ごと入れ替わる</div>
+      </div>
+      <div class="nll-card">
+        <div class="nll-step">⑤ 自己認識</div>
+        <div class="nll-card-name">自己認識</div>
+        <div class="nll-card-en">Identity ／ 私は誰か</div>
+        <div class="nll-card-desc">自分自身のセルフイメージ。「私はリーダーだ」「私はクリエイティブな人間だ」など。</div>
+        <div class="nll-card-effect">ここが変わると全階層がドミノ式に変わる</div>
+      </div>
+      <div class="nll-card">
+        <div class="nll-step">⑥ 最上層</div>
+        <div class="nll-card-name">使命・スピリット</div>
+        <div class="nll-card-en">Purpose ／ 誰のために</div>
+        <div class="nll-card-desc">自分を超えた社会・家族・世界への役割。「子供たちに笑顔を届けるために生きる」など。</div>
+        <div class="nll-card-effect">最も深く、変化の源泉となる</div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <strong>💡 実践のコツ：「一つ上の階層」を問う魔法の質問</strong><br>
+      悩みにぶつかったら、自分にこう問いかけてみてください。<br>
+      <strong>「今の悩みの、一つ上の階層には何があるだろう？」</strong><br>
+      「早起きできない（行動）」→「自分は一日を最高に充実させるプロフェッショナルだ（自己認識）」と定義すると、「プロなら朝何をすべきか（行動）」が自然と決まっていきます。
+    </div>
+
+  </div><!-- /article-body -->
+
+  <!-- トレーナーセクション -->
+  <div class="trainer-section">
+    <div class="section-label trainer">🏋️ トレーナーの今日の課題</div>
+
+    <h3>① ベビーステップ（2分以内）</h3>
+    <div class="action-item">
+      <div class="action-label">自己認識のラベルを目に見える形にする</div>
+      <p>「理想の自分を一言（例：冒険家、プロ、探検家）」だけ、付箋やメモ帳に書き、PCの端かスマホの背面に貼る。</p>
+      <div class="action-syntax">視覚的なトリガーで、無意識のうちに自己認識をリマインドできる。</div>
+    </div>
+
+    <h3>② ルーチン・トリガー</h3>
+    <div class="action-item">
+      <div class="action-label">PCの電源を入れたら</div>
+      <p>「私は価値を生み出すプロフェッショナルだ」と心の中でつぶやく。</p>
+      <div class="action-syntax">既存の習慣（PC起動）に自己認識の上書きをセットで紐付ける。</div>
+    </div>
+    <div class="action-item">
+      <div class="action-label">スマホを充電器に繋いだら</div>
+      <p>「私は自分の時間を大切にする探検家だ」と1回だけ深呼吸する。</p>
+      <div class="action-syntax">1日の終わりに自己認識をリセットするIf-Thenプランニング。</div>
+    </div>
+
+    <h3>③ 今日のミッション：「理想のあの人を召喚」</h3>
+    <div class="action-item">
+      <div class="action-label">迷った瞬間・面倒に感じた瞬間</div>
+      <p>何かの作業を「面倒だな」と感じた瞬間、自分にこう問いかける。<br>
+      <strong>「もし自分が『憧れのあの人』だったら、今この瞬間に何を考え、どう動くだろう？」</strong><br>
+      その後の行動を1秒だけ観察する。</p>
+      <div class="action-syntax">行動（下の階層）を直接変えるのではなく、自己認識（上の階層）をフィルターにすることで、自然な行動変化を誘発する。</div>
+    </div>
+  </div>
+
+  <!-- まとめ -->
+  <div class="closing-box">
+    <div class="closing-quote">「私は誰か？」——その問いが、<br>すべての行動を書き換える。</div>
+    <p>「どうすべきか（行動）」より先に、「自分は何者か（自己認識）」を定めよう。舵が変われば、船は自然と進む方向を変える。</p>
+  </div>
+
+  <!-- インフォグラフィック -->
+  <div class="infographic-section">
+    <div class="section-label" style="margin-top: 40px;">🖼️ 図解まとめ</div>
+    <img
+      class="infographic-img"
+      src="ニューロロジカルレベル.png"
+      alt="ニューロ・ロジカル・レベル インフォグラフィック：心の6階層で「心のOS」を書き換える"
+    >
+    <p class="infographic-caption">NotebookLM で作成したインフォグラフィック</p>
+  </div>
+
+  <!-- マイメモ -->
+  <div class="memo-section">
+    <div class="section-label" style="background: var(--orange);">📝 マイメモ</div>
+    <div class="memo-prompts">
+      <div class="memo-prompt-item">
+        <label>💡 今日の学びで一番印象に残ったこと</label>
+        <textarea id="memo-1" placeholder="例：「下の階層の問題は、上の階層からアプローチ」という言葉が刺さった。行動を変えようとするより先に、自分の定義を変えることが大事なんだと気づいた。"></textarea>
+      </div>
+      <div class="memo-prompt-item">
+        <label>🪪 自分を一言で定義するなら？（例：冒険家・プロ・探検家）</label>
+        <textarea id="memo-2" placeholder="例：「価値を生み出すクリエイター」。この言葉を貼ったら、なんとなく姿勢が変わった気がする。"></textarea>
+      </div>
+      <div class="memo-prompt-item">
+        <label>🧭 今悩んでいることを「一つ上の階層」から見るとどう見える？</label>
+        <textarea id="memo-3" placeholder="例：「やる気が出ない（行動）」→「自分は何のためにやっているのか（使命）」から考えたら、少し気持ちが変わった。"></textarea>
+      </div>
+    </div>
+    <div class="memo-actions">
+      <button class="btn-save" onclick="saveMemo()">💾 保存する</button>
+      <button class="btn-clear" onclick="clearMemo()">クリア</button>
+      <span class="memo-saved-msg" id="saved-msg">✓ 保存しました</span>
+    </div>
+    <div class="memo-last-saved" id="last-saved"></div>
+  </div>
+
+  <!-- ナビ -->
+  <nav class="article-nav">
+    <a class="nav-link prev" href="20260416-narrative-therapy.html">前の記事：ナラティブ・セラピー</a>
+  </nav>
+
+  <p style="text-align:center; margin-top:20px;">
+    <a href="../index.html" style="text-decoration:none; color:var(--text-muted); font-size:14px; font-weight:500;">← 一覧へ戻る</a>
+  </p>
+
+</main>
+
+<footer class="site-footer">
+  <p>🐾 セルフコーチング学習ログ</p>
+</footer>
+
+<script>
+  const MEMO_KEY = 'memo-neuro-logical-levels';
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem(MEMO_KEY);
+    if (saved) {
+      const data = JSON.parse(saved);
+      document.getElementById('memo-1').value = data.memo1 || '';
+      document.getElementById('memo-2').value = data.memo2 || '';
+      document.getElementById('memo-3').value = data.memo3 || '';
+      if (data.savedAt) {
+        document.getElementById('last-saved').textContent = '最終保存: ' + data.savedAt;
+      }
+    }
+  });
+
+  function saveMemo() {
+    const now = new Date();
+    const savedAt = now.toLocaleDateString('ja-JP') + ' ' + now.toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' });
+    const data = {
+      memo1: document.getElementById('memo-1').value,
+      memo2: document.getElementById('memo-2').value,
+      memo3: document.getElementById('memo-3').value,
+      savedAt: savedAt
+    };
+    localStorage.setItem(MEMO_KEY, JSON.stringify(data));
+    const msg = document.getElementById('saved-msg');
+    msg.classList.add('show');
+    document.getElementById('last-saved').textContent = '最終保存: ' + savedAt;
+    setTimeout(() => msg.classList.remove('show'), 2500);
+  }
+
+  function clearMemo() {
+    if (!confirm('メモをクリアしますか？この操作は元に戻せません。')) return;
+    ['memo-1', 'memo-2', 'memo-3'].forEach(id => {
+      document.getElementById(id).value = '';
+    });
+    localStorage.removeItem(MEMO_KEY);
+    document.getElementById('last-saved').textContent = '';
+  }
+</script>
+
+</body>
+</html>
