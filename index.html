@@ -23,17 +23,9 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Noto Sans JP', sans-serif; background: #FAF7F4; color: var(--text); line-height: 1.8; }
 
-    /* ヒーロー */
-    .site-hero { background: var(--brown); color: var(--white); padding: 52px 24px 44px; text-align: center; }
-    .hero-icon { font-size: 36px; margin-bottom: 12px; }
-    .site-title { font-family: 'Noto Serif JP', serif; font-size: clamp(22px, 4vw, 32px); font-weight: 700; margin-bottom: 10px; letter-spacing: 0.03em; }
-    .site-desc { font-size: 14px; opacity: 0.75; max-width: 480px; margin: 0 auto; line-height: 1.8; }
-
-    /* 統計バー */
-    .stats-bar { background: var(--orange); color: var(--white); display: flex; justify-content: center; gap: 40px; padding: 14px 24px; flex-wrap: wrap; }
-    .stat-item { text-align: center; }
-    .stat-num { font-size: 22px; font-weight: 700; font-family: 'Noto Serif JP', serif; display: block; }
-    .stat-label { font-size: 11px; opacity: 0.85; letter-spacing: 0.08em; }
+    /* ヒーロー画像 */
+    .site-hero { display: block; width: 100%; line-height: 0; }
+    .site-hero img { width: 100%; height: auto; display: block; }
 
     /* メインコンテンツ */
     .main-wrap { max-width: 960px; margin: 0 auto; padding: 40px 24px 80px; }
@@ -145,25 +137,8 @@
 <body>
 
 <header class="site-hero">
-  <div class="hero-icon">🐾</div>
-  <h1 class="site-title">セルフコーチング学習ログ</h1>
-  <p class="site-desc">毎日届く学習メルマガをまとめたアーカイブ。<br>認知科学・心理学に基づくセルフコーチング理論を、実践課題とともに記録しています。</p>
+  <img src="hero-banner.png" alt="セルフコーチング学習ログ — 自分を育てる、毎日の小さな一歩">
 </header>
-
-<div class="stats-bar">
-  <div class="stat-item">
-    <span class="stat-num">30</span>
-    <span class="stat-label">学習テーマ数</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num">7</span>
-    <span class="stat-label">カテゴリ</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num">2026.04</span>
-    <span class="stat-label">開始</span>
-  </div>
-</div>
 
 <main class="main-wrap">
 
