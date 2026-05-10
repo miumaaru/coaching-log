@@ -20,190 +20,125 @@
       --white: #FFFFFF;
       --teal: #3A8C8A;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Noto Sans JP', sans-serif; background: #FAF7F4; color: var(--text); line-height: 1.8; }
 
-    body {
-      font-family: 'Noto Sans JP', sans-serif;
-      background: #FAF7F4;
-      color: var(--text);
-      line-height: 1.85;
-    }
-
-    /* ヒーローヘッダー */
-    .site-hero {
-      background: var(--brown);
-      color: var(--white);
-      padding: 52px 24px 44px;
-      text-align: center;
-    }
+    /* ヒーロー */
+    .site-hero { background: var(--brown); color: var(--white); padding: 52px 24px 44px; text-align: center; }
     .hero-icon { font-size: 36px; margin-bottom: 12px; }
-    .site-title {
-      font-family: 'Noto Serif JP', serif;
-      font-size: clamp(22px, 4vw, 32px);
-      font-weight: 700;
-      margin-bottom: 10px;
-      letter-spacing: 0.03em;
-    }
-    .site-desc {
-      font-size: 14px;
-      opacity: 0.75;
-      max-width: 480px;
-      margin: 0 auto;
-      line-height: 1.8;
-    }
+    .site-title { font-family: 'Noto Serif JP', serif; font-size: clamp(22px, 4vw, 32px); font-weight: 700; margin-bottom: 10px; letter-spacing: 0.03em; }
+    .site-desc { font-size: 14px; opacity: 0.75; max-width: 480px; margin: 0 auto; line-height: 1.8; }
 
     /* 統計バー */
-    .stats-bar {
-      background: var(--orange);
-      color: var(--white);
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      padding: 14px 24px;
-      flex-wrap: wrap;
-    }
-    .stat-item {
-      text-align: center;
-    }
-    .stat-num {
-      font-size: 22px;
-      font-weight: 700;
-      font-family: 'Noto Serif JP', serif;
-      display: block;
-    }
-    .stat-label {
-      font-size: 11px;
-      opacity: 0.85;
-      letter-spacing: 0.08em;
-    }
+    .stats-bar { background: var(--orange); color: var(--white); display: flex; justify-content: center; gap: 40px; padding: 14px 24px; flex-wrap: wrap; }
+    .stat-item { text-align: center; }
+    .stat-num { font-size: 22px; font-weight: 700; font-family: 'Noto Serif JP', serif; display: block; }
+    .stat-label { font-size: 11px; opacity: 0.85; letter-spacing: 0.08em; }
 
     /* メインコンテンツ */
-    .main-wrap {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 40px 24px 80px;
-    }
+    .main-wrap { max-width: 960px; margin: 0 auto; padding: 40px 24px 80px; }
 
     /* セクション見出し */
     .section-heading {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text-muted);
-      letter-spacing: 0.12em;
+      font-size: 13px; font-weight: 700; color: var(--text-muted);
+      letter-spacing: 0.12em; margin-bottom: 20px; margin-top: 40px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-heading:first-child { margin-top: 0; }
+    .section-heading::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    /* カテゴリブロック */
+    .category {
+      border-radius: 14px;
+      padding: 24px 28px;
       margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .section-heading::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    /* 記事カード */
-    .article-list {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .article-card {
       background: var(--white);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 22px 24px;
+      border-left: 5px solid var(--cat-color, var(--orange));
+    }
+    .category-header {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 18px;
+    }
+    .category-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 15px; font-weight: 700;
+      color: var(--cat-color, var(--brown));
+    }
+    .category-count {
+      font-size: 11px; font-weight: 700; opacity: 0.65;
+      background: var(--cat-color, var(--orange));
+      color: var(--white); padding: 2px 8px; border-radius: 20px;
+      margin-left: auto;
+    }
+
+    /* 記事グリッド */
+    .article-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+    }
+    .article-item {
+      background: #FAFAF9;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
       text-decoration: none;
       color: inherit;
-      display: block;
-      transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
     }
-    .article-card:hover {
-      box-shadow: 0 6px 24px rgba(107, 58, 42, 0.1);
+    .article-item:hover {
+      box-shadow: 0 4px 18px rgba(107,58,42,0.1);
+      border-color: var(--cat-color, var(--orange-mid));
       transform: translateY(-2px);
-      border-color: var(--orange-mid);
     }
-
-    .card-meta {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 10px;
-      flex-wrap: wrap;
+    .article-item-no {
+      font-size: 10px; font-weight: 700;
+      color: var(--cat-color, var(--orange));
+      letter-spacing: 0.08em;
     }
-    .card-date {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-    .tag {
-      background: var(--orange-light);
-      color: var(--orange);
-      border: 1px solid var(--orange-mid);
-      font-size: 11px;
-      font-weight: 700;
-      padding: 2px 9px;
-      border-radius: 20px;
-      letter-spacing: 0.04em;
-    }
-    .tag.teal {
-      background: #EAF5F5;
-      color: var(--teal);
-      border-color: #B0D8D7;
-    }
-
-    .card-title {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 17px;
-      font-weight: 700;
+    .article-item-name {
+      font-size: 14px; font-weight: 700;
       color: var(--brown);
-      margin-bottom: 7px;
-      line-height: 1.5;
+      line-height: 1.4;
+      font-family: 'Noto Serif JP', serif;
     }
-    .card-desc {
-      font-size: 13.5px;
-      color: var(--text-muted);
-      line-height: 1.7;
+    .article-item-memo {
+      font-size: 11.5px; color: var(--text-muted); line-height: 1.5;
     }
-    .card-arrow {
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 12px;
-      font-size: 13px;
-      color: var(--orange);
-      font-weight: 500;
-      opacity: 0;
-      transition: opacity 0.2s;
+    .article-item-date {
+      font-size: 10px; color: var(--text-muted); margin-top: 2px;
     }
-    .article-card:hover .card-arrow { opacity: 1; }
+    .article-item-arrow {
+      font-size: 11px; color: var(--cat-color, var(--orange));
+      font-weight: 700; margin-top: auto; padding-top: 6px;
+      opacity: 0; transition: opacity 0.2s;
+    }
+    .article-item:hover .article-item-arrow { opacity: 1; }
 
-    /* 空状態 */
-    .empty-state {
-      text-align: center;
-      padding: 48px 24px;
-      color: var(--text-muted);
-      background: var(--white);
-      border: 1px dashed var(--border);
-      border-radius: 12px;
-      font-size: 14px;
-      line-height: 1.8;
-    }
+    /* カテゴリ色 */
+    .cat-goal   { --cat-color: #3b82f6; }
+    .cat-think  { --cat-color: #8b5cf6; }
+    .cat-self   { --cat-color: #f59e0b; }
+    .cat-brain  { --cat-color: #ec4899; }
+    .cat-pos    { --cat-color: #10b981; }
+    .cat-change { --cat-color: #f97316; }
+    .cat-story  { --cat-color: #06b6d4; }
 
     /* フッター */
-    .site-footer {
-      text-align: center;
-      padding: 28px 24px;
-      font-size: 13px;
-      color: var(--text-muted);
-      border-top: 1px solid var(--border);
-      background: var(--white);
-    }
+    .site-footer { text-align: center; padding: 28px 24px; font-size: 13px; color: var(--text-muted); border-top: 1px solid var(--border); background: var(--white); }
 
-    @media (max-width: 600px) {
+    @media (max-width: 640px) {
       .stats-bar { gap: 24px; }
       .main-wrap { padding: 28px 16px 60px; }
-      .article-card { padding: 18px 18px; }
+      .category { padding: 18px 16px; }
+      .article-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 400px) {
+      .article-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -217,8 +152,12 @@
 
 <div class="stats-bar">
   <div class="stat-item">
-    <span class="stat-num">6</span>
-    <span class="stat-label">記事数</span>
+    <span class="stat-num">30</span>
+    <span class="stat-label">学習テーマ数</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">7</span>
+    <span class="stat-label">カテゴリ</span>
   </div>
   <div class="stat-item">
     <span class="stat-num">2026.04</span>
@@ -228,90 +167,286 @@
 
 <main class="main-wrap">
 
-  <div class="section-heading">最新の学習記録</div>
+  <div class="section-heading">📚 カテゴリ別 学習マップ</div>
 
-  <div class="article-list">
+  <!-- ① 目標設定・行動計画 -->
+  <div class="category cat-goal">
+    <div class="category-header">
+      <span class="category-title">🎯 目標設定・行動計画</span>
+      <span class="category-count">4記事</span>
+    </div>
+    <div class="article-grid">
+      <a class="article-item" href="articles/20260412-grow-model.html">
+        <span class="article-item-no">No.01</span>
+        <span class="article-item-name">GROWモデル</span>
+        <span class="article-item-memo">思考に順番をつける黄金律</span>
+        <span class="article-item-date">2026年4月12日</span>
+        <span class="article-item-arrow">続きを読む →</span>
+      </a>
+      <a class="article-item" href="articles/20260413-woop-method.html">
+        <span class="article-item-no">No.02</span>
+        <span class="article-item-name">WOOP（ウープ）法</span>
+        <span class="article-item-memo">願望＋障害＋実行計画で実現率UP</span>
+        <span class="article-item-date">2026年4月13日</span>
+        <span class="article-item-arrow">続きを読む →</span>
+      </a>
+      <a class="article-item" href="articles/20260429-kolb-learning-cycle.html">
+        <span class="article-item-no">No.17</span>
+        <span class="article-item-name">コルブの経験学習モデル</span>
+        <span class="article-item-memo">経験→振り返り→概念化→実験のサイクル</span>
+        <span class="article-item-date">2026年4月29日</span>
+        <span class="article-item-arrow">続きを読む →</span>
+      </a>
+      <a class="article-item" href="articles/20260505-stages-of-change.html">
+        <span class="article-item-no">No.24</span>
+        <span class="article-item-name">変化のステージモデル</span>
+        <span class="article-item-memo">行動変容には「段階」がある</span>
+        <span class="article-item-date">2026年5月5日</span>
+        <span class="article-item-arrow">続きを読む →</span>
+      </a>
+    </div>
+  </div>
 
-    <!-- 今後の記事はここに追加（最新が上） -->
+  <!-- ② 認知・思考の書き換え -->
+  <div class="category cat-think">
+    <div class="category-header">
+      <span class="category-title">🧠 認知・思考の書き換え</span>
+      <span class="category-count">5記事</span>
+    </div>
+    <div class="article-grid">
+      <a class="article-item" href="articles/20260414-abcde-model.html">
+        <span class="article-item-no">No.03</span>
+        <span class="article-item-name">ABCDEモデル（論理療法）</span>
+        <span class="article-item-memo">出来事→信念→結果の認知を修正</span>
+        <span class="article-item-date">2026年4月14日</span>
+        <span class="article-item-arrow">続きを読む →</span>
+      </a>
+      <a class="article-item" href="articles/20260415-descartes-matrix.html">
+        <span class="article-item-no">No.04</span>
+        <span class="article-item-name">デカルトの座標</span>
+        <span class="article-item-memo">4象限で選択肢の盲点を探す</span>
+        <span class="article-item-date">2026年4月15日</span>
+        <span class="article-item-arrow">続きを読む →</span>
+      </a>
+      <a class="article-item" href="articles/20260426-growth-mindset.html">
+        <span class="article-item-no">No.14</span>
+        <span class="article-item-name">成長マインドセット</span>
+        <span class="article-item-memo">「才能固定」から「成長可能」へ</span>
+        <span class="article-item-date">2026年4月26日</span>
+        <span class="article-item-arrow">続きを読む →</span>
+      </a>
+      <a class="article-item" href="articles/20260509-metacognition.html">
+        <span class="article-item-no">No.28</span>
+        <span class="article-item-name">メタ認知（フラベル）</span>
+        <span class="article-item-memo">自分の思考を上から観察する</span>
+        <span class="article-item-date">2026年5月9日</span>
+        <span class="article-item-arrow">続きを読む →</span>
+      </a>
+      <a class="article-item" href="articles/20260511-double-loop-learning.html">
+        <span class="article-item-no">No.30</span>
+        <span class="article-item-name">ダブルループ学習</span>
+        <span class="article-item-memo">ルールそのものを疑う深い学習</span>
+        <span class="article-item-date">2026年5月11日</span>
+        <span class="article-item-arrow">続きを読む →</span>
+      </a>
+    </div>
+  </div>
 
-    <!-- 記事カード：ニューロ・ロジカル・レベル -->
-    <a class="article-card" href="articles/20260417-neuro-logical-levels.html">
-      <div class="card-meta">
-        <span class="card-date">2026年4月17日</span>
-        <span class="tag">自己理解</span>
-        <span class="tag">行動変容</span>
-        <span class="tag teal">NLP</span>
-      </div>
-      <div class="card-title">ニューロ・ロジカル・レベル</div>
-      <div class="card-desc">意識の6階層（環境・行動・能力・信念・自己認識・使命）で「心のOS」を書き換える。下の階層の問題は上の階層からアプローチすることで、努力なしに自然な変化が起きる。</div>
-      <div class="card-arrow">続きを読む →</div>
-    </a>
+  <!-- ③ 自己理解・強みの発見 -->
+  <div class="category cat-self">
+    <div class="category-header">
+      <span class="category-title">🌟 自己理解・強みの発見</span>
+      <span class="category-count">4記事</span>
+    </div>
+    <div class="article-grid">
+      <a class="article-item" href="articles/20260417-neuro-logical-levels.html">
+        <span class="article-item-no">No.05</span>
+        <span class="article-item-name">ニューロ・ロジカル・レベル</span>
+        <span class="article-item-memo">環境〜信念〜アイデンティティの階層</span>
+        <span class="article-item-date">2026年4月17日</span>
+        <span class="article-item-arrow">続きを読む →</span>
+      </a>
+      <a class="article-item" href="articles/20260427-johari-window.html">
+        <span class="article-item-no">No.15</span>
+        <span class="article-item-name">ジョハリの窓</span>
+        <span class="article-item-memo">自己開示と他者フィードバックの交差</span>
+        <span class="article-item-date">2026年4月27日</span>
+        <span class="article-item-arrow">続きを読む →</span>
+      </a>
+      <a class="article-item" href="articles/20260506-via-strengths.html">
+        <span class="article-item-no">No.25</span>
+        <span class="article-item-name">VIA強み</span>
+        <span class="article-item-memo">自分の「性格的強み」24分類</span>
+        <span class="article-item-date">2026年5月6日</span>
+        <span class="article-item-arrow">続きを読む →</span>
+      </a>
+      <a class="article-item" href="articles/20260510-adler-psychology.html">
+        <span class="article-item-no">No.29</span>
+        <span class="article-item-name">アドラー心理学（勇気づけ）</span>
+        <span class="article-item-memo">貢献感と課題の分離</span>
+        <span class="article-item-date">2026年5月10日</span>
+        <span class="article-item-arrow">続きを読む →</span>
+      </a>
+    </div>
+  </div>
 
-    <!-- 記事カード：ナラティブ・セラピー -->
-    <a class="article-card" href="articles/20260416-narrative-therapy.html">
-      <div class="card-meta">
-        <span class="card-date">2026年4月16日</span>
-        <span class="tag">自己理解</span>
-        <span class="tag">行動変容</span>
-        <span class="tag teal">ナラティブ心理学</span>
-      </div>
-      <div class="card-title">ナラティブ・セラピー（マイケル・ホワイト）</div>
-      <div class="card-desc">「人が問題なのではない。問題が問題なのだ」——自己を縛るドミナント・ストーリーを解体し、例外の瞬間（ユニーク・アウトカム）を集めて、より好ましい自己の物語を書き直すアプローチ。</div>
-      <div class="card-arrow">続きを読む →</div>
-    </a>
+  <!-- ④ 脳科学・感情のセルフケア -->
+  <div class="category cat-brain">
+    <div class="category-header">
+      <span class="category-title">🧬 脳科学・感情のセルフケア</span>
+      <span class="category-count">5記事</span>
+    </div>
+    <div class="article-grid">
+      <a class="article-item" href="articles/20260419-scarf-model.html">
+        <span class="article-item-no">No.07</span>
+        <span class="article-item-name">SCARFモデル</span>
+        <span class="article-item-memo">脳の「報酬/脅威」5領域を管理</span>
+        <span class="article-item-date">2026年4月19日</span>
+        <span class="article-item-arrow">続きを読む →</span>
+      </a>
+      <a class="article-item" href="articles/20260421-self-compassion.html">
+        <span class="article-item-no">No.09</span>
+        <span class="article-item-name">セルフ・コンパッション</span>
+        <span class="article-item-memo">自分への優しさが行動力を生む</span>
+        <span class="article-item-date">2026年4月21日</span>
+        <span class="article-item-arrow">続きを読む →</span>
+      </a>
+      <a class="article-item" href="articles/20260425-emotional-intelligence.html">
+        <span class="article-item-no">No.13</span>
+        <span class="article-item-name">感情知性（EQ）</span>
+        <span class="article-item-memo">感情を読む・使う・管理する知性</span>
+        <span class="article-item-date">2026年4月25日</span>
+        <span class="article-item-arrow">続きを読む →</span>
+      </a>
+      <a class="article-item" href="articles/20260430-psychological-flexibility.html">
+        <span class="article-item-no">No.18</span>
+        <span class="article-item-name">心理的柔軟性（ACT）</span>
+        <span class="article-item-memo">価値に沿って行動する柔軟性</span>
+        <span class="article-item-date">2026年4月30日</span>
+        <span class="article-item-arrow">続きを読む →</span>
+      </a>
+      <a class="article-item" href="articles/20260507-focusing.html">
+        <span class="article-item-no">No.26</span>
+        <span class="article-item-name">フォーカシング（ジェンドリン）</span>
+        <span class="article-item-memo">体の感覚から内なる声を聴く</span>
+        <span class="article-item-date">2026年5月7日</span>
+        <span class="article-item-arrow">続きを読む →</span>
+      </a>
+    </div>
+  </div>
 
-    <!-- 記事カード：デカルトの座標 -->
-    <a class="article-card" href="articles/20260415-descartes-matrix.html">
-      <div class="card-meta">
-        <span class="card-date">2026年4月15日</span>
-        <span class="tag">意思決定</span>
-        <span class="tag">思考整理</span>
-        <span class="tag teal">NLP</span>
-      </div>
-      <div class="card-title">デカルトの座標（意思決定の4つの質問）</div>
-      <div class="card-desc">「する／しない」×「起きる／起きない」の4つの問いで思考の死角をゼロにする。現状維持バイアスを打破し、隠れた動機やリスクを可視化するNLP由来の意思決定フレームワーク。</div>
-      <div class="card-arrow">続きを読む →</div>
-    </a>
+  <!-- ⑤ ポジティブ心理学・意味と幸福 -->
+  <div class="category cat-pos">
+    <div class="category-header">
+      <span class="category-title">✨ ポジティブ心理学・意味と幸福</span>
+      <span class="category-count">4記事</span>
+    </div>
+    <div class="article-grid">
+      <a class="article-item" href="articles/20260420-perma-model.html">
+        <span class="article-item-no">No.08</span>
+        <span class="article-item-name">PERMAモデル</span>
+        <span class="article-item-memo">幸福の5要素（セリグマン）</span>
+        <span class="article-item-date">2026年4月20日</span>
+        <span class="article-item-arrow">続きを読む →</span>
+      </a>
+      <a class="article-item" href="articles/20260501-broaden-build.html">
+        <span class="article-item-no">No.19</span>
+        <span class="article-item-name">拡張形成理論</span>
+        <span class="article-item-memo">ポジティブ感情が思考を広げる</span>
+        <span class="article-item-date">2026年5月1日</span>
+        <span class="article-item-arrow">続きを読む →</span>
+      </a>
+      <a class="article-item" href="articles/20260502-logotherapy.html">
+        <span class="article-item-no">No.20</span>
+        <span class="article-item-name">ロゴセラピー（フランクル）</span>
+        <span class="article-item-memo">どんな状況にも「意味」を見出す</span>
+        <span class="article-item-date">2026年5月2日</span>
+        <span class="article-item-arrow">続きを読む →</span>
+      </a>
+      <a class="article-item" href="articles/20260504-positive-intelligence.html">
+        <span class="article-item-no">No.22</span>
+        <span class="article-item-name">ポジティブ・インテリジェンス</span>
+        <span class="article-item-memo">心の妨害者（サボタージュ）を特定</span>
+        <span class="article-item-date">2026年5月4日</span>
+        <span class="article-item-arrow">続きを読む →</span>
+      </a>
+    </div>
+  </div>
 
-    <!-- 記事カード：ABCDEモデル -->
-    <a class="article-card" href="articles/20260414-abcde-model.html">
-      <div class="card-meta">
-        <span class="card-date">2026年4月14日</span>
-        <span class="tag">認知科学</span>
-        <span class="tag">感情コントロール</span>
-        <span class="tag teal">論理療法</span>
-      </div>
-      <div class="card-title">ABCDEモデル（論理療法）</div>
-      <div class="card-desc">心理学者アルバート・エリスが提唱。出来事への「解釈」が感情を招くという枠組みを用い、非合理な思い込みを論理的に反論することで建設的な心の状態へ導くセルフコーチング手法。</div>
-      <div class="card-arrow">続きを読む →</div>
-    </a>
+  <!-- ⑥ 変化・成長のプロセス -->
+  <div class="category cat-change">
+    <div class="category-header">
+      <span class="category-title">🔄 変化・成長のプロセス</span>
+      <span class="category-count">5記事</span>
+    </div>
+    <div class="article-grid">
+      <a class="article-item" href="articles/20260418-immunity-to-change.html">
+        <span class="article-item-no">No.06</span>
+        <span class="article-item-name">免疫マップ</span>
+        <span class="article-item-memo">変化への抵抗の構造を可視化</span>
+        <span class="article-item-date">2026年4月18日</span>
+        <span class="article-item-arrow">続きを読む →</span>
+      </a>
+      <a class="article-item" href="articles/20260422-self-determination-theory.html">
+        <span class="article-item-no">No.10</span>
+        <span class="article-item-name">自己決定理論（SDT）</span>
+        <span class="article-item-memo">自律・有能・関係性の3欲求</span>
+        <span class="article-item-date">2026年4月22日</span>
+        <span class="article-item-arrow">続きを読む →</span>
+      </a>
+      <a class="article-item" href="articles/20260423-solution-focused.html">
+        <span class="article-item-no">No.11</span>
+        <span class="article-item-name">解決志向アプローチ</span>
+        <span class="article-item-memo">問題でなく「解決」に焦点を当てる</span>
+        <span class="article-item-date">2026年4月23日</span>
+        <span class="article-item-arrow">続きを読む →</span>
+      </a>
+      <a class="article-item" href="articles/20260424-flow-theory.html">
+        <span class="article-item-no">No.12</span>
+        <span class="article-item-name">フロー理論</span>
+        <span class="article-item-memo">没頭の条件を自分でデザインする</span>
+        <span class="article-item-date">2026年4月24日</span>
+        <span class="article-item-arrow">続きを読む →</span>
+      </a>
+      <a class="article-item" href="articles/20260428-self-efficacy.html">
+        <span class="article-item-no">No.16</span>
+        <span class="article-item-name">自己効力感（バンデューラ）</span>
+        <span class="article-item-memo">「できる」確信が行動を生む</span>
+        <span class="article-item-date">2026年4月28日</span>
+        <span class="article-item-arrow">続きを読む →</span>
+      </a>
+    </div>
+  </div>
 
-    <!-- 記事カード：WOOP法 -->
-    <a class="article-card" href="articles/20260413-woop-method.html">
-      <div class="card-meta">
-        <span class="card-date">2026年4月13日</span>
-        <span class="tag">目標達成</span>
-        <span class="tag">行動変容</span>
-        <span class="tag teal">科学的手法</span>
-      </div>
-      <div class="card-title">WOOP（ウープ）法</div>
-      <div class="card-desc">Wish・Outcome・Obstacle・Planの4ステップで脳を行動準備状態へ。「ポジティブな未来」と「直面する障害」を対比させる、心理学者エッティンゲンが提唱した科学的な目標達成技法。</div>
-      <div class="card-arrow">続きを読む →</div>
-    </a>
-
-    <!-- 記事カード：GROWモデル -->
-    <a class="article-card" href="articles/20260412-grow-model.html">
-      <div class="card-meta">
-        <span class="card-date">2026年4月12日</span>
-        <span class="tag">思考整理</span>
-        <span class="tag">目標設定</span>
-        <span class="tag teal">コーチング基礎</span>
-      </div>
-      <div class="card-title">GROWモデル</div>
-      <div class="card-desc">Goal・Reality・Options・Willの4ステップで思考を整理し、「どうしよう…」の沼から抜け出して具体的な行動へ導くセルフコーチングの黄金律。</div>
-      <div class="card-arrow">続きを読む →</div>
-    </a>
-
+  <!-- ⑦ 物語・対話・関係性 -->
+  <div class="category cat-story">
+    <div class="category-header">
+      <span class="category-title">🤝 物語・対話・関係性</span>
+      <span class="category-count">3記事</span>
+    </div>
+    <div class="article-grid">
+      <a class="article-item" href="articles/20260503-appreciative-inquiry.html">
+        <span class="article-item-no">No.21</span>
+        <span class="article-item-name">アプレシアティブ・インクワイアリー</span>
+        <span class="article-item-memo">強みと可能性に問いを向ける</span>
+        <span class="article-item-date">2026年5月3日</span>
+        <span class="article-item-arrow">続きを読む →</span>
+      </a>
+      <a class="article-item" href="articles/20260416-narrative-therapy.html">
+        <span class="article-item-no">No.23</span>
+        <span class="article-item-name">ナラティブ・セラピー</span>
+        <span class="article-item-memo">自分の物語を書き換える</span>
+        <span class="article-item-date">2026年4月16日</span>
+        <span class="article-item-arrow">続きを読む →</span>
+      </a>
+      <a class="article-item" href="articles/20260508-inner-game.html">
+        <span class="article-item-no">No.27</span>
+        <span class="article-item-name">インナーゲーム（ガルウェイ）</span>
+        <span class="article-item-memo">「邪魔する自分」を静かにする</span>
+        <span class="article-item-date">2026年5月8日</span>
+        <span class="article-item-arrow">続きを読む →</span>
+      </a>
+    </div>
   </div>
 
 </main>

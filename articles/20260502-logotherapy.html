@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ロゴセラピー | セルフコーチング学習ログ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+:root{--orange:#E8722A;--orange-light:#FDF0E8;--orange-mid:#F5C4A0;--brown:#6B3A2A;--brown-light:#F9F3EF;--text:#2D2D2D;--text-muted:#7A7A7A;--border:#EAE0D8;--white:#FFFFFF;--teal:#3A8C8A;--teal-light:#EAF5F5;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans JP',sans-serif;background:#FAF7F4;color:var(--text);line-height:1.85;font-size:16px;}
+.site-header{background:var(--white);border-bottom:1px solid var(--border);padding:14px 24px;}
+.site-header a{text-decoration:none;color:var(--brown);font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:6px;opacity:.75;transition:opacity .2s;}
+.site-header a:hover{opacity:1;}
+.site-header a::before{content:'←';}
+.article-wrap{max-width:720px;margin:0 auto;padding:48px 24px 80px;}
+.article-meta{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap;}
+.tag{background:var(--orange-light);color:var(--orange);border:1px solid var(--orange-mid);font-size:12px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.05em;}
+.tag.teal{background:var(--teal-light);color:var(--teal);border-color:#B0D8D7;}
+.article-date{font-size:13px;color:var(--text-muted);}
+.article-title{font-family:'Noto Serif JP',serif;font-size:clamp(22px,4vw,30px);font-weight:700;color:var(--brown);line-height:1.45;margin-bottom:10px;}
+.article-subtitle{font-size:15px;color:var(--text-muted);margin-bottom:36px;line-height:1.7;}
+.divider{border:none;border-top:1px solid var(--border);margin:36px 0;}
+.lead-box{background:var(--brown-light);border-left:4px solid var(--orange);padding:20px 24px;border-radius:0 8px 8px 0;margin-bottom:36px;font-size:15px;}
+.lead-box strong{color:var(--orange);}
+.section-label{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--white);background:var(--brown);padding:4px 14px;border-radius:4px;margin-bottom:20px;}
+.section-label.trainer{background:var(--teal);}
+.article-body h3{font-family:'Noto Serif JP',serif;font-size:18px;font-weight:700;color:var(--brown);margin:36px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--orange-light);}
+.article-body p{margin-bottom:18px;font-size:15.5px;}
+.article-body p.bullet{padding-left:16px;color:var(--text-muted);font-size:15px;}
+.article-body strong{color:var(--brown);}
+.article-body em{font-style:normal;color:var(--orange);font-weight:700;}
+.drive-box{background:linear-gradient(135deg,#FDF0E8 0%,#FFF8F2 100%);border:1px solid var(--orange-mid);border-radius:12px;padding:24px;margin:24px 0;}
+.drive-box p{font-size:15px;margin-bottom:10px;}
+.drive-box p:last-child{margin-bottom:0;}
+.drive-box strong{color:var(--orange);}
+.theory-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0 32px;}
+@media(max-width:560px){.theory-grid{grid-template-columns:1fr;}}
+.theory-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px;transition:box-shadow .2s,border-color .2s;}
+.theory-card:hover{box-shadow:0 4px 16px rgba(232,114,42,.1);border-color:var(--orange-mid);}
+.theory-step{display:inline-block;background:var(--orange);color:var(--white);font-size:11px;font-weight:700;padding:3px 10px;border-radius:4px;letter-spacing:.05em;margin-bottom:10px;}
+.theory-card-name{font-weight:700;font-size:15px;color:var(--brown);margin-bottom:8px;font-family:'Noto Serif JP',serif;}
+.theory-card-desc{font-size:13.5px;color:var(--text-muted);background:rgba(0,0,0,.03);padding:8px 12px;border-radius:6px;border-left:3px solid var(--orange-mid);line-height:1.65;margin-bottom:8px;}
+.theory-card-effect{font-size:13px;color:var(--orange);font-weight:500;}
+.theory-card-effect::before{content:'✨ ';}
+.trainer-section{background:var(--teal-light);border:1px solid #B0D8D7;border-radius:12px;padding:28px;margin-top:40px;}
+.trainer-section h3{font-family:'Noto Serif JP',serif;font-size:17px;font-weight:700;color:var(--teal);margin:24px 0 12px;}
+.trainer-section h3:first-of-type{margin-top:8px;}
+.action-item{background:var(--white);border:1px solid #B0D8D7;border-radius:8px;padding:16px 18px;margin-bottom:12px;font-size:14.5px;}
+.action-item p{margin-bottom:0;}
+.action-syntax{background:#F0F7F7;border-radius:5px;padding:8px 12px;font-size:13px;color:var(--teal);margin-top:8px;font-weight:500;}
+.action-syntax::before{content:'ポイント: ';font-weight:700;}
+.closing-box{background:var(--brown);color:var(--white);border-radius:12px;padding:28px;margin-top:40px;text-align:center;}
+.closing-box p{font-size:15px;opacity:.9;margin-bottom:0;}
+.closing-quote{font-family:'Noto Serif JP',serif;font-size:18px;font-weight:700;margin-bottom:14px;line-height:1.6;}
+.infographic-section{margin-top:40px;}
+.infographic-img{width:100%;border-radius:12px;border:1px solid var(--border);display:block;box-shadow:0 4px 16px rgba(0,0,0,.07);}
+.infographic-placeholder{width:100%;border-radius:12px;border:2px dashed var(--border);background:var(--white);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;min-height:180px;color:var(--text-muted);font-size:14px;}
+.infographic-caption{font-size:12px;color:var(--text-muted);text-align:center;margin-top:8px;}
+.memo-section{margin-top:40px;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px;}
+.memo-prompts{display:flex;flex-direction:column;gap:16px;margin-bottom:20px;}
+.memo-prompt-item label{display:block;font-size:13px;font-weight:700;color:var(--brown);margin-bottom:6px;}
+.memo-prompt-item textarea{width:100%;border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-family:'Noto Sans JP',sans-serif;font-size:14px;line-height:1.7;color:var(--text);background:#FDFBF9;resize:vertical;min-height:80px;transition:border-color .2s,box-shadow .2s;outline:none;}
+.memo-prompt-item textarea:focus{border-color:var(--orange-mid);box-shadow:0 0 0 3px rgba(232,114,42,.1);}
+.memo-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.btn-save{background:var(--orange);color:var(--white);border:none;border-radius:8px;padding:10px 22px;font-family:'Noto Sans JP',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:background .2s,transform .1s;}
+.btn-save:hover{background:#D4631E;}
+.btn-save:active{transform:scale(.97);}
+.btn-clear{background:none;color:var(--text-muted);border:1px solid var(--border);border-radius:8px;padding:10px 18px;font-family:'Noto Sans JP',sans-serif;font-size:13px;cursor:pointer;transition:color .2s,border-color .2s;}
+.btn-clear:hover{color:var(--text);border-color:#C0B0A8;}
+.memo-saved-msg{font-size:13px;color:var(--teal);font-weight:500;opacity:0;transition:opacity .3s;}
+.memo-saved-msg.show{opacity:1;}
+.memo-last-saved{font-size:12px;color:var(--text-muted);margin-top:10px;}
+.article-nav{display:flex;justify-content:space-between;margin-top:56px;padding-top:28px;border-top:1px solid var(--border);}
+.nav-link{text-decoration:none;color:var(--orange);font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:gap .2s;}
+.nav-link:hover{gap:10px;}
+.nav-link.prev::before{content:'← ';}
+.nav-link.next::after{content:' →';}
+.site-footer{text-align:center;padding:32px 24px;font-size:13px;color:var(--text-muted);border-top:1px solid var(--border);background:var(--white);}
+@media(max-width:600px){.article-wrap{padding:32px 18px 60px;}}
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="../index.html">学習ログ一覧に戻る</a>
+</header>
+
+<main class="article-wrap">
+
+  <div class="article-meta">
+    <span class="tag">自己理解</span><span class="tag">意思決定</span><span class="tag teal">思考整理</span>
+    <span class="article-date">2026年5月2日</span>
+  </div>
+
+  <h1 class="article-title">ロゴセラピー</h1>
+  <p class="article-subtitle">ヴィクトール・フランクルが提唱した「意味への意志」を核とするコーチングフレームワーク。人間の最も根本的な動機は「意味を見出すこと」にあり、創造・体験・態度という3つの道を通じて、どんな状況でも意味を発</p>
+
+  <hr class="divider">
+
+  <div class="lead-box">
+    ヴィクトール・フランクルが提唱した「意味への意志」を核とするコーチングフレームワーク。人間の最も根本的な動機は「意味を見出すこと」にあり、創造・体験・態度という3つの道を通じて、どんな状況でも意味を発見できるとする。医療・福祉の現場での燃え尽き防止にも科学的な効果が示されている。
+  </div>
+
+  <div class="section-label">📚 教授の解説</div>
+
+  <div class="article-body">
+
+    <h3>理論の本質：なぜこれが必要なのか？</h3>
+    <p>「頑張っているのに、なぜかむなしい」「忙しいのに、なぜか充実感がない」と感じたことはありませんか？</p>
+    <p>フランクルは、人間の最も根本的な欲求は「快楽」でも「権力」でも「お金」でもなく、<strong>「意味（Meaning）への意志」</strong>だと主張しました。ロゴセラピーの「ロゴ（Logos）」はギリシャ語で「意味・理由」を指します。</p>
+    <p>この理論が生まれた背景は、決して楽なものではありませんでした。フランクルはナチスドイツの強制収容所で極限の苦しみを体験し、そこから「人間は<strong>どんな状況でも意味を見出す自由を持つ</strong>」という確信を得ました。彼の著書『夜と霧』はその体験をもとに書かれ、世界中で読み継がれています。</p>
+    <p>重要なのは、仕事の「内容」ではなく「意味」です。医療・福祉の事務という仕事が、患者さんや利用者さんの安心に何らかの形でつながっているとき、そこに意味があります。そしてその「意味のつながり」を自分自身で言語化できる人は、ストレスに強く、<strong>燃え尽き（バーンアウト）にくい</strong>ことが研究で示されています。</p>
+    <p>---</p>
+
+    <h3>直感的な例え話：「なぜ山を登るのか」</h3>
+    <div class="drive-box">
+      <p>山登りを想像してください。</p>
+    <p>急坂が続き、足が痛い。汗もかく。「なぜこんな苦しいことを…」と思った瞬間、「この頂上からの景色を家族に見せてあげたいから登っている」と思い出す。</p>
+    <p>すると不思議なことに、足の痛みは<strong>同じまま</strong>なのに、気持ちの重さが変わります。</p>
+    <p>フランクルはこう言いました。「<strong>なぜ（Why）生きるかを知っている人は、どんな（How）状況にも耐えられる</strong>」と。意味は苦しみを消すのではなく、苦しみを<strong>耐えられるものに変える力</strong>を持っているのです。</p>
+    <p>---</p>
+    </div>
+
+    <h3>具体的なメカニズム：意味を見出す3つの道</h3>
+        <div class="theory-grid">
+      <div class="theory-card">
+        <div class="theory-step">①</div>
+        <div class="theory-card-name">① 創造価値（Creative Values）：何かを「する」ことで見出す意味</div>
+        <div class="theory-card-desc">仕事、創作、貢献など、「行動すること」を通じて意味を体験する。</div>
+      </div>
+      <div class="theory-card">
+        <div class="theory-step">②</div>
+        <div class="theory-card-name">② 体験価値（Experiential Values）：何かを「受け取る」ことで見出す意味</div>
+        <div class="theory-card-desc">美しさ、真実、愛、つながりなど、「受け取る体験」の中に意味がある。</div>
+        <div class="theory-card-effect">体験価値への感度を高めると、日常の中に「意味の断片」を次々と発見できるようになる。</div>
+      </div>
+      <div class="theory-card">
+        <div class="theory-step">③</div>
+        <div class="theory-card-name">③ 態度価値（Attitudinal Values）：避けられない苦しみに「どう向き合うか」で見出す意味</div>
+        <div class="theory-card-desc">変えられない苦しみ（理不尽な環境、体力の限界、喪失）に対して、自分がどんな態度をとるかの中に意味がある。</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="trainer-section">
+    <div class="section-label trainer">🏋️ トレーナーの今日の課題</div>
+
+    <h3>① ベビーステップ（2分以内）</h3>
+    <div class="action-item"><p>このチャットを閉じる前に、「今の仕事が誰かの役に立っているとしたら、それは誰・どんな場面？」と1文だけメモする（手帳の端、スマホのメモ帳、何でもOK）</p></div>
+
+    <h3>② ルーチン・トリガー</h3>
+    <div class="action-item"><p>お昼にお茶を入れたら、午前中で「ありがとう」「役に立てた」と感じた瞬間を1つ思い出す（体験価値のスキャン）</p></div>
+    <div class="action-item"><p>帰宅して靴を脱いだら、「今日、自分が選んだ態度（言葉・行動）で良かったと思うこと」を1つだけ挙げる（態度価値の振り返り）</p></div>
+
+    <h3>③ 今日のミッション</h3>
+    <div class="action-item"><p>今日の課題に取り組んでみましょう。</p></div>
+  </div>
+
+  <div class="closing-box">
+    <div class="closing-quote">状況がどれだけ過酷でも、<br>「意味を見出す自由」は誰にも奪えない。</div>
+    <p>フランクルが強制収容所で発見したこと——人は意味のために生きられる。今日の行動に、あなただけの意味を込めよう。</p>
+  </div>
+
+  <div class="infographic-section">
+    <div class="section-label" style="margin-top:40px;">🖼️ 図解まとめ</div>
+    <div class="infographic-placeholder">
+      <span>🖼️</span>
+      <p style="font-weight:700;">ロゴセラピー.png</p>
+      <p style="font-size:12px;">準備中 — articles/ロゴセラピー.png に画像を追加してください</p>
+    </div>
+    <p class="infographic-caption">NotebookLM で作成したインフォグラフィック</p>
+  </div>
+
+  <div class="memo-section">
+    <div class="section-label" style="background:var(--orange);">📝 マイメモ</div>
+    <div class="memo-prompts">
+      <div class="memo-prompt-item">
+        <label>💡 今日の学びで一番印象に残ったこと</label>
+        <textarea id="memo-1" placeholder="自由に書いてみましょう..."></textarea>
+      </div>
+      <div class="memo-prompt-item">
+        <label>🔍 今やっていることの中で「意味」や「目的」を感じているものはある？それは何？</label>
+        <textarea id="memo-2" placeholder="自由に書いてみましょう..."></textarea>
+      </div>
+      <div class="memo-prompt-item">
+        <label>⭐ 「状況は変えられない——でも自分の態度は変えられる」と感じる場面はある？</label>
+        <textarea id="memo-3" placeholder="自由に書いてみましょう..."></textarea>
+      </div>
+    </div>
+    <div class="memo-actions">
+      <button class="btn-save" onclick="saveMemo()">💾 保存する</button>
+      <button class="btn-clear" onclick="clearMemo()">クリア</button>
+      <span class="memo-saved-msg" id="saved-msg">✓ 保存しました</span>
+    </div>
+    <div class="memo-last-saved" id="last-saved"></div>
+  </div>
+
+  <nav class="article-nav">
+    <a class="nav-link prev" href="20260501-broaden-build.html">拡張形成理論</a>
+    <a class="nav-link next" href="20260503-appreciative-inquiry.html">アプレシアティブ・インクワイアリー</a>
+  </nav>
+
+  <p style="text-align:center;margin-top:20px;">
+    <a href="../index.html" style="text-decoration:none;color:var(--text-muted);font-size:14px;font-weight:500;">← 一覧へ戻る</a>
+  </p>
+
+</main>
+
+<footer class="site-footer">
+  <p>🐾 セルフコーチング学習ログ</p>
+</footer>
+
+<script>
+  const MEMO_KEY = 'memo-logotherapy';
+  window.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem(MEMO_KEY);
+    if (saved) {
+      const d = JSON.parse(saved);
+      document.getElementById('memo-1').value = d.memo1 || '';
+      document.getElementById('memo-2').value = d.memo2 || '';
+      document.getElementById('memo-3').value = d.memo3 || '';
+      if (d.savedAt) document.getElementById('last-saved').textContent = '最終保存: ' + d.savedAt;
+    }
+  });
+  function saveMemo() {
+    const now = new Date();
+    const savedAt = now.toLocaleDateString('ja-JP') + ' ' + now.toLocaleTimeString('ja-JP', {hour:'2-digit',minute:'2-digit'});
+    const d = {
+      memo1: document.getElementById('memo-1').value,
+      memo2: document.getElementById('memo-2').value,
+      memo3: document.getElementById('memo-3').value,
+      savedAt: savedAt
+    };
+    localStorage.setItem(MEMO_KEY, JSON.stringify(d));
+    const msg = document.getElementById('saved-msg');
+    msg.classList.add('show');
+    document.getElementById('last-saved').textContent = '最終保存: ' + savedAt;
+    setTimeout(() => msg.classList.remove('show'), 2500);
+  }
+  function clearMemo() {
+    if (!confirm('メモをクリアしますか？')) return;
+    ['memo-1','memo-2','memo-3'].forEach(id => { document.getElementById(id).value = ''; });
+    localStorage.removeItem(MEMO_KEY);
+    document.getElementById('last-saved').textContent = '';
+  }
+</script>
+</body>
+</html>

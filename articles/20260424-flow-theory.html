@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>フロー理論 | セルフコーチング学習ログ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+:root{--orange:#E8722A;--orange-light:#FDF0E8;--orange-mid:#F5C4A0;--brown:#6B3A2A;--brown-light:#F9F3EF;--text:#2D2D2D;--text-muted:#7A7A7A;--border:#EAE0D8;--white:#FFFFFF;--teal:#3A8C8A;--teal-light:#EAF5F5;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans JP',sans-serif;background:#FAF7F4;color:var(--text);line-height:1.85;font-size:16px;}
+.site-header{background:var(--white);border-bottom:1px solid var(--border);padding:14px 24px;}
+.site-header a{text-decoration:none;color:var(--brown);font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:6px;opacity:.75;transition:opacity .2s;}
+.site-header a:hover{opacity:1;}
+.site-header a::before{content:'←';}
+.article-wrap{max-width:720px;margin:0 auto;padding:48px 24px 80px;}
+.article-meta{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap;}
+.tag{background:var(--orange-light);color:var(--orange);border:1px solid var(--orange-mid);font-size:12px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.05em;}
+.tag.teal{background:var(--teal-light);color:var(--teal);border-color:#B0D8D7;}
+.article-date{font-size:13px;color:var(--text-muted);}
+.article-title{font-family:'Noto Serif JP',serif;font-size:clamp(22px,4vw,30px);font-weight:700;color:var(--brown);line-height:1.45;margin-bottom:10px;}
+.article-subtitle{font-size:15px;color:var(--text-muted);margin-bottom:36px;line-height:1.7;}
+.divider{border:none;border-top:1px solid var(--border);margin:36px 0;}
+.lead-box{background:var(--brown-light);border-left:4px solid var(--orange);padding:20px 24px;border-radius:0 8px 8px 0;margin-bottom:36px;font-size:15px;}
+.lead-box strong{color:var(--orange);}
+.section-label{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--white);background:var(--brown);padding:4px 14px;border-radius:4px;margin-bottom:20px;}
+.section-label.trainer{background:var(--teal);}
+.article-body h3{font-family:'Noto Serif JP',serif;font-size:18px;font-weight:700;color:var(--brown);margin:36px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--orange-light);}
+.article-body p{margin-bottom:18px;font-size:15.5px;}
+.article-body p.bullet{padding-left:16px;color:var(--text-muted);font-size:15px;}
+.article-body strong{color:var(--brown);}
+.article-body em{font-style:normal;color:var(--orange);font-weight:700;}
+.drive-box{background:linear-gradient(135deg,#FDF0E8 0%,#FFF8F2 100%);border:1px solid var(--orange-mid);border-radius:12px;padding:24px;margin:24px 0;}
+.drive-box p{font-size:15px;margin-bottom:10px;}
+.drive-box p:last-child{margin-bottom:0;}
+.drive-box strong{color:var(--orange);}
+.theory-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0 32px;}
+@media(max-width:560px){.theory-grid{grid-template-columns:1fr;}}
+.theory-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px;transition:box-shadow .2s,border-color .2s;}
+.theory-card:hover{box-shadow:0 4px 16px rgba(232,114,42,.1);border-color:var(--orange-mid);}
+.theory-step{display:inline-block;background:var(--orange);color:var(--white);font-size:11px;font-weight:700;padding:3px 10px;border-radius:4px;letter-spacing:.05em;margin-bottom:10px;}
+.theory-card-name{font-weight:700;font-size:15px;color:var(--brown);margin-bottom:8px;font-family:'Noto Serif JP',serif;}
+.theory-card-desc{font-size:13.5px;color:var(--text-muted);background:rgba(0,0,0,.03);padding:8px 12px;border-radius:6px;border-left:3px solid var(--orange-mid);line-height:1.65;margin-bottom:8px;}
+.theory-card-effect{font-size:13px;color:var(--orange);font-weight:500;}
+.theory-card-effect::before{content:'✨ ';}
+.trainer-section{background:var(--teal-light);border:1px solid #B0D8D7;border-radius:12px;padding:28px;margin-top:40px;}
+.trainer-section h3{font-family:'Noto Serif JP',serif;font-size:17px;font-weight:700;color:var(--teal);margin:24px 0 12px;}
+.trainer-section h3:first-of-type{margin-top:8px;}
+.action-item{background:var(--white);border:1px solid #B0D8D7;border-radius:8px;padding:16px 18px;margin-bottom:12px;font-size:14.5px;}
+.action-item p{margin-bottom:0;}
+.action-syntax{background:#F0F7F7;border-radius:5px;padding:8px 12px;font-size:13px;color:var(--teal);margin-top:8px;font-weight:500;}
+.action-syntax::before{content:'ポイント: ';font-weight:700;}
+.closing-box{background:var(--brown);color:var(--white);border-radius:12px;padding:28px;margin-top:40px;text-align:center;}
+.closing-box p{font-size:15px;opacity:.9;margin-bottom:0;}
+.closing-quote{font-family:'Noto Serif JP',serif;font-size:18px;font-weight:700;margin-bottom:14px;line-height:1.6;}
+.infographic-section{margin-top:40px;}
+.infographic-img{width:100%;border-radius:12px;border:1px solid var(--border);display:block;box-shadow:0 4px 16px rgba(0,0,0,.07);}
+.infographic-placeholder{width:100%;border-radius:12px;border:2px dashed var(--border);background:var(--white);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;min-height:180px;color:var(--text-muted);font-size:14px;}
+.infographic-caption{font-size:12px;color:var(--text-muted);text-align:center;margin-top:8px;}
+.memo-section{margin-top:40px;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px;}
+.memo-prompts{display:flex;flex-direction:column;gap:16px;margin-bottom:20px;}
+.memo-prompt-item label{display:block;font-size:13px;font-weight:700;color:var(--brown);margin-bottom:6px;}
+.memo-prompt-item textarea{width:100%;border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-family:'Noto Sans JP',sans-serif;font-size:14px;line-height:1.7;color:var(--text);background:#FDFBF9;resize:vertical;min-height:80px;transition:border-color .2s,box-shadow .2s;outline:none;}
+.memo-prompt-item textarea:focus{border-color:var(--orange-mid);box-shadow:0 0 0 3px rgba(232,114,42,.1);}
+.memo-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.btn-save{background:var(--orange);color:var(--white);border:none;border-radius:8px;padding:10px 22px;font-family:'Noto Sans JP',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:background .2s,transform .1s;}
+.btn-save:hover{background:#D4631E;}
+.btn-save:active{transform:scale(.97);}
+.btn-clear{background:none;color:var(--text-muted);border:1px solid var(--border);border-radius:8px;padding:10px 18px;font-family:'Noto Sans JP',sans-serif;font-size:13px;cursor:pointer;transition:color .2s,border-color .2s;}
+.btn-clear:hover{color:var(--text);border-color:#C0B0A8;}
+.memo-saved-msg{font-size:13px;color:var(--teal);font-weight:500;opacity:0;transition:opacity .3s;}
+.memo-saved-msg.show{opacity:1;}
+.memo-last-saved{font-size:12px;color:var(--text-muted);margin-top:10px;}
+.article-nav{display:flex;justify-content:space-between;margin-top:56px;padding-top:28px;border-top:1px solid var(--border);}
+.nav-link{text-decoration:none;color:var(--orange);font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:gap .2s;}
+.nav-link:hover{gap:10px;}
+.nav-link.prev::before{content:'← ';}
+.nav-link.next::after{content:' →';}
+.site-footer{text-align:center;padding:32px 24px;font-size:13px;color:var(--text-muted);border-top:1px solid var(--border);background:var(--white);}
+@media(max-width:600px){.article-wrap{padding:32px 18px 60px;}}
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="../index.html">学習ログ一覧に戻る</a>
+</header>
+
+<main class="article-wrap">
+
+  <div class="article-meta">
+    <span class="tag">認知科学</span><span class="tag">習慣形成</span><span class="tag teal">目標達成</span>
+    <span class="article-date">2026年4月24日</span>
+  </div>
+
+  <h1 class="article-title">フロー理論</h1>
+  <p class="article-subtitle">心理学者チクセントミハイが提唱した、「挑戦と能力のバランスが取れた状態」で人が感じる深い集中と没入感（フロー状態）を科学的に分析したモデル。この状態に入ると時間を忘れるほど生産性が上がり、強い達成感と</p>
+
+  <hr class="divider">
+
+  <div class="lead-box">
+    心理学者チクセントミハイが提唱した、「挑戦と能力のバランスが取れた状態」で人が感じる深い集中と没入感（フロー状態）を科学的に分析したモデル。この状態に入ると時間を忘れるほど生産性が上がり、強い達成感と幸福感が伴う。
+  </div>
+
+  <div class="section-label">📚 教授の解説</div>
+
+  <div class="article-body">
+
+    <h3>理論の本質：なぜこれが必要なのか？</h3>
+    <p>あなたは「気づいたら2時間経っていた」「夢中になってやっていたら思いのほか上手くいった」という経験はありませんか？</p>
+    <p>その状態こそが、チクセントミハイが名付けた<strong>「フロー（Flow）」</strong>――最高の集中と没入が重なる「最適体験」の状態です。</p>
+    <p>医療・福祉の事務職の仕事は、「多い・速い・正確」という三重苦を求められます。処理しなければならない書類、対応しなければならない問い合わせ、締め切り……。そんな状況で「やる気が出ない」「集中できない」と感じるのは、決してあなたの怠惰ではありません。</p>
+    <p>フロー理論は、<strong>なぜある時は仕事に没頭でき、ある時は全く集中できないのか</strong>、その条件を科学的に解明しました。この理論を知ると、「今日は調子がいい・悪い」という感覚が単なる運ではなく、<strong>自分でコントロールできる設計の問題だ</strong>とわかります。</p>
+    <p>---</p>
+
+    <h3>直感的な例え話：「テトリス」のゾーン</h3>
+    <div class="drive-box">
+      <p>ゲームの「テトリス」を思い出してください。</p>
+    <p>最初のうちは簡単すぎて退屈。でも難易度が上がりすぎると、焦りと混乱でお手上げ。<strong>ちょうど良い難しさのとき</strong>だけ、「次が来る前に…今！もう一回！」と、気づいたら1時間が経っているような没入感が生まれますよね。</p>
+    <p>これがフローの正体です。<strong>「自分の能力」と「課題の難しさ」が絶妙にかみ合った地点にだけ、フローという名のゾーンが生まれる</strong>。チクセントミハイはこの構造を何千人ものインタビューと研究から明らかにしました。</p>
+    <p>仕事に置き換えると：</p>
+    <p class="bullet">→ 簡単すぎる単純作業 → <strong>退屈・惰性</strong>（脳がアイドリング状態）</p>
+    <p class="bullet">→ 難しすぎるタスク → <strong>不安・焦り</strong>（SCARFの脅威モード全開）</p>
+    <p class="bullet">→ ちょうど良い挑戦 → <strong>フロー</strong>（時間を忘れる没入と達成感）</p>
+    </div>
+
+    <h3>具体的なメカニズム：フロー状態を生む5つの設計要素</h3>
+        <div class="theory-grid">
+      <div class="theory-card">
+        <div class="theory-step">①</div>
+        <div class="theory-card-name">① 明確な目標（Clear Goals）</div>
+        <div class="theory-card-desc">今自分が「何を、どこまで達成すればOKか」が明確に分かっている。</div>
+        <div class="theory-card-effect">「この書類10枚を正午までに確認する」と決めるだけで、脳が集中モードに切り替わる。</div>
+      </div>
+      <div class="theory-card">
+        <div class="theory-step">②</div>
+        <div class="theory-card-name">② 即時フィードバック（Immediate Feedback）</div>
+        <div class="theory-card-desc">自分の行動が「合っているか・進んでいるか」をすぐに確認できる。</div>
+        <div class="theory-card-effect">1件処理するたびに「1完了」とチェックを入れると、脳に小さな達成感（報酬）が届き続ける。</div>
+      </div>
+      <div class="theory-card">
+        <div class="theory-step">③</div>
+        <div class="theory-card-name">③ 挑戦とスキルのバランス（Challenge-Skill Balance）</div>
+        <div class="theory-card-desc">課題の難易度が、自分の能力より「少しだけ上」の状態。</div>
+        <div class="theory-card-effect">タスクを意図的に「少しだけ背伸び」するサイズに分割することで、ちょうどいい緊張感を保てる。</div>
+      </div>
+      <div class="theory-card">
+        <div class="theory-step">④</div>
+        <div class="theory-card-name">④ 集中を守る環境（Protection of Attention）</div>
+        <div class="theory-card-desc">行動と意識が一体化し、「考えながらやっている」感覚が消える状態を維持する環境。</div>
+        <div class="theory-card-effect">一定時間、意図的に「シングルタスク」を実行する環境を作ることが、フローへの最短ルート。</div>
+      </div>
+      <div class="theory-card">
+        <div class="theory-step">⑤</div>
+        <div class="theory-card-name">⑤ 自意識の手放し（Letting Go of Self-Consciousness）</div>
+        <div class="theory-card-desc">「うまくやれるかな」という自意識（セルフモニタリング）が消え、課題そのものに没入している。</div>
+        <div class="theory-card-effect">「今は結果でなくプロセスだけを見る」と意図的に決めることで、セルフプレッシャーが和らぎ没入が深まる。</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="trainer-section">
+    <div class="section-label trainer">🏋️ トレーナーの今日の課題</div>
+
+    <h3>① ベビーステップ（2分以内）</h3>
+    <div class="action-item"><p>「次にやるタスクを1つ選び、『何を、いつまでに終わらせればOKか』を手帳かメモに一行書く（明確なゴールを作るだけ）」――書いたあと、頭の中が少し軽くなった感覚を観察してみてください。</p></div>
+    <div class="action-item"><p>「スマホをカバンの中か引き出しに入れ、目に入らない場所に置く（シングルタスク環境を30秒で整える）」――置く前と置いた後の「落ち着き度」の違いを感じてみてください。</p></div>
+
+    <h3>② ルーチン・トリガー</h3>
+    <div class="action-item"><p>「午前の仕事を始めるためにPCを立ち上げたら、最初の1時間でやるタスクを1つだけ紙に書き出す（フロー入口の設計）。その間は他のタスクを開かない」――1時間後、どれだけ進んでいたか必ず確認してください。</p></div>
+
+    <h3>③ 今日のミッション</h3>
+    <div class="action-item"><p>[ ] 【フロー実験】：今日1回だけ、「25分タイマーをかけてタスク1件だけに集中→5分休憩」を試してみる（ポモドーロ・テクニック風）。25分後、どれだけ進んだかと「没入できていたか0〜10点」を記録してみてください。</p></div>
+  </div>
+
+  <div class="closing-box">
+    <div class="closing-quote">フローは偶然ではなく、設計できる。<br>スキルと挑戦の絶妙なバランスに、没頭が生まれる。</div>
+    <p>「いつの間にか時間が経っていた」——そんな状態を意識的に作り出すことが、生産性と幸福の両立につながる。</p>
+  </div>
+
+  <div class="infographic-section">
+    <div class="section-label" style="margin-top:40px;">🖼️ 図解まとめ</div>
+    <div class="infographic-placeholder">
+      <span>🖼️</span>
+      <p style="font-weight:700;">フロー理論.png</p>
+      <p style="font-size:12px;">準備中 — articles/フロー理論.png に画像を追加してください</p>
+    </div>
+    <p class="infographic-caption">NotebookLM で作成したインフォグラフィック</p>
+  </div>
+
+  <div class="memo-section">
+    <div class="section-label" style="background:var(--orange);">📝 マイメモ</div>
+    <div class="memo-prompts">
+      <div class="memo-prompt-item">
+        <label>💡 今日の学びで一番印象に残ったこと</label>
+        <textarea id="memo-1" placeholder="自由に書いてみましょう..."></textarea>
+      </div>
+      <div class="memo-prompt-item">
+        <label>🔍 最後に「時間を忘れて没頭した」経験はいつ？どんな条件だった？</label>
+        <textarea id="memo-2" placeholder="自由に書いてみましょう..."></textarea>
+      </div>
+      <div class="memo-prompt-item">
+        <label>⭐ 今の作業で「難易度を少し上げる」か「スキルを磨く」としたら何ができる？</label>
+        <textarea id="memo-3" placeholder="自由に書いてみましょう..."></textarea>
+      </div>
+    </div>
+    <div class="memo-actions">
+      <button class="btn-save" onclick="saveMemo()">💾 保存する</button>
+      <button class="btn-clear" onclick="clearMemo()">クリア</button>
+      <span class="memo-saved-msg" id="saved-msg">✓ 保存しました</span>
+    </div>
+    <div class="memo-last-saved" id="last-saved"></div>
+  </div>
+
+  <nav class="article-nav">
+    <a class="nav-link prev" href="20260423-solution-focused.html">解決志向アプローチ</a>
+    <a class="nav-link next" href="20260425-emotional-intelligence.html">感情知性（EQ）</a>
+  </nav>
+
+  <p style="text-align:center;margin-top:20px;">
+    <a href="../index.html" style="text-decoration:none;color:var(--text-muted);font-size:14px;font-weight:500;">← 一覧へ戻る</a>
+  </p>
+
+</main>
+
+<footer class="site-footer">
+  <p>🐾 セルフコーチング学習ログ</p>
+</footer>
+
+<script>
+  const MEMO_KEY = 'memo-flow-theory';
+  window.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem(MEMO_KEY);
+    if (saved) {
+      const d = JSON.parse(saved);
+      document.getElementById('memo-1').value = d.memo1 || '';
+      document.getElementById('memo-2').value = d.memo2 || '';
+      document.getElementById('memo-3').value = d.memo3 || '';
+      if (d.savedAt) document.getElementById('last-saved').textContent = '最終保存: ' + d.savedAt;
+    }
+  });
+  function saveMemo() {
+    const now = new Date();
+    const savedAt = now.toLocaleDateString('ja-JP') + ' ' + now.toLocaleTimeString('ja-JP', {hour:'2-digit',minute:'2-digit'});
+    const d = {
+      memo1: document.getElementById('memo-1').value,
+      memo2: document.getElementById('memo-2').value,
+      memo3: document.getElementById('memo-3').value,
+      savedAt: savedAt
+    };
+    localStorage.setItem(MEMO_KEY, JSON.stringify(d));
+    const msg = document.getElementById('saved-msg');
+    msg.classList.add('show');
+    document.getElementById('last-saved').textContent = '最終保存: ' + savedAt;
+    setTimeout(() => msg.classList.remove('show'), 2500);
+  }
+  function clearMemo() {
+    if (!confirm('メモをクリアしますか？')) return;
+    ['memo-1','memo-2','memo-3'].forEach(id => { document.getElementById(id).value = ''; });
+    localStorage.removeItem(MEMO_KEY);
+    document.getElementById('last-saved').textContent = '';
+  }
+</script>
+</body>
+</html>

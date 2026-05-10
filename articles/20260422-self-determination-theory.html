@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自己決定理論（SDT） | セルフコーチング学習ログ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+:root{--orange:#E8722A;--orange-light:#FDF0E8;--orange-mid:#F5C4A0;--brown:#6B3A2A;--brown-light:#F9F3EF;--text:#2D2D2D;--text-muted:#7A7A7A;--border:#EAE0D8;--white:#FFFFFF;--teal:#3A8C8A;--teal-light:#EAF5F5;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans JP',sans-serif;background:#FAF7F4;color:var(--text);line-height:1.85;font-size:16px;}
+.site-header{background:var(--white);border-bottom:1px solid var(--border);padding:14px 24px;}
+.site-header a{text-decoration:none;color:var(--brown);font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:6px;opacity:.75;transition:opacity .2s;}
+.site-header a:hover{opacity:1;}
+.site-header a::before{content:'←';}
+.article-wrap{max-width:720px;margin:0 auto;padding:48px 24px 80px;}
+.article-meta{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap;}
+.tag{background:var(--orange-light);color:var(--orange);border:1px solid var(--orange-mid);font-size:12px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.05em;}
+.tag.teal{background:var(--teal-light);color:var(--teal);border-color:#B0D8D7;}
+.article-date{font-size:13px;color:var(--text-muted);}
+.article-title{font-family:'Noto Serif JP',serif;font-size:clamp(22px,4vw,30px);font-weight:700;color:var(--brown);line-height:1.45;margin-bottom:10px;}
+.article-subtitle{font-size:15px;color:var(--text-muted);margin-bottom:36px;line-height:1.7;}
+.divider{border:none;border-top:1px solid var(--border);margin:36px 0;}
+.lead-box{background:var(--brown-light);border-left:4px solid var(--orange);padding:20px 24px;border-radius:0 8px 8px 0;margin-bottom:36px;font-size:15px;}
+.lead-box strong{color:var(--orange);}
+.section-label{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--white);background:var(--brown);padding:4px 14px;border-radius:4px;margin-bottom:20px;}
+.section-label.trainer{background:var(--teal);}
+.article-body h3{font-family:'Noto Serif JP',serif;font-size:18px;font-weight:700;color:var(--brown);margin:36px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--orange-light);}
+.article-body p{margin-bottom:18px;font-size:15.5px;}
+.article-body p.bullet{padding-left:16px;color:var(--text-muted);font-size:15px;}
+.article-body strong{color:var(--brown);}
+.article-body em{font-style:normal;color:var(--orange);font-weight:700;}
+.drive-box{background:linear-gradient(135deg,#FDF0E8 0%,#FFF8F2 100%);border:1px solid var(--orange-mid);border-radius:12px;padding:24px;margin:24px 0;}
+.drive-box p{font-size:15px;margin-bottom:10px;}
+.drive-box p:last-child{margin-bottom:0;}
+.drive-box strong{color:var(--orange);}
+.theory-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0 32px;}
+@media(max-width:560px){.theory-grid{grid-template-columns:1fr;}}
+.theory-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px;transition:box-shadow .2s,border-color .2s;}
+.theory-card:hover{box-shadow:0 4px 16px rgba(232,114,42,.1);border-color:var(--orange-mid);}
+.theory-step{display:inline-block;background:var(--orange);color:var(--white);font-size:11px;font-weight:700;padding:3px 10px;border-radius:4px;letter-spacing:.05em;margin-bottom:10px;}
+.theory-card-name{font-weight:700;font-size:15px;color:var(--brown);margin-bottom:8px;font-family:'Noto Serif JP',serif;}
+.theory-card-desc{font-size:13.5px;color:var(--text-muted);background:rgba(0,0,0,.03);padding:8px 12px;border-radius:6px;border-left:3px solid var(--orange-mid);line-height:1.65;margin-bottom:8px;}
+.theory-card-effect{font-size:13px;color:var(--orange);font-weight:500;}
+.theory-card-effect::before{content:'✨ ';}
+.trainer-section{background:var(--teal-light);border:1px solid #B0D8D7;border-radius:12px;padding:28px;margin-top:40px;}
+.trainer-section h3{font-family:'Noto Serif JP',serif;font-size:17px;font-weight:700;color:var(--teal);margin:24px 0 12px;}
+.trainer-section h3:first-of-type{margin-top:8px;}
+.action-item{background:var(--white);border:1px solid #B0D8D7;border-radius:8px;padding:16px 18px;margin-bottom:12px;font-size:14.5px;}
+.action-item p{margin-bottom:0;}
+.action-syntax{background:#F0F7F7;border-radius:5px;padding:8px 12px;font-size:13px;color:var(--teal);margin-top:8px;font-weight:500;}
+.action-syntax::before{content:'ポイント: ';font-weight:700;}
+.closing-box{background:var(--brown);color:var(--white);border-radius:12px;padding:28px;margin-top:40px;text-align:center;}
+.closing-box p{font-size:15px;opacity:.9;margin-bottom:0;}
+.closing-quote{font-family:'Noto Serif JP',serif;font-size:18px;font-weight:700;margin-bottom:14px;line-height:1.6;}
+.infographic-section{margin-top:40px;}
+.infographic-img{width:100%;border-radius:12px;border:1px solid var(--border);display:block;box-shadow:0 4px 16px rgba(0,0,0,.07);}
+.infographic-placeholder{width:100%;border-radius:12px;border:2px dashed var(--border);background:var(--white);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;min-height:180px;color:var(--text-muted);font-size:14px;}
+.infographic-caption{font-size:12px;color:var(--text-muted);text-align:center;margin-top:8px;}
+.memo-section{margin-top:40px;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px;}
+.memo-prompts{display:flex;flex-direction:column;gap:16px;margin-bottom:20px;}
+.memo-prompt-item label{display:block;font-size:13px;font-weight:700;color:var(--brown);margin-bottom:6px;}
+.memo-prompt-item textarea{width:100%;border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-family:'Noto Sans JP',sans-serif;font-size:14px;line-height:1.7;color:var(--text);background:#FDFBF9;resize:vertical;min-height:80px;transition:border-color .2s,box-shadow .2s;outline:none;}
+.memo-prompt-item textarea:focus{border-color:var(--orange-mid);box-shadow:0 0 0 3px rgba(232,114,42,.1);}
+.memo-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.btn-save{background:var(--orange);color:var(--white);border:none;border-radius:8px;padding:10px 22px;font-family:'Noto Sans JP',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:background .2s,transform .1s;}
+.btn-save:hover{background:#D4631E;}
+.btn-save:active{transform:scale(.97);}
+.btn-clear{background:none;color:var(--text-muted);border:1px solid var(--border);border-radius:8px;padding:10px 18px;font-family:'Noto Sans JP',sans-serif;font-size:13px;cursor:pointer;transition:color .2s,border-color .2s;}
+.btn-clear:hover{color:var(--text);border-color:#C0B0A8;}
+.memo-saved-msg{font-size:13px;color:var(--teal);font-weight:500;opacity:0;transition:opacity .3s;}
+.memo-saved-msg.show{opacity:1;}
+.memo-last-saved{font-size:12px;color:var(--text-muted);margin-top:10px;}
+.article-nav{display:flex;justify-content:space-between;margin-top:56px;padding-top:28px;border-top:1px solid var(--border);}
+.nav-link{text-decoration:none;color:var(--orange);font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:gap .2s;}
+.nav-link:hover{gap:10px;}
+.nav-link.prev::before{content:'← ';}
+.nav-link.next::after{content:' →';}
+.site-footer{text-align:center;padding:32px 24px;font-size:13px;color:var(--text-muted);border-top:1px solid var(--border);background:var(--white);}
+@media(max-width:600px){.article-wrap{padding:32px 18px 60px;}}
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="../index.html">学習ログ一覧に戻る</a>
+</header>
+
+<main class="article-wrap">
+
+  <div class="article-meta">
+    <span class="tag">習慣形成</span><span class="tag">行動変容</span><span class="tag teal">目標達成</span>
+    <span class="article-date">2026年4月22日</span>
+  </div>
+
+  <h1 class="article-title">自己決定理論（SDT）</h1>
+  <p class="article-subtitle">人間の動機を「外側から内側へ」のグラデーションとして捉え、「自律性・有能感・関係性」という3つの心理的欲求が満たされるほど動機が内発化し、パフォーマンスと充実感が高まるとする理論。心理学者エドワード・</p>
+
+  <hr class="divider">
+
+  <div class="lead-box">
+    人間の動機を「外側から内側へ」のグラデーションとして捉え、「自律性・有能感・関係性」という3つの心理的欲求が満たされるほど動機が内発化し、パフォーマンスと充実感が高まるとする理論。心理学者エドワード・デシとリチャード・ライアンが提唱。
+  </div>
+
+  <div class="section-label">📚 教授の解説</div>
+
+  <div class="article-body">
+
+    <h3>理論の本質：なぜこれが必要なのか？</h3>
+    <p>「やる気が出ない」「続かない」「どうしてもサボりたくなる」——これは意志の弱さではありません。<strong>動機づけの"種類"が、エネルギーの質を決めている</strong>のです。</p>
+    <p>SDTの出発点はシンプルな問いです。「同じゴールに向かっているのに、ある人は生き生きと取り組み、ある人は消耗する。この差はどこから来るのか？」</p>
+    <p>デシとライアンは40年以上の研究の末、答えを見つけました。それは「<strong>何をやるか</strong>」ではなく、「<strong>なぜやるか（動機の質）</strong>」と、「<strong>心の3つの栄養素が満たされているか</strong>」にある、ということです。</p>
+    <p>SDTを知ることで、「なんとなくしんどい」という漠然とした感覚を、「自律性が足りない」「有能感が枯渇している」「孤独感がある」と具体的に分解して対処できるようになります。</p>
+    <p>---</p>
+
+    <h3>直感的な例え話：「義務の水」と「喜びの水」</h3>
+    <div class="drive-box">
+      <p>花に水をあげる場面を想像してください。</p>
+    <p class="bullet">→ <strong>外から強制されてあげる水</strong>は、花を枯らさないための「義務の水」。花は生きていますが、生き生きとはしていません。</p>
+    <p class="bullet">→ <strong>自分が美しいと思うから自然とあげる水</strong>は、「喜びの水」。同じ量の水でも、花の輝きはまったく違います。</p>
+    <p><strong>人間のやる気もこれと同じです。</strong> 外から与えられた動機（義務・プレッシャー・ご褒美）で動く人と、内側から湧き出る動機で動く人では、同じ行動をしていても、消耗の度合いも、パフォーマンスの質も、長く続くかどうかも、まったく変わります。</p>
+    <p>重要なのは「内発的動機を持て！」という精神論ではありません。<strong>外側の動機を少しずつ内側に育てていくプロセスを設計する</strong>こと——これがSDTの実践的な核心です。</p>
+    </div>
+
+    <h3>具体的なメカニズム：2つの柱</h3>
+        <div class="theory-grid">
+      <div class="theory-card">
+        <div class="theory-step">①</div>
+        <div class="theory-card-name">柱① 動機のグラデーション（外側→内側のスペクトラム）</div>
+        <div class="theory-card-desc">無動機： 「やりたくない。意味がない」</div>
+      </div>
+      <div class="theory-card">
+        <div class="theory-step">②</div>
+        <div class="theory-card-name">柱② 3つの基本的心理欲求（BPN）</div>
+        <div class="theory-card-desc">動機が内側へ育つために必要な「心の栄養素」が3つあります。この3つが満たされるほど、動機は自然と内側へと移行します。</div>
+      </div>
+      <div class="theory-card">
+        <div class="theory-step">③</div>
+        <div class="theory-card-name">自律性（Autonomy）</div>
+        <div class="theory-card-desc">自分で選んで行動しているという感覚。</div>
+        <div class="theory-card-effect">小さな「自分で決める余地」を見つけるだけで、脳の報酬回路が活性化する。</div>
+      </div>
+      <div class="theory-card">
+        <div class="theory-step">④</div>
+        <div class="theory-card-name">有能感（Competence）</div>
+        <div class="theory-card-desc">「自分はこれができる」という自己効力感（じここうりょくかん）。</div>
+        <div class="theory-card-effect">小さな成功体験を意識的に積み上げると、脳は「もっとやりたい！」と前向きになる。</div>
+      </div>
+      <div class="theory-card">
+        <div class="theory-step">⑤</div>
+        <div class="theory-card-name">関係性（Relatedness）</div>
+        <div class="theory-card-desc">「自分はここに受け入れられている」という安心感と繋がりの感覚。</div>
+        <div class="theory-card-effect">「この仕事は誰かの役に立つ」と意識するだけで、関係性の欲求が部分的に満たされる。</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="trainer-section">
+    <div class="section-label trainer">🏋️ トレーナーの今日の課題</div>
+
+    <h3>① ベビーステップ（2分以内）</h3>
+    <div class="action-item"><p>「今、目の前のタスクをなぜやっているか」を1文だけ心の中で言葉にする（「怒られたくないから」でも「患者さんの役に立つから」でも、どちらでもOK）——動機のグラデーションのどこにいるかを観察する</p></div>
+
+    <h3>② ルーチン・トリガー</h3>
+    <div class="action-item"><p>「お昼休憩に入るためにPCを閉じたら、午前中に『少しだけうまくいった・できた』と感じた瞬間を1つだけ思い出す（有能感の小さな貯金）」</p></div>
+    <div class="action-item"><p>「午後の業務を開始するとき、5秒だけ『これをすることで誰が助かるか』を考えてから始める（関係性の意識化で動機を一段内側へ）」</p></div>
+
+    <h3>③ 今日のミッション</h3>
+    <div class="action-item"><p>【自律性の実験】：今日のタスクの中から1つ選び、あえて「自分らしいやり方」でやってみる。作業前後で気分やエネルギー感がどう変わったかを観察する。</p></div>
+  </div>
+
+  <div class="closing-box">
+    <div class="closing-quote">「やらなきゃ」を「やりたい」に変える。<br>そのカギは3つの心理的欲求を満たすことにある。</div>
+    <p>外からの報酬ではなく、自分の内側から湧き出る動機を育てることが、持続的な行動の源泉になる。</p>
+  </div>
+
+  <div class="infographic-section">
+    <div class="section-label" style="margin-top:40px;">🖼️ 図解まとめ</div>
+    <div class="infographic-placeholder">
+      <span>🖼️</span>
+      <p style="font-weight:700;">自己決定理論.png</p>
+      <p style="font-size:12px;">準備中 — articles/自己決定理論.png に画像を追加してください</p>
+    </div>
+    <p class="infographic-caption">NotebookLM で作成したインフォグラフィック</p>
+  </div>
+
+  <div class="memo-section">
+    <div class="section-label" style="background:var(--orange);">📝 マイメモ</div>
+    <div class="memo-prompts">
+      <div class="memo-prompt-item">
+        <label>💡 今日の学びで一番印象に残ったこと</label>
+        <textarea id="memo-1" placeholder="自由に書いてみましょう..."></textarea>
+      </div>
+      <div class="memo-prompt-item">
+        <label>🔍 今やっていることの中で「自分でやりたい（自律性）」と感じているものはどれ？</label>
+        <textarea id="memo-2" placeholder="自由に書いてみましょう..."></textarea>
+      </div>
+      <div class="memo-prompt-item">
+        <label>⭐ 3つの欲求のうち、今一番充たされていないのはどれ？どうすれば少し充たせる？</label>
+        <textarea id="memo-3" placeholder="自由に書いてみましょう..."></textarea>
+      </div>
+    </div>
+    <div class="memo-actions">
+      <button class="btn-save" onclick="saveMemo()">💾 保存する</button>
+      <button class="btn-clear" onclick="clearMemo()">クリア</button>
+      <span class="memo-saved-msg" id="saved-msg">✓ 保存しました</span>
+    </div>
+    <div class="memo-last-saved" id="last-saved"></div>
+  </div>
+
+  <nav class="article-nav">
+    <a class="nav-link prev" href="20260421-self-compassion.html">セルフ・コンパッション</a>
+    <a class="nav-link next" href="20260423-solution-focused.html">解決志向アプローチ</a>
+  </nav>
+
+  <p style="text-align:center;margin-top:20px;">
+    <a href="../index.html" style="text-decoration:none;color:var(--text-muted);font-size:14px;font-weight:500;">← 一覧へ戻る</a>
+  </p>
+
+</main>
+
+<footer class="site-footer">
+  <p>🐾 セルフコーチング学習ログ</p>
+</footer>
+
+<script>
+  const MEMO_KEY = 'memo-self-determination-theory';
+  window.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem(MEMO_KEY);
+    if (saved) {
+      const d = JSON.parse(saved);
+      document.getElementById('memo-1').value = d.memo1 || '';
+      document.getElementById('memo-2').value = d.memo2 || '';
+      document.getElementById('memo-3').value = d.memo3 || '';
+      if (d.savedAt) document.getElementById('last-saved').textContent = '最終保存: ' + d.savedAt;
+    }
+  });
+  function saveMemo() {
+    const now = new Date();
+    const savedAt = now.toLocaleDateString('ja-JP') + ' ' + now.toLocaleTimeString('ja-JP', {hour:'2-digit',minute:'2-digit'});
+    const d = {
+      memo1: document.getElementById('memo-1').value,
+      memo2: document.getElementById('memo-2').value,
+      memo3: document.getElementById('memo-3').value,
+      savedAt: savedAt
+    };
+    localStorage.setItem(MEMO_KEY, JSON.stringify(d));
+    const msg = document.getElementById('saved-msg');
+    msg.classList.add('show');
+    document.getElementById('last-saved').textContent = '最終保存: ' + savedAt;
+    setTimeout(() => msg.classList.remove('show'), 2500);
+  }
+  function clearMemo() {
+    if (!confirm('メモをクリアしますか？')) return;
+    ['memo-1','memo-2','memo-3'].forEach(id => { document.getElementById(id).value = ''; });
+    localStorage.removeItem(MEMO_KEY);
+    document.getElementById('last-saved').textContent = '';
+  }
+</script>
+</body>
+</html>

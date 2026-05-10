@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>メタ認知 | セルフコーチング学習ログ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+:root{--orange:#E8722A;--orange-light:#FDF0E8;--orange-mid:#F5C4A0;--brown:#6B3A2A;--brown-light:#F9F3EF;--text:#2D2D2D;--text-muted:#7A7A7A;--border:#EAE0D8;--white:#FFFFFF;--teal:#3A8C8A;--teal-light:#EAF5F5;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans JP',sans-serif;background:#FAF7F4;color:var(--text);line-height:1.85;font-size:16px;}
+.site-header{background:var(--white);border-bottom:1px solid var(--border);padding:14px 24px;}
+.site-header a{text-decoration:none;color:var(--brown);font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:6px;opacity:.75;transition:opacity .2s;}
+.site-header a:hover{opacity:1;}
+.site-header a::before{content:'←';}
+.article-wrap{max-width:720px;margin:0 auto;padding:48px 24px 80px;}
+.article-meta{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap;}
+.tag{background:var(--orange-light);color:var(--orange);border:1px solid var(--orange-mid);font-size:12px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.05em;}
+.tag.teal{background:var(--teal-light);color:var(--teal);border-color:#B0D8D7;}
+.article-date{font-size:13px;color:var(--text-muted);}
+.article-title{font-family:'Noto Serif JP',serif;font-size:clamp(22px,4vw,30px);font-weight:700;color:var(--brown);line-height:1.45;margin-bottom:10px;}
+.article-subtitle{font-size:15px;color:var(--text-muted);margin-bottom:36px;line-height:1.7;}
+.divider{border:none;border-top:1px solid var(--border);margin:36px 0;}
+.lead-box{background:var(--brown-light);border-left:4px solid var(--orange);padding:20px 24px;border-radius:0 8px 8px 0;margin-bottom:36px;font-size:15px;}
+.lead-box strong{color:var(--orange);}
+.section-label{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--white);background:var(--brown);padding:4px 14px;border-radius:4px;margin-bottom:20px;}
+.section-label.trainer{background:var(--teal);}
+.article-body h3{font-family:'Noto Serif JP',serif;font-size:18px;font-weight:700;color:var(--brown);margin:36px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--orange-light);}
+.article-body p{margin-bottom:18px;font-size:15.5px;}
+.article-body p.bullet{padding-left:16px;color:var(--text-muted);font-size:15px;}
+.article-body strong{color:var(--brown);}
+.article-body em{font-style:normal;color:var(--orange);font-weight:700;}
+.drive-box{background:linear-gradient(135deg,#FDF0E8 0%,#FFF8F2 100%);border:1px solid var(--orange-mid);border-radius:12px;padding:24px;margin:24px 0;}
+.drive-box p{font-size:15px;margin-bottom:10px;}
+.drive-box p:last-child{margin-bottom:0;}
+.drive-box strong{color:var(--orange);}
+.theory-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0 32px;}
+@media(max-width:560px){.theory-grid{grid-template-columns:1fr;}}
+.theory-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px;transition:box-shadow .2s,border-color .2s;}
+.theory-card:hover{box-shadow:0 4px 16px rgba(232,114,42,.1);border-color:var(--orange-mid);}
+.theory-step{display:inline-block;background:var(--orange);color:var(--white);font-size:11px;font-weight:700;padding:3px 10px;border-radius:4px;letter-spacing:.05em;margin-bottom:10px;}
+.theory-card-name{font-weight:700;font-size:15px;color:var(--brown);margin-bottom:8px;font-family:'Noto Serif JP',serif;}
+.theory-card-desc{font-size:13.5px;color:var(--text-muted);background:rgba(0,0,0,.03);padding:8px 12px;border-radius:6px;border-left:3px solid var(--orange-mid);line-height:1.65;margin-bottom:8px;}
+.theory-card-effect{font-size:13px;color:var(--orange);font-weight:500;}
+.theory-card-effect::before{content:'✨ ';}
+.trainer-section{background:var(--teal-light);border:1px solid #B0D8D7;border-radius:12px;padding:28px;margin-top:40px;}
+.trainer-section h3{font-family:'Noto Serif JP',serif;font-size:17px;font-weight:700;color:var(--teal);margin:24px 0 12px;}
+.trainer-section h3:first-of-type{margin-top:8px;}
+.action-item{background:var(--white);border:1px solid #B0D8D7;border-radius:8px;padding:16px 18px;margin-bottom:12px;font-size:14.5px;}
+.action-item p{margin-bottom:0;}
+.action-syntax{background:#F0F7F7;border-radius:5px;padding:8px 12px;font-size:13px;color:var(--teal);margin-top:8px;font-weight:500;}
+.action-syntax::before{content:'ポイント: ';font-weight:700;}
+.closing-box{background:var(--brown);color:var(--white);border-radius:12px;padding:28px;margin-top:40px;text-align:center;}
+.closing-box p{font-size:15px;opacity:.9;margin-bottom:0;}
+.closing-quote{font-family:'Noto Serif JP',serif;font-size:18px;font-weight:700;margin-bottom:14px;line-height:1.6;}
+.infographic-section{margin-top:40px;}
+.infographic-img{width:100%;border-radius:12px;border:1px solid var(--border);display:block;box-shadow:0 4px 16px rgba(0,0,0,.07);}
+.infographic-placeholder{width:100%;border-radius:12px;border:2px dashed var(--border);background:var(--white);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;min-height:180px;color:var(--text-muted);font-size:14px;}
+.infographic-caption{font-size:12px;color:var(--text-muted);text-align:center;margin-top:8px;}
+.memo-section{margin-top:40px;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px;}
+.memo-prompts{display:flex;flex-direction:column;gap:16px;margin-bottom:20px;}
+.memo-prompt-item label{display:block;font-size:13px;font-weight:700;color:var(--brown);margin-bottom:6px;}
+.memo-prompt-item textarea{width:100%;border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-family:'Noto Sans JP',sans-serif;font-size:14px;line-height:1.7;color:var(--text);background:#FDFBF9;resize:vertical;min-height:80px;transition:border-color .2s,box-shadow .2s;outline:none;}
+.memo-prompt-item textarea:focus{border-color:var(--orange-mid);box-shadow:0 0 0 3px rgba(232,114,42,.1);}
+.memo-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.btn-save{background:var(--orange);color:var(--white);border:none;border-radius:8px;padding:10px 22px;font-family:'Noto Sans JP',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:background .2s,transform .1s;}
+.btn-save:hover{background:#D4631E;}
+.btn-save:active{transform:scale(.97);}
+.btn-clear{background:none;color:var(--text-muted);border:1px solid var(--border);border-radius:8px;padding:10px 18px;font-family:'Noto Sans JP',sans-serif;font-size:13px;cursor:pointer;transition:color .2s,border-color .2s;}
+.btn-clear:hover{color:var(--text);border-color:#C0B0A8;}
+.memo-saved-msg{font-size:13px;color:var(--teal);font-weight:500;opacity:0;transition:opacity .3s;}
+.memo-saved-msg.show{opacity:1;}
+.memo-last-saved{font-size:12px;color:var(--text-muted);margin-top:10px;}
+.article-nav{display:flex;justify-content:space-between;margin-top:56px;padding-top:28px;border-top:1px solid var(--border);}
+.nav-link{text-decoration:none;color:var(--orange);font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:gap .2s;}
+.nav-link:hover{gap:10px;}
+.nav-link.prev::before{content:'← ';}
+.nav-link.next::after{content:' →';}
+.site-footer{text-align:center;padding:32px 24px;font-size:13px;color:var(--text-muted);border-top:1px solid var(--border);background:var(--white);}
+@media(max-width:600px){.article-wrap{padding:32px 18px 60px;}}
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="../index.html">学習ログ一覧に戻る</a>
+</header>
+
+<main class="article-wrap">
+
+  <div class="article-meta">
+    <span class="tag">認知科学</span><span class="tag">思考整理</span><span class="tag teal">自己理解</span>
+    <span class="article-date">2026年5月9日</span>
+  </div>
+
+  <h1 class="article-title">メタ認知</h1>
+  <p class="article-subtitle">自分の思考・学習プロセスを客観的に把握・監視・調整する能力のこと。「考えることについて考える」二重の視点が、学びの質・問題解決・感情調整を根本から底上げする。</p>
+
+  <hr class="divider">
+
+  <div class="lead-box">
+    自分の思考・学習プロセスを客観的に把握・監視・調整する能力のこと。「考えることについて考える」二重の視点が、学びの質・問題解決・感情調整を根本から底上げする。
+  </div>
+
+  <div class="section-label">📚 教授の解説</div>
+
+  <div class="article-body">
+
+    <h3>理論の本質：なぜこれが必要なのか？</h3>
+    <p>あなたはこれまで多くの「自分を変えるツール」を手に入れてきました。でも、「なぜかうまく使いこなせていない」「どのツールをいつ使えばいいかわからなくなる」と感じたことはないでしょうか？</p>
+    <p>その原因は多くの場合、<strong>「自分が今どんな状態で考えているかを把握していない」</strong>こと――つまり、メタ認知の欠如にあります。</p>
+    <p>メタ認知とは一言でいうと、<strong>「自分の思考プロセスを、もう一人の自分が外側から観察する能力」</strong>です。これは単なる「内省（自己反省）」とは異なります。内省が「感情の振り返り」なら、メタ認知は<strong>「思考そのものの仕組みを観察し、リアルタイムで調整するスキル」</strong>です。</p>
+    <p class="bullet">→ 「今、自分は感情的になって情報を偏って見ているな」と気づき、立ち止まれる</p>
+    <p class="bullet">→ 「この方法でうまくいかないなら、別のアプローチを試してみよう」と柔軟に切り替えられる</p>
+    <p class="bullet">→ 「わかったつもり」と「本当にわかった」の違いを自分で判断できる</p>
+
+    <h3>直感的な例え話</h3>
+    <div class="drive-box">
+      <p>ドライブ中の「ルームミラー」を想像してみてください。</p>
+    <p>車を運転するとき、あなたは前だけを見ていません。定期的にルームミラーやサイドミラーで後方・側方を確認しながら走っています。この「自分の位置と状況を、広い視野で把握する動作」が、まさにメタ認知です。</p>
+    <p>メタ認知がない状態は、<strong>「ルームミラーを一度も見ずに、ひたすら前だけを見て走る」</strong>ようなもの。目的地には向かっているつもりでも、いつの間にか車線を外れていたり、後ろからトラックが迫っていることに気づかなかったりします。</p>
+    <p>メタ認知を持つということは、<strong>「運転しながら同時に自分の運転を監視できる」</strong>、言わば頭の中に「交通整理係」を置くことです。この交通整理係が「今、ちょっとスピード出しすぎだよ」「この道、合ってるの？」と教えてくれるおかげで、目的地に安全・確実にたどり着けるようになります。</p>
+    <p>---</p>
+    </div>
+
+    <h3>具体的なメカニズム</h3>
+        <div class="theory-grid">
+      <div class="theory-card">
+        <div class="theory-step">①</div>
+        <div class="theory-card-name">① メタ認知的知識（じぶん取扱説明書）</div>
+        <div class="theory-card-desc">「自分はどんな状況でミスをしやすいか」「何を理解するのが得意で、何が苦手か」を知っていること。</div>
+        <div class="theory-card-effect">「私は疲れているときに確認作業が雑になりやすい」という自己知識があれば、「今日は疲れているから、重要な書類は明日確認しよう」と先手を打つ行動が取れます。</div>
+      </div>
+      <div class="theory-card">
+        <div class="theory-step">②</div>
+        <div class="theory-card-name">② メタ認知的モニタリング（リアルタイム観測）</div>
+        <div class="theory-card-desc">今まさに進行中の思考・作業を、同時進行でチェックする機能。「今、自分はどれくらい理解できているか」「どこで詰まっているか」をリアルタイムで把握すること。</div>
+        <div class="theory-card-effect">「あ、今自分は理解が浅いまま作業している」と気づいた瞬間に立ち止まり、確認や質問をするタイミングを自分で作れます。ミスを未然に防ぐ「自動ブレーキ」として機能します。</div>
+      </div>
+      <div class="theory-card">
+        <div class="theory-step">③</div>
+        <div class="theory-card-name">③ メタ認知的コントロール（軌道修正）</div>
+        <div class="theory-card-desc">モニタリングの結果をもとに、自分の思考・行動の戦略を意識的に切り替える機能。「今のやり方ではうまくいかない」と判断したときに、代替策を自分で選べること。</div>
+        <div class="theory-card-effect">「このGROWモデルの問い、なんか的外れな気がする → 別の問いに変えてみよう」と、方法そのものを改善するループが回り始めます。これが、同じ努力量でも「伸びる人」と「止まる人」の決定的な差になります。</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="trainer-section">
+    <div class="section-label trainer">🏋️ トレーナーの今日の課題</div>
+
+    <h3>① ベビーステップ（2分以内）</h3>
+    <div class="action-item"><p>「今このページを読んで、自分の頭に浮かんだ感想を3語以内でつぶやく」（例：「なるほど」「ピンとこない」「これ自分苦手かも」）これだけで、モニタリング筋が1回トレーニングされます。自分の反応を観察すること自体がメタ認知の実践です。</p></div>
+
+    <h3>② ルーチン・トリガー</h3>
+    <div class="action-item"><p>「お昼休憩に入るとき、午前中に1回でも『詰まった瞬間』があったか思い出す。あったとしたら、それは知識の問題か・方法の問題か・集中力の問題か、どれかに分類してみる」（分類できなくてもOK。「なぜ詰まったか」を問うこと自体が、メタ認知の練習になります）</p></div>
+
+    <h3>③ 今日のミッション</h3>
+    <div class="action-item"><p>今日の課題に取り組んでみましょう。</p></div>
+  </div>
+
+  <div class="closing-box">
+    <div class="closing-quote">思考を思考する。<br>その一歩引いた視点が、感情と行動の間に「選択の余地」を生む。</div>
+    <p>メタ認知は「考え方の考え方」。自分の思考プロセスに気づくことで、より賢い判断と学習が可能になる。</p>
+  </div>
+
+  <div class="infographic-section">
+    <div class="section-label" style="margin-top:40px;">🖼️ 図解まとめ</div>
+    <div class="infographic-placeholder">
+      <span>🖼️</span>
+      <p style="font-weight:700;">メタ認知.png</p>
+      <p style="font-size:12px;">準備中 — articles/メタ認知.png に画像を追加してください</p>
+    </div>
+    <p class="infographic-caption">NotebookLM で作成したインフォグラフィック</p>
+  </div>
+
+  <div class="memo-section">
+    <div class="section-label" style="background:var(--orange);">📝 マイメモ</div>
+    <div class="memo-prompts">
+      <div class="memo-prompt-item">
+        <label>💡 今日の学びで一番印象に残ったこと</label>
+        <textarea id="memo-1" placeholder="自由に書いてみましょう..."></textarea>
+      </div>
+      <div class="memo-prompt-item">
+        <label>🔍 今日「自動的に反応してしまった」場面——メタ視点で見たら何が起きていた？</label>
+        <textarea id="memo-2" placeholder="自由に書いてみましょう..."></textarea>
+      </div>
+      <div class="memo-prompt-item">
+        <label>⭐ 「自分の思考パターンのクセ」として気づいていることは何？</label>
+        <textarea id="memo-3" placeholder="自由に書いてみましょう..."></textarea>
+      </div>
+    </div>
+    <div class="memo-actions">
+      <button class="btn-save" onclick="saveMemo()">💾 保存する</button>
+      <button class="btn-clear" onclick="clearMemo()">クリア</button>
+      <span class="memo-saved-msg" id="saved-msg">✓ 保存しました</span>
+    </div>
+    <div class="memo-last-saved" id="last-saved"></div>
+  </div>
+
+  <nav class="article-nav">
+    <a class="nav-link prev" href="20260508-inner-game.html">インナーゲーム</a>
+    <a class="nav-link next" href="20260510-adler-psychology.html">アドラー心理学</a>
+  </nav>
+
+  <p style="text-align:center;margin-top:20px;">
+    <a href="../index.html" style="text-decoration:none;color:var(--text-muted);font-size:14px;font-weight:500;">← 一覧へ戻る</a>
+  </p>
+
+</main>
+
+<footer class="site-footer">
+  <p>🐾 セルフコーチング学習ログ</p>
+</footer>
+
+<script>
+  const MEMO_KEY = 'memo-metacognition';
+  window.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem(MEMO_KEY);
+    if (saved) {
+      const d = JSON.parse(saved);
+      document.getElementById('memo-1').value = d.memo1 || '';
+      document.getElementById('memo-2').value = d.memo2 || '';
+      document.getElementById('memo-3').value = d.memo3 || '';
+      if (d.savedAt) document.getElementById('last-saved').textContent = '最終保存: ' + d.savedAt;
+    }
+  });
+  function saveMemo() {
+    const now = new Date();
+    const savedAt = now.toLocaleDateString('ja-JP') + ' ' + now.toLocaleTimeString('ja-JP', {hour:'2-digit',minute:'2-digit'});
+    const d = {
+      memo1: document.getElementById('memo-1').value,
+      memo2: document.getElementById('memo-2').value,
+      memo3: document.getElementById('memo-3').value,
+      savedAt: savedAt
+    };
+    localStorage.setItem(MEMO_KEY, JSON.stringify(d));
+    const msg = document.getElementById('saved-msg');
+    msg.classList.add('show');
+    document.getElementById('last-saved').textContent = '最終保存: ' + savedAt;
+    setTimeout(() => msg.classList.remove('show'), 2500);
+  }
+  function clearMemo() {
+    if (!confirm('メモをクリアしますか？')) return;
+    ['memo-1','memo-2','memo-3'].forEach(id => { document.getElementById(id).value = ''; });
+    localStorage.removeItem(MEMO_KEY);
+    document.getElementById('last-saved').textContent = '';
+  }
+</script>
+</body>
+</html>

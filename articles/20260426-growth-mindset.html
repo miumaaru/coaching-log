@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>成長マインドセット | セルフコーチング学習ログ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+:root{--orange:#E8722A;--orange-light:#FDF0E8;--orange-mid:#F5C4A0;--brown:#6B3A2A;--brown-light:#F9F3EF;--text:#2D2D2D;--text-muted:#7A7A7A;--border:#EAE0D8;--white:#FFFFFF;--teal:#3A8C8A;--teal-light:#EAF5F5;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans JP',sans-serif;background:#FAF7F4;color:var(--text);line-height:1.85;font-size:16px;}
+.site-header{background:var(--white);border-bottom:1px solid var(--border);padding:14px 24px;}
+.site-header a{text-decoration:none;color:var(--brown);font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:6px;opacity:.75;transition:opacity .2s;}
+.site-header a:hover{opacity:1;}
+.site-header a::before{content:'←';}
+.article-wrap{max-width:720px;margin:0 auto;padding:48px 24px 80px;}
+.article-meta{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap;}
+.tag{background:var(--orange-light);color:var(--orange);border:1px solid var(--orange-mid);font-size:12px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.05em;}
+.tag.teal{background:var(--teal-light);color:var(--teal);border-color:#B0D8D7;}
+.article-date{font-size:13px;color:var(--text-muted);}
+.article-title{font-family:'Noto Serif JP',serif;font-size:clamp(22px,4vw,30px);font-weight:700;color:var(--brown);line-height:1.45;margin-bottom:10px;}
+.article-subtitle{font-size:15px;color:var(--text-muted);margin-bottom:36px;line-height:1.7;}
+.divider{border:none;border-top:1px solid var(--border);margin:36px 0;}
+.lead-box{background:var(--brown-light);border-left:4px solid var(--orange);padding:20px 24px;border-radius:0 8px 8px 0;margin-bottom:36px;font-size:15px;}
+.lead-box strong{color:var(--orange);}
+.section-label{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--white);background:var(--brown);padding:4px 14px;border-radius:4px;margin-bottom:20px;}
+.section-label.trainer{background:var(--teal);}
+.article-body h3{font-family:'Noto Serif JP',serif;font-size:18px;font-weight:700;color:var(--brown);margin:36px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--orange-light);}
+.article-body p{margin-bottom:18px;font-size:15.5px;}
+.article-body p.bullet{padding-left:16px;color:var(--text-muted);font-size:15px;}
+.article-body strong{color:var(--brown);}
+.article-body em{font-style:normal;color:var(--orange);font-weight:700;}
+.drive-box{background:linear-gradient(135deg,#FDF0E8 0%,#FFF8F2 100%);border:1px solid var(--orange-mid);border-radius:12px;padding:24px;margin:24px 0;}
+.drive-box p{font-size:15px;margin-bottom:10px;}
+.drive-box p:last-child{margin-bottom:0;}
+.drive-box strong{color:var(--orange);}
+.theory-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0 32px;}
+@media(max-width:560px){.theory-grid{grid-template-columns:1fr;}}
+.theory-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px;transition:box-shadow .2s,border-color .2s;}
+.theory-card:hover{box-shadow:0 4px 16px rgba(232,114,42,.1);border-color:var(--orange-mid);}
+.theory-step{display:inline-block;background:var(--orange);color:var(--white);font-size:11px;font-weight:700;padding:3px 10px;border-radius:4px;letter-spacing:.05em;margin-bottom:10px;}
+.theory-card-name{font-weight:700;font-size:15px;color:var(--brown);margin-bottom:8px;font-family:'Noto Serif JP',serif;}
+.theory-card-desc{font-size:13.5px;color:var(--text-muted);background:rgba(0,0,0,.03);padding:8px 12px;border-radius:6px;border-left:3px solid var(--orange-mid);line-height:1.65;margin-bottom:8px;}
+.theory-card-effect{font-size:13px;color:var(--orange);font-weight:500;}
+.theory-card-effect::before{content:'✨ ';}
+.trainer-section{background:var(--teal-light);border:1px solid #B0D8D7;border-radius:12px;padding:28px;margin-top:40px;}
+.trainer-section h3{font-family:'Noto Serif JP',serif;font-size:17px;font-weight:700;color:var(--teal);margin:24px 0 12px;}
+.trainer-section h3:first-of-type{margin-top:8px;}
+.action-item{background:var(--white);border:1px solid #B0D8D7;border-radius:8px;padding:16px 18px;margin-bottom:12px;font-size:14.5px;}
+.action-item p{margin-bottom:0;}
+.action-syntax{background:#F0F7F7;border-radius:5px;padding:8px 12px;font-size:13px;color:var(--teal);margin-top:8px;font-weight:500;}
+.action-syntax::before{content:'ポイント: ';font-weight:700;}
+.closing-box{background:var(--brown);color:var(--white);border-radius:12px;padding:28px;margin-top:40px;text-align:center;}
+.closing-box p{font-size:15px;opacity:.9;margin-bottom:0;}
+.closing-quote{font-family:'Noto Serif JP',serif;font-size:18px;font-weight:700;margin-bottom:14px;line-height:1.6;}
+.infographic-section{margin-top:40px;}
+.infographic-img{width:100%;border-radius:12px;border:1px solid var(--border);display:block;box-shadow:0 4px 16px rgba(0,0,0,.07);}
+.infographic-placeholder{width:100%;border-radius:12px;border:2px dashed var(--border);background:var(--white);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;min-height:180px;color:var(--text-muted);font-size:14px;}
+.infographic-caption{font-size:12px;color:var(--text-muted);text-align:center;margin-top:8px;}
+.memo-section{margin-top:40px;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px;}
+.memo-prompts{display:flex;flex-direction:column;gap:16px;margin-bottom:20px;}
+.memo-prompt-item label{display:block;font-size:13px;font-weight:700;color:var(--brown);margin-bottom:6px;}
+.memo-prompt-item textarea{width:100%;border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-family:'Noto Sans JP',sans-serif;font-size:14px;line-height:1.7;color:var(--text);background:#FDFBF9;resize:vertical;min-height:80px;transition:border-color .2s,box-shadow .2s;outline:none;}
+.memo-prompt-item textarea:focus{border-color:var(--orange-mid);box-shadow:0 0 0 3px rgba(232,114,42,.1);}
+.memo-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.btn-save{background:var(--orange);color:var(--white);border:none;border-radius:8px;padding:10px 22px;font-family:'Noto Sans JP',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:background .2s,transform .1s;}
+.btn-save:hover{background:#D4631E;}
+.btn-save:active{transform:scale(.97);}
+.btn-clear{background:none;color:var(--text-muted);border:1px solid var(--border);border-radius:8px;padding:10px 18px;font-family:'Noto Sans JP',sans-serif;font-size:13px;cursor:pointer;transition:color .2s,border-color .2s;}
+.btn-clear:hover{color:var(--text);border-color:#C0B0A8;}
+.memo-saved-msg{font-size:13px;color:var(--teal);font-weight:500;opacity:0;transition:opacity .3s;}
+.memo-saved-msg.show{opacity:1;}
+.memo-last-saved{font-size:12px;color:var(--text-muted);margin-top:10px;}
+.article-nav{display:flex;justify-content:space-between;margin-top:56px;padding-top:28px;border-top:1px solid var(--border);}
+.nav-link{text-decoration:none;color:var(--orange);font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:gap .2s;}
+.nav-link:hover{gap:10px;}
+.nav-link.prev::before{content:'← ';}
+.nav-link.next::after{content:' →';}
+.site-footer{text-align:center;padding:32px 24px;font-size:13px;color:var(--text-muted);border-top:1px solid var(--border);background:var(--white);}
+@media(max-width:600px){.article-wrap{padding:32px 18px 60px;}}
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="../index.html">学習ログ一覧に戻る</a>
+</header>
+
+<main class="article-wrap">
+
+  <div class="article-meta">
+    <span class="tag">認知科学</span><span class="tag">習慣形成</span><span class="tag teal">目標設定</span>
+    <span class="article-date">2026年4月26日</span>
+  </div>
+
+  <h1 class="article-title">成長マインドセット</h1>
+  <p class="article-subtitle">「才能は固定されたもの」ではなく「努力と経験で伸ばせるもの」という信念体系。自分の可能性についての根本的な思い込みを変えることで、挑戦・失敗・フィードバックへの向き合い方が180度変わります。</p>
+
+  <hr class="divider">
+
+  <div class="lead-box">
+    「才能は固定されたもの」ではなく「努力と経験で伸ばせるもの」という信念体系。自分の可能性についての根本的な思い込みを変えることで、挑戦・失敗・フィードバックへの向き合い方が180度変わります。
+  </div>
+
+  <div class="section-label">📚 教授の解説</div>
+
+  <div class="article-body">
+
+    <h3>理論の本質：なぜこれが必要なのか？</h3>
+    <p>私たちは誰でも、自分自身への「隠れた思い込み」を持っています。</p>
+    <p><strong>「自分はもともとこういう人間だから、変われない」</strong> <strong>「この仕事は向いていないから、どうせ上手くならない」</strong></p>
+    <p>こうした考えが頭をよぎると、いくら優れたコーチング手法を持っていても、そもそも「やってみよう」という気が起きなくなります。ドゥエックはこれを<strong>「固定マインドセット（Fixed Mindset）」</strong>と呼びました。</p>
+    <p>逆に、<strong>「努力すれば能力は伸びる」「失敗は成長のデータだ」</strong>という信念を持てるとき、人は困難にぶつかっても前向きに取り組み続けられます。これが<strong>「成長マインドセット（Growth Mindset）」</strong>です。</p>
+    <p>この理論が重要なのは、「どちらのマインドセットを持つか」が、才能そのものより、<strong>日々の選択・努力・学びの質</strong>に決定的な差をもたらすからです。医療・福祉の現場で「変えたいけど変えられない」と感じる時、その背景にはしばしば固定マインドセットが潜んでいます。</p>
+
+    <h3>直感的な例え話</h3>
+    <div class="drive-box">
+      <p>頭の中に、2種類の「カーナビ」があると想像してみてください。</p>
+    <p><strong>カーナビA（固定マインドセット型）：</strong> 道に迷うと「この道は間違いです。あなたの運転は失敗です」とアナウンスします。エラーの記録を延々と読み上げ、次の目的地を設定する意欲を奪ってしまいます。</p>
+    <p><strong>カーナビB（成長マインドセット型）：</strong> 道に迷うと「ルートを再計算します」と即座に切り替え、また前に進み始めます。間違いは「データ」として処理し、より良い経路を見つけるための情報にします。</p>
+    <p>どちらのカーナビも、あなたの頭の中にすでに入っています。成長マインドセットを学ぶとは、カーナビBを「デフォルト」に設定する練習のことです。</p>
+    </div>
+
+    <h3>具体的なメカニズム：固定と成長、2つのマインドセット</h3>
+        <div class="theory-grid">
+      <div class="theory-card">
+        <div class="theory-step">①</div>
+        <div class="theory-card-name">① 挑戦への反応</div>
+        <div class="theory-card-desc">固定マインドセット： 「できなかったら恥ずかしい」と感じ、できそうなことしかやらない。失敗のリスクから逃げる。</div>
+      </div>
+      <div class="theory-card">
+        <div class="theory-step">②</div>
+        <div class="theory-card-name">② 失敗・挫折への反応</div>
+        <div class="theory-card-desc">固定マインドセット： 失敗を「自分の能力のなさの証明」と受け取る。原因を自分の性格や才能に求める（「どうせ私はこういう人間」）。</div>
+      </div>
+      <div class="theory-card">
+        <div class="theory-step">③</div>
+        <div class="theory-card-name">③ 批判・フィードバックへの反応</div>
+        <div class="theory-card-desc">固定マインドセット： 批判を「人格の否定」と感じ、防衛的になるか、落ち込む。フィードバックを避けようとする。</div>
+      </div>
+      <div class="theory-card">
+        <div class="theory-step">④</div>
+        <div class="theory-card-name">④ 他者の成功への反応</div>
+        <div class="theory-card-desc">固定マインドセット： 優秀な他者を見ると脅威を感じる（「自分はあの人に劣っている」）。嫉妬や比較の罠にはまりやすい。</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="trainer-section">
+    <div class="section-label trainer">🏋️ トレーナーの今日の課題</div>
+
+    <h3>① ベビーステップ（2分以内）</h3>
+    <div class="action-item"><p>「今日、自分がやりたくないと感じた仕事を1つ思い出し、心の中で『まだうまくできていない』と言い換えてみる」（観察ポイント：言葉が変わると、気持ちが少し軽くなるかどうか確認してみてください）</p></div>
+
+    <h3>② ルーチン・トリガー</h3>
+    <div class="action-item"><p>「仕事でミスや指摘を受けたら（帰宅前）、その出来事を『次はどうすれば？』という問いに変換して、手帳に1行だけ書く」（固定マインドセットの「なんで私はこうなんだろう」を、成長マインドセットの「次はどうする？」にすり替えます。所要時間2分）</p></div>
+
+    <h3>③ 今日のミッション</h3>
+    <div class="action-item"><p>今日の課題に取り組んでみましょう。</p></div>
+  </div>
+
+  <div class="closing-box">
+    <div class="closing-quote">「できない」ではなく「まだできない」。<br>たったこの一言が、脳の可能性を開く。</div>
+    <p>才能は固定ではなく、努力と戦略で育つもの。成長マインドセットは、その信念から始まる。</p>
+  </div>
+
+  <div class="infographic-section">
+    <div class="section-label" style="margin-top:40px;">🖼️ 図解まとめ</div>
+    <div class="infographic-placeholder">
+      <span>🖼️</span>
+      <p style="font-weight:700;">成長マインドセット.png</p>
+      <p style="font-size:12px;">準備中 — articles/成長マインドセット.png に画像を追加してください</p>
+    </div>
+    <p class="infographic-caption">NotebookLM で作成したインフォグラフィック</p>
+  </div>
+
+  <div class="memo-section">
+    <div class="section-label" style="background:var(--orange);">📝 マイメモ</div>
+    <div class="memo-prompts">
+      <div class="memo-prompt-item">
+        <label>💡 今日の学びで一番印象に残ったこと</label>
+        <textarea id="memo-1" placeholder="自由に書いてみましょう..."></textarea>
+      </div>
+      <div class="memo-prompt-item">
+        <label>🔍 「自分には向いていない」と感じた場面、「まだできない」と言い換えるとどう聞こえる？</label>
+        <textarea id="memo-2" placeholder="自由に書いてみましょう..."></textarea>
+      </div>
+      <div class="memo-prompt-item">
+        <label>⭐ 失敗を「成長の情報」として受け取れた経験はある？それはどんな場面だった？</label>
+        <textarea id="memo-3" placeholder="自由に書いてみましょう..."></textarea>
+      </div>
+    </div>
+    <div class="memo-actions">
+      <button class="btn-save" onclick="saveMemo()">💾 保存する</button>
+      <button class="btn-clear" onclick="clearMemo()">クリア</button>
+      <span class="memo-saved-msg" id="saved-msg">✓ 保存しました</span>
+    </div>
+    <div class="memo-last-saved" id="last-saved"></div>
+  </div>
+
+  <nav class="article-nav">
+    <a class="nav-link prev" href="20260425-emotional-intelligence.html">感情知性（EQ）</a>
+    <a class="nav-link next" href="20260427-johari-window.html">ジョハリの窓</a>
+  </nav>
+
+  <p style="text-align:center;margin-top:20px;">
+    <a href="../index.html" style="text-decoration:none;color:var(--text-muted);font-size:14px;font-weight:500;">← 一覧へ戻る</a>
+  </p>
+
+</main>
+
+<footer class="site-footer">
+  <p>🐾 セルフコーチング学習ログ</p>
+</footer>
+
+<script>
+  const MEMO_KEY = 'memo-growth-mindset';
+  window.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem(MEMO_KEY);
+    if (saved) {
+      const d = JSON.parse(saved);
+      document.getElementById('memo-1').value = d.memo1 || '';
+      document.getElementById('memo-2').value = d.memo2 || '';
+      document.getElementById('memo-3').value = d.memo3 || '';
+      if (d.savedAt) document.getElementById('last-saved').textContent = '最終保存: ' + d.savedAt;
+    }
+  });
+  function saveMemo() {
+    const now = new Date();
+    const savedAt = now.toLocaleDateString('ja-JP') + ' ' + now.toLocaleTimeString('ja-JP', {hour:'2-digit',minute:'2-digit'});
+    const d = {
+      memo1: document.getElementById('memo-1').value,
+      memo2: document.getElementById('memo-2').value,
+      memo3: document.getElementById('memo-3').value,
+      savedAt: savedAt
+    };
+    localStorage.setItem(MEMO_KEY, JSON.stringify(d));
+    const msg = document.getElementById('saved-msg');
+    msg.classList.add('show');
+    document.getElementById('last-saved').textContent = '最終保存: ' + savedAt;
+    setTimeout(() => msg.classList.remove('show'), 2500);
+  }
+  function clearMemo() {
+    if (!confirm('メモをクリアしますか？')) return;
+    ['memo-1','memo-2','memo-3'].forEach(id => { document.getElementById(id).value = ''; });
+    localStorage.removeItem(MEMO_KEY);
+    document.getElementById('last-saved').textContent = '';
+  }
+</script>
+</body>
+</html>

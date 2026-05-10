@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PERMAモデル | セルフコーチング学習ログ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+:root{--orange:#E8722A;--orange-light:#FDF0E8;--orange-mid:#F5C4A0;--brown:#6B3A2A;--brown-light:#F9F3EF;--text:#2D2D2D;--text-muted:#7A7A7A;--border:#EAE0D8;--white:#FFFFFF;--teal:#3A8C8A;--teal-light:#EAF5F5;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans JP',sans-serif;background:#FAF7F4;color:var(--text);line-height:1.85;font-size:16px;}
+.site-header{background:var(--white);border-bottom:1px solid var(--border);padding:14px 24px;}
+.site-header a{text-decoration:none;color:var(--brown);font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:6px;opacity:.75;transition:opacity .2s;}
+.site-header a:hover{opacity:1;}
+.site-header a::before{content:'←';}
+.article-wrap{max-width:720px;margin:0 auto;padding:48px 24px 80px;}
+.article-meta{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap;}
+.tag{background:var(--orange-light);color:var(--orange);border:1px solid var(--orange-mid);font-size:12px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.05em;}
+.tag.teal{background:var(--teal-light);color:var(--teal);border-color:#B0D8D7;}
+.article-date{font-size:13px;color:var(--text-muted);}
+.article-title{font-family:'Noto Serif JP',serif;font-size:clamp(22px,4vw,30px);font-weight:700;color:var(--brown);line-height:1.45;margin-bottom:10px;}
+.article-subtitle{font-size:15px;color:var(--text-muted);margin-bottom:36px;line-height:1.7;}
+.divider{border:none;border-top:1px solid var(--border);margin:36px 0;}
+.lead-box{background:var(--brown-light);border-left:4px solid var(--orange);padding:20px 24px;border-radius:0 8px 8px 0;margin-bottom:36px;font-size:15px;}
+.lead-box strong{color:var(--orange);}
+.section-label{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--white);background:var(--brown);padding:4px 14px;border-radius:4px;margin-bottom:20px;}
+.section-label.trainer{background:var(--teal);}
+.article-body h3{font-family:'Noto Serif JP',serif;font-size:18px;font-weight:700;color:var(--brown);margin:36px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--orange-light);}
+.article-body p{margin-bottom:18px;font-size:15.5px;}
+.article-body p.bullet{padding-left:16px;color:var(--text-muted);font-size:15px;}
+.article-body strong{color:var(--brown);}
+.article-body em{font-style:normal;color:var(--orange);font-weight:700;}
+.drive-box{background:linear-gradient(135deg,#FDF0E8 0%,#FFF8F2 100%);border:1px solid var(--orange-mid);border-radius:12px;padding:24px;margin:24px 0;}
+.drive-box p{font-size:15px;margin-bottom:10px;}
+.drive-box p:last-child{margin-bottom:0;}
+.drive-box strong{color:var(--orange);}
+.theory-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0 32px;}
+@media(max-width:560px){.theory-grid{grid-template-columns:1fr;}}
+.theory-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px;transition:box-shadow .2s,border-color .2s;}
+.theory-card:hover{box-shadow:0 4px 16px rgba(232,114,42,.1);border-color:var(--orange-mid);}
+.theory-step{display:inline-block;background:var(--orange);color:var(--white);font-size:11px;font-weight:700;padding:3px 10px;border-radius:4px;letter-spacing:.05em;margin-bottom:10px;}
+.theory-card-name{font-weight:700;font-size:15px;color:var(--brown);margin-bottom:8px;font-family:'Noto Serif JP',serif;}
+.theory-card-desc{font-size:13.5px;color:var(--text-muted);background:rgba(0,0,0,.03);padding:8px 12px;border-radius:6px;border-left:3px solid var(--orange-mid);line-height:1.65;margin-bottom:8px;}
+.theory-card-effect{font-size:13px;color:var(--orange);font-weight:500;}
+.theory-card-effect::before{content:'✨ ';}
+.trainer-section{background:var(--teal-light);border:1px solid #B0D8D7;border-radius:12px;padding:28px;margin-top:40px;}
+.trainer-section h3{font-family:'Noto Serif JP',serif;font-size:17px;font-weight:700;color:var(--teal);margin:24px 0 12px;}
+.trainer-section h3:first-of-type{margin-top:8px;}
+.action-item{background:var(--white);border:1px solid #B0D8D7;border-radius:8px;padding:16px 18px;margin-bottom:12px;font-size:14.5px;}
+.action-item p{margin-bottom:0;}
+.action-syntax{background:#F0F7F7;border-radius:5px;padding:8px 12px;font-size:13px;color:var(--teal);margin-top:8px;font-weight:500;}
+.action-syntax::before{content:'ポイント: ';font-weight:700;}
+.closing-box{background:var(--brown);color:var(--white);border-radius:12px;padding:28px;margin-top:40px;text-align:center;}
+.closing-box p{font-size:15px;opacity:.9;margin-bottom:0;}
+.closing-quote{font-family:'Noto Serif JP',serif;font-size:18px;font-weight:700;margin-bottom:14px;line-height:1.6;}
+.infographic-section{margin-top:40px;}
+.infographic-img{width:100%;border-radius:12px;border:1px solid var(--border);display:block;box-shadow:0 4px 16px rgba(0,0,0,.07);}
+.infographic-placeholder{width:100%;border-radius:12px;border:2px dashed var(--border);background:var(--white);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;min-height:180px;color:var(--text-muted);font-size:14px;}
+.infographic-caption{font-size:12px;color:var(--text-muted);text-align:center;margin-top:8px;}
+.memo-section{margin-top:40px;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px;}
+.memo-prompts{display:flex;flex-direction:column;gap:16px;margin-bottom:20px;}
+.memo-prompt-item label{display:block;font-size:13px;font-weight:700;color:var(--brown);margin-bottom:6px;}
+.memo-prompt-item textarea{width:100%;border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-family:'Noto Sans JP',sans-serif;font-size:14px;line-height:1.7;color:var(--text);background:#FDFBF9;resize:vertical;min-height:80px;transition:border-color .2s,box-shadow .2s;outline:none;}
+.memo-prompt-item textarea:focus{border-color:var(--orange-mid);box-shadow:0 0 0 3px rgba(232,114,42,.1);}
+.memo-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.btn-save{background:var(--orange);color:var(--white);border:none;border-radius:8px;padding:10px 22px;font-family:'Noto Sans JP',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:background .2s,transform .1s;}
+.btn-save:hover{background:#D4631E;}
+.btn-save:active{transform:scale(.97);}
+.btn-clear{background:none;color:var(--text-muted);border:1px solid var(--border);border-radius:8px;padding:10px 18px;font-family:'Noto Sans JP',sans-serif;font-size:13px;cursor:pointer;transition:color .2s,border-color .2s;}
+.btn-clear:hover{color:var(--text);border-color:#C0B0A8;}
+.memo-saved-msg{font-size:13px;color:var(--teal);font-weight:500;opacity:0;transition:opacity .3s;}
+.memo-saved-msg.show{opacity:1;}
+.memo-last-saved{font-size:12px;color:var(--text-muted);margin-top:10px;}
+.article-nav{display:flex;justify-content:space-between;margin-top:56px;padding-top:28px;border-top:1px solid var(--border);}
+.nav-link{text-decoration:none;color:var(--orange);font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:gap .2s;}
+.nav-link:hover{gap:10px;}
+.nav-link.prev::before{content:'← ';}
+.nav-link.next::after{content:' →';}
+.site-footer{text-align:center;padding:32px 24px;font-size:13px;color:var(--text-muted);border-top:1px solid var(--border);background:var(--white);}
+@media(max-width:600px){.article-wrap{padding:32px 18px 60px;}}
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="../index.html">学習ログ一覧に戻る</a>
+</header>
+
+<main class="article-wrap">
+
+  <div class="article-meta">
+    <span class="tag">自己理解</span><span class="tag">目標設定</span><span class="tag teal">コーチング基礎</span>
+    <span class="article-date">2026年4月20日</span>
+  </div>
+
+  <h1 class="article-title">PERMAモデル</h1>
+  <p class="article-subtitle">ポジティブ心理学の創始者マーティン・セリグマンが提唱する「幸福と繁栄の5要素」モデル。ポジティブ感情（P）・エンゲージメント（E）・関係性（R）・意味（M）・達成（A）の5つを意識的に育てることで、心</p>
+
+  <hr class="divider">
+
+  <div class="lead-box">
+    ポジティブ心理学の創始者マーティン・セリグマンが提唱する「幸福と繁栄の5要素」モデル。ポジティブ感情（P）・エンゲージメント（E）・関係性（R）・意味（M）・達成（A）の5つを意識的に育てることで、心理的な「フラリッシング（繁栄・充実）」を実現し、医療・福祉職に多い燃え尽き症候群（バーンアウト）を予防できます。
+  </div>
+
+  <div class="section-label">📚 教授の解説</div>
+
+  <div class="article-body">
+
+    <h3>理論の本質：なぜこれが必要なのか？</h3>
+    <p>「最近、なんとなく疲れていて、仕事はこなせているけど充実感がない」——医療・福祉の現場で働いていると、こんな感覚に陥ることがあるのではないでしょうか。</p>
+    <p>問題は何もない。でも、「なんかつまらない」「やりがいを感じられない」。これは、<strong>マイナスがゼロになった状態であって、プラスの状態ではない</strong>のです。</p>
+    <p>セリグマンはかつての心理学が「病気を治す（マイナスをゼロにする）」ことにばかり集中してきたと指摘し、<strong>「人間が本当に繁栄（フラリッシング）するための条件は何か？」</strong>という問いを立てました。その答えが、<strong>PERMA</strong>という5つの要素です。</p>
+    <p>医療・福祉の事務職は、患者さんや利用者さんの「困りごと」を解決することが仕事の中心になりがちです。だからこそ、自分自身の「繁栄の設計」を意識的に行う技術が、バーンアウト（燃え尽き症候群）の予防に直結します。</p>
+    <p>---</p>
+
+    <h3>直感的な例え話：心の「栄養素」の話</h3>
+    <div class="drive-box">
+      <p>身体の健康を考えてみてください。体の不調（マイナス）を治すには薬や治療が必要です。でも、<strong>病気を治しただけでは「元気で充実した体」にはなりません</strong>。そこには、バランスの良い食事・適度な運動・十分な睡眠という「栄養素」が必要ですよね。</p>
+    <p>心も同じです。</p>
+    <p>PERMAモデルは、<strong>心の「5大栄養素」</strong>を特定したものです。この5つを意識的に「摂取」することで、心は単に「壊れていない状態」ではなく、<strong>本当に活き活きとした「繁栄の状態」</strong>に近づいていきます。</p>
+    <p>あなたの心の栄養バランスは、今どんな状態でしょうか？</p>
+    <p>---</p>
+    </div>
+
+    <h3>具体的なメカニズム：5つの栄養素（PERMA）</h3>
+        <div class="theory-grid">
+      <div class="theory-card">
+        <div class="theory-step">①</div>
+        <div class="theory-card-name">① Positive Emotions（ポジティブ感情）：喜び・感謝・希望</div>
+        <div class="theory-card-desc">喜び・感謝・愛・希望・好奇心など、「前向きな感情」を意識的に経験すること。</div>
+        <div class="theory-card-effect">バーバラ・フレドリクソンの「拡張－形成理論（ポジティブ感情が思考を広げ、長期的な心理的資源を蓄積するという理論）」によると、ポジティブ感情を「意識的に味わう」だけで効果が大きく増幅されます。</div>
+      </div>
+      <div class="theory-card">
+        <div class="theory-step">②</div>
+        <div class="theory-card-name">② Engagement（エンゲージメント）：没入・夢中</div>
+        <div class="theory-card-desc">時間を忘れるほど活動に没頭している状態。心理学者チクセントミハイの「フロー状態（極度の集中と充実感が同時に起きる体験）」と深く結びついています。</div>
+        <div class="theory-card-effect">フローを経験した後は、疲れているのに不思議と充実感がある、という感覚が残ります。</div>
+      </div>
+      <div class="theory-card">
+        <div class="theory-step">③</div>
+        <div class="theory-card-name">③ Relationships（関係性）：つながり・支え合い</div>
+        <div class="theory-card-desc">他者との質の高い関わり。信頼・支え合い・感謝の循環が生まれている状態。</div>
+        <div class="theory-card-effect">セリグマンは「幸福に最も強く相関する要素は人間関係である」と断言しています。SCARFのRとも重なりますが、PERMAでは「積極的に育てる行動」が求められます。</div>
+      </div>
+      <div class="theory-card">
+        <div class="theory-step">④</div>
+        <div class="theory-card-name">④ Meaning（意味）：目的・使命感</div>
+        <div class="theory-card-desc">自分が取り組んでいることに「自分より大きな何か（社会・他者・価値観）」へのつながりを感じること。</div>
+        <div class="theory-card-effect">意味を感じながら行う仕事は、疲労感が少なく、モチベーションが持続しやすくなります。</div>
+      </div>
+      <div class="theory-card">
+        <div class="theory-step">⑤</div>
+        <div class="theory-card-name">⑤ Accomplishment（達成）：成果・前進感</div>
+        <div class="theory-card-desc">目標に向かって前進している感覚、あるいは何かを成し遂げた実感。</div>
+        <div class="theory-card-effect">達成感はそれ自体が次の行動への推進力になります。</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="trainer-section">
+    <div class="section-label trainer">🏋️ トレーナーの今日の課題</div>
+
+    <h3>① ベビーステップ（2分以内）</h3>
+    <div class="action-item"><p>「このチャットを閉じる前に、今日『ちょっと嬉しかった・ほっとした・楽しかった』瞬間を1つだけ思い出して、心の中で3秒味わう（Positive Emotions の練習）」</p></div>
+
+    <h3>② ルーチン・トリガー</h3>
+    <div class="action-item"><p>「お昼休憩に入ったら、午前中の仕事の中から『自分なりに意味を感じた瞬間（M）』を1つだけ言語化する（心の中でOK）」</p></div>
+    <div class="action-item"><p>「帰宅後、コートを脱いだら『今日できたこと・前進したこと（A）』を1つだけ思い出す（手帳に書けたらボーナス）」</p></div>
+
+    <h3>③ 今日のミッション</h3>
+    <div class="action-item"><p>【エンゲージメント（E）の実験】：今日の業務の中で「集中しやすかった作業」と「なかなか乗れなかった作業」を意識して比較し、どんな違いがあったかを夕方に1文メモする。強みを見つける手がかりになります。</p></div>
+  </div>
+
+  <div class="closing-box">
+    <div class="closing-quote">幸福は偶然の産物ではない。<br>5つの柱を意識して、毎日少しずつ設計できる。</div>
+    <p>P・E・R・M・Aのどれか一つを、今日の行動に意識的に取り入れてみよう。</p>
+  </div>
+
+  <div class="infographic-section">
+    <div class="section-label" style="margin-top:40px;">🖼️ 図解まとめ</div>
+    <div class="infographic-placeholder">
+      <span>🖼️</span>
+      <p style="font-weight:700;">PERMAモデル.png</p>
+      <p style="font-size:12px;">準備中 — articles/PERMAモデル.png に画像を追加してください</p>
+    </div>
+    <p class="infographic-caption">NotebookLM で作成したインフォグラフィック</p>
+  </div>
+
+  <div class="memo-section">
+    <div class="section-label" style="background:var(--orange);">📝 マイメモ</div>
+    <div class="memo-prompts">
+      <div class="memo-prompt-item">
+        <label>💡 今日の学びで一番印象に残ったこと</label>
+        <textarea id="memo-1" placeholder="自由に書いてみましょう..."></textarea>
+      </div>
+      <div class="memo-prompt-item">
+        <label>🔍 今の自分のPERMA——どの要素が満たされていて、どれが不足している？</label>
+        <textarea id="memo-2" placeholder="自由に書いてみましょう..."></textarea>
+      </div>
+      <div class="memo-prompt-item">
+        <label>⭐ 今週「意味（M）」を感じた瞬間をひとつ書いてみよう。</label>
+        <textarea id="memo-3" placeholder="自由に書いてみましょう..."></textarea>
+      </div>
+    </div>
+    <div class="memo-actions">
+      <button class="btn-save" onclick="saveMemo()">💾 保存する</button>
+      <button class="btn-clear" onclick="clearMemo()">クリア</button>
+      <span class="memo-saved-msg" id="saved-msg">✓ 保存しました</span>
+    </div>
+    <div class="memo-last-saved" id="last-saved"></div>
+  </div>
+
+  <nav class="article-nav">
+    <a class="nav-link prev" href="20260419-scarf-model.html">SCARFモデル</a>
+    <a class="nav-link next" href="20260421-self-compassion.html">セルフ・コンパッション</a>
+  </nav>
+
+  <p style="text-align:center;margin-top:20px;">
+    <a href="../index.html" style="text-decoration:none;color:var(--text-muted);font-size:14px;font-weight:500;">← 一覧へ戻る</a>
+  </p>
+
+</main>
+
+<footer class="site-footer">
+  <p>🐾 セルフコーチング学習ログ</p>
+</footer>
+
+<script>
+  const MEMO_KEY = 'memo-perma-model';
+  window.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem(MEMO_KEY);
+    if (saved) {
+      const d = JSON.parse(saved);
+      document.getElementById('memo-1').value = d.memo1 || '';
+      document.getElementById('memo-2').value = d.memo2 || '';
+      document.getElementById('memo-3').value = d.memo3 || '';
+      if (d.savedAt) document.getElementById('last-saved').textContent = '最終保存: ' + d.savedAt;
+    }
+  });
+  function saveMemo() {
+    const now = new Date();
+    const savedAt = now.toLocaleDateString('ja-JP') + ' ' + now.toLocaleTimeString('ja-JP', {hour:'2-digit',minute:'2-digit'});
+    const d = {
+      memo1: document.getElementById('memo-1').value,
+      memo2: document.getElementById('memo-2').value,
+      memo3: document.getElementById('memo-3').value,
+      savedAt: savedAt
+    };
+    localStorage.setItem(MEMO_KEY, JSON.stringify(d));
+    const msg = document.getElementById('saved-msg');
+    msg.classList.add('show');
+    document.getElementById('last-saved').textContent = '最終保存: ' + savedAt;
+    setTimeout(() => msg.classList.remove('show'), 2500);
+  }
+  function clearMemo() {
+    if (!confirm('メモをクリアしますか？')) return;
+    ['memo-1','memo-2','memo-3'].forEach(id => { document.getElementById(id).value = ''; });
+    localStorage.removeItem(MEMO_KEY);
+    document.getElementById('last-saved').textContent = '';
+  }
+</script>
+</body>
+</html>
